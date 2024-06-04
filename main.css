@@ -17,6 +17,25 @@ body {
     background-color: white;
 }
 
+/* COMMON ASSETS */
+
+.fakeImage {
+    color: red;
+    font-size:20vh;
+    line-height: 8vh;
+    size: 1vh;
+}
+
+.sectionTitle {
+    margin-bottom: 10vh;
+}
+
+.subSectionTitle {
+    font-weight: bold;
+    margin-top: 5vh;
+    margin-bottom: 2vh;
+}
+
 /* HEADER */
 
 .header {
@@ -66,5 +85,58 @@ body {
 .planning {
     width: 100%;
     height: 100%;
-    background-color: red;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.planningContainer {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.planningInfoContainer {
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.planningInfo {
+    flex: 1;
+}
+
+.planningTitle {
+    font-weight: bold;
+    margin-bottom: 1vh;
+    margin-top: 2vh;
+}
+
+.planningDate {
+    font-weight: normal;
+}
+
+.planningHour {
+    font-weight: normal;
+    margin-bottom: 1vh;
+}
+
+.planningLocation {
+    font-size: 80%;
+}
+
+/* THEME */
+
+.theme {
+    width: 100%;
+    height: 100%;
+    padding-left: 15%;
+    padding-right: 15%;
+}
+
+.themeContainer {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
