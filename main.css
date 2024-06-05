@@ -36,6 +36,36 @@ body {
     margin-bottom: 2vh;
 }
 
+/* NAVBAR */
+
+.navBar {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+.navBar li {
+    float: right;
+  }
+
+.navBar li a {
+    display: block;
+    color: black;
+    padding: 2vh 3vh;
+    text-align: center;
+    text-decoration: none;
+}
+
+.navBar li a:hover {
+    background-color: #dddddd;
+  }
+
 /* HEADER */
 
 .header {
