@@ -5,8 +5,10 @@
     <title>Le mariage des Zous</title>
     <link href="main.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="main.js" defer></script>
 </head>
 <body>
+    <!-- TODO rediriger vers la page de login si on a pas de user dans sessionStorage-->
     <!-- NAVBAR -->
     <ul class="navBar">
         <li style="float:left"><a href="#home">Le mariage des Zous</a></li>
@@ -18,10 +20,10 @@
       </ul>
     <!-- HEADER -->
     <div class="header" id="home"> 
-        <div class="welcome"> <!--TODO ajuster le contenu selon l'invité(e)(s)-->
-            <h3>Bienvenue Maxime ! Tu es invité au</h3>
+        <div class="welcome">
+            <h3 id="headerWelcomeLabel">Bienvenue Maxime ! Tu es invité au</h3>
             <h1>Mariage des Zous</h1>
-            <h3>14, 15 & 16 février</h3>
+            <h3 id="headerDateLabel">14, 15 & 16 février</h3>
             <button onclick="location.href='#form'">Je viens !</button>
         </div>
         <div class="scrollIndicator">
