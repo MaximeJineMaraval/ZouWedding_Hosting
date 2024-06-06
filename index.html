@@ -4,23 +4,18 @@
     <meta charset="UTF-8">
     <title>Le mariage des Zous</title>
     <link href="index.css" rel="stylesheet">
+    <script src="index.js" defer></script>
 </head>
-<!--TODO Rendre la page fonctionnel ⬇️-->
-<!--Griser le bouton tant que le champs est vide-->
-<!--Faire un appel réseau pour se logguer-->
-<!--Gérer le cas KO (genre pas de réseaux ou mauvaise URL)-->
-<!--Gérer le cas Erreur (genre utilisateur non trouvé)-->
-<!--Gérer le cas Succès (rediriger vers l'autre page)-->
 <body>
     <div class="loginContent">
+        <p id="fakeResults"></p>
         <h1>Le mariage des Zous</h1>
         <p>Bienvenue sur le site du mariage des Zous !</p>
         <p>Renseigne ton prénom et ton nom pour accéder au contenu du site</p>
-        <form method="get" action="">
-            <input type="text" name="guestname" placeholder="Entre ton prénom et ton nom" size="30">
-            <br>
-            <input type="submit" value="C'est partit!">
-        </form>
+        <input type="text" id="guestname" name="guestname" placeholder="Entre ton prénom et ton nom" size="30">
+        <br>
+        <button id="loginButton" disabled="true">C'est partit!</button>
+        <p id="results">Les résultats ici</p>
     </div>
 </body>
 </html>

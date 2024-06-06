@@ -28,4 +28,13 @@ h1 {
 
 input {
     margin-top: 5vh;
+    margin-bottom: 5vh;
+}
+
+#results {
+    margin-top: 5vh;
+}
+
+#fakeResults {
+    margin-bottom: 5vh;
 }
