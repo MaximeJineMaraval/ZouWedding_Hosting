@@ -8,7 +8,6 @@
     <script src="main.js" defer></script>
 </head>
 <body>
-    <!-- TODO rediriger vers la page de login si on a pas de user dans sessionStorage-->
     <!-- NAVBAR -->
     <ul class="navBar">
         <li style="float:left"><a href="#home">Le mariage des Zous</a></li>
@@ -32,7 +31,7 @@
         </div>
     </div>
     <!-- PLANNING -->
-    <div class="planning" id="planning"> <!--TODO ajuster le contenu selon l'invité(e)(s) + afficher les vrais horaires-->
+    <div class="planning" id="planning">
         <div class="planningContainer">
         <h2 class="sectionTitle">C'est quoi le plannning ?</h2>
             <div class="planningInfoContainer">
@@ -61,7 +60,7 @@
         </div>
     </div>
     <!-- THEME -->
-    <div class="theme" id="theme"> <!--TODO définir le contenu-->
+    <div class="theme" id="theme">
         <div class="themeContainer">
             <h2 class="sectionTitle">C'est quoi le thème ?</h2>
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
@@ -70,7 +69,7 @@
         </div>
     </div>
     <!-- GIFT LIST -->
-    <div class="giftList" id="giftList"> <!--TODO définir le contenu-->
+    <div class="giftList" id="giftList">
         <div class="giftListContainer">
             <h2 class="sectionTitle">Il y a une liste de mariage ?</h2>
             <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
@@ -78,21 +77,23 @@
         </div>
     </div>
     <!-- MAPS -->
-    <div class="maps" id="maps"> <!--TODO définir le contenu + afficher les bonnes cartes et titres selon les invités + (customizer les cartes ?) -->
+    <div class="maps" id="maps">
         <div class="mapsContainer">
             <h2 class="sectionTitle">Ça se passe où ?</h2>
             <div class="eventMapContainer">
-                <div class="eventMapItem">
+                <div id="mapCityHallBlock" class="eventMapItem">
                     <p class="subSectionTitle">Le vendredi</p>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2528.7128047201236!2d3.1280477764250465!3d50.669592671561084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c329a321013465%3A0xad50a84e49b1ead8!2sMairie%20de%20Wasquehal!5e0!3m2!1sfr!2sfr!4v1717562133570!5m2!1sfr!2sfr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="eventMapItem">
-                    <p class="subSectionTitle">Le samedi et dimanche</p>
+                    <p id="mapCastleTitle" class="subSectionTitle">Le samedi et dimanche</p>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2550.885893738448!2d2.9751920764021347!3d50.256715401294464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2b4c47d74d8e1%3A0x610fe85c7eedb3cc!2sClos%20Barth%C3%A9lemy-Ch%C3%A2teau%20d&#39;Eterpigny!5e0!3m2!1sfr!2sfr!4v1717562468049!5m2!1sfr!2sfr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
-            <p class="subSectionTitle">Ou est-ce qu’on dort ?</p>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+            <div id="mapHostelBlock">
+                <p class="subSectionTitle">Besoin de dormir dans les environs ?</p>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+            </div>
         </div>
     </div>
     <!-- FORM -->

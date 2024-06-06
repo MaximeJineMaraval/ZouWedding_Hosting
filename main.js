@@ -26,8 +26,9 @@ headerDateLabel.textContent = dateString
 
 // Update Planning
 const planningFridayBlock = document.getElementById("planningFridayBlock")
-const planningSundayBlock = document.getElementById("planningSundayBlock")
 planningFridayBlock.hidden = !user.is_invited_friday
+
+const planningSundayBlock = document.getElementById("planningSundayBlock")
 planningSundayBlock.hidden = !user.is_invited_sunday
 
 const planningSaturdayTitle = document.getElementById("planningSaturdayTitle")
@@ -39,3 +40,17 @@ if(user.is_invited_full_saturday) {
     planningSaturdayTitle.textContent = "Cocktail"
     planningSaturdayHour.textContent = "18h00"
 }
+
+// Update Maps
+const mapCityHallBlock = document.getElementById("mapCityHallBlock")
+mapCityHallBlock.hidden = !user.is_invited_friday
+
+const mapCastleTitle = document.getElementById("mapCastleTitle")
+if(user.is_invited_sunday) {
+    mapCastleTitle.textContent = "Samedi & Dimanche" 
+} else {
+    mapCastleTitle.textContent = "Samedi"
+}
+
+const mapHostelBlock = document.getElementById("mapHostelBlock")
+mapHostelBlock.hidden = !user.is_invited_sunday && !user.is_invited_full_saturday
