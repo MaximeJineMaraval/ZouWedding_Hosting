@@ -54,7 +54,7 @@ loginButton.addEventListener("click", function(){
                 resultsLabel.textContent = "Trop d'invités correspondent à ce nom. Si le problème persiste, contacte directement Maxime ou Justine 🙂"
             } else {
                 const user = data.results[0]
-                sessionStorage.user = JSON.stringify(user)
+                sessionStorage.user = user.id
                 window.location.href = "main.html"
             }
         })
