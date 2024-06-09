@@ -86,12 +86,11 @@ function fillThePage(user) {
                 return response.json()
             })
             .then(data => {
-                console.log(JSON.stringify(data))
-                // TODO afficher une snackbar
+                showSnackbar("Merci d'avoir répondu !")
             })
             .catch(error => {
                 console.log(error)
-                // TODO afficher une snackbar
+                showSnackbar(error)
             })
     })
 } 
@@ -199,4 +198,13 @@ function fillForm(user) {
 function triggerSaveButtonDisabled(user) {
     const saveButton = document.getElementById("saveButton")
     saveButton.disabled = user.is_invited_full_saturday && (burgerClassic.checked === false) && (burgerCheese.checked === false) && (burgerVg.checked === false)
+}
+
+function showSnackbar(text) {
+    let snackbar = document.getElementById("snackbar")
+    snackbar.textContent = text
+    snackbar.className = "show"
+    setTimeout(function() { 
+        snackbar.className = snackbar.className.replace("show", "")
+    }, 3000)
 }
