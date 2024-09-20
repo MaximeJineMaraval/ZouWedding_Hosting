@@ -98,11 +98,12 @@
         </div>
     </div>
     <!-- FORM -->
-    <div class="form" id="form"> <!--TODO faire le lien avec la BDD + afficher uniquement les champs nécessaire selon l'invité-->
+    <div class="form" id="form">
         <div class="formContainer">
             <h2 class="sectionTitle">C'est le moment de t'exprimer !</h2>
+            <!-- Choice User 1 -->
             <div class="joinChoiceContainer">
-                <p class="subSectionTitle">Est-que tu viens ?</p>
+                <p class="subSectionTitle" id="joinTitle">Est-que tu viens ?</p>
                 <p id="fridayCheckboxContainer">
                     Le vendredi à la mairie
                     <input id="fridayCheckbox" type="checkbox">
@@ -121,7 +122,7 @@
                 </p>
             </div>
             <div id="formFoodBlock">
-                <p class="subSectionTitle">Et tu mangeras quoi ?</p>
+                <p class="subSectionTitle" id="foodChoiceTitle">Et tu mangeras quoi ?</p>
                 <div class="foodChoiceContainer">
                 <div class="foodChoice">
                     <div class="fakeImage">&#9632;</div>
@@ -137,6 +138,46 @@
                     <div class="fakeImage">&#9632;</div>
                     <p>Burger végétarien</p>
                     <input type="radio" id="burgerVg" name="burger" value="vg" />
+                </div>
+                </div>
+            </div>
+            <!-- Choice User 2 -->
+            <div class="joinChoiceContainer" id="joinBlock2">
+                <p class="subSectionTitle" id="joinTitle2">Est-que tu viens ?</p>
+                <p id="fridayCheckboxContainer2">
+                    Le vendredi à la mairie
+                    <input id="fridayCheckbox2" type="checkbox">
+                </p>
+                <p id="saturdayCocktailCheckboxContainer2">
+                    Le samedi pour le cocktail
+                    <input id="saturdayCocktailCheckbox2" type="checkbox">
+                </p>
+                <p id="saturdayFullCheckboxContainer2">
+                    Le samedi pour la cérémonie, cockatil & soirée
+                    <input id="saturdayFullCheckbox2" type="checkbox">
+                </p>
+                <p id="sundayCheckboxContainer2">
+                    Le dimanche pour le brunch
+                    <input id="sundayCheckbox2" type="checkbox">
+                </p>
+            </div>
+            <div id="formFoodBlock2">
+                <p class="subSectionTitle" id="foodChoiceTitle2">Et tu mangeras quoi ?</p>
+                <div class="foodChoiceContainer">
+                <div class="foodChoice">
+                    <div class="fakeImage">&#9632;</div>
+                    <p>Burger classique</p>
+                    <input type="radio" id="burgerClassic2" name="burger2" value="classic" />
+                </div>
+                <div class="foodChoice">
+                    <div class="fakeImage">&#9632;</div>
+                    <p>Burger au fromage</p>
+                    <input type="radio" id="burgerCheese2" name="burger2" value="cheese" />
+                </div>
+                <div class="foodChoice">
+                    <div class="fakeImage">&#9632;</div>
+                    <p>Burger végétarien</p>
+                    <input type="radio" id="burgerVg2" name="burger2" value="vg" />
                 </div>
                 </div>
             </div>

@@ -57,12 +57,12 @@ function fillThePage(user1, user2) {
     fillHeader(user1, user2)
     fillPlanning(user1)
     fillMaps(user1)
-    fillForm(user1)
+    fillForm(user1, user2)
 
     // on save
     const saveButton = document.getElementById("saveButton")
     saveButton.addEventListener("click", function(){
-        saveChoices(user1)
+        saveChoices(user1, user2)
     })
 } 
 
@@ -124,55 +124,132 @@ function fillMaps(user) {
     mapHostelBlock.hidden = !user.is_invited_sunday && !user.is_invited_full_saturday
 }
 
-function fillForm(user) {
+function fillForm(user1, user2) {
+    if(user2 == null) {
+        // hide the user2 section if needed
+        const joinBlock2 = document.getElementById("joinBlock2")
+        const formFoodBlock2 = document.getElementById("formFoodBlock2")
+        joinBlock2.hidden = true
+        formFoodBlock2.hidden = true
+    } else {
+        // impact the title and size if there's two guest
+        const form = document.getElementById("form")
+        form.style.height = "150%"
+        const joinTitle = document.getElementById("joinTitle")
+        const joinTitle2 = document.getElementById("joinTitle2")
+        const foodChoiceTitle = document.getElementById("foodChoiceTitle")
+        const foodChoiceTitle2 = document.getElementById("foodChoiceTitle2")
+        joinTitle.textContent = `Est-que ${user1.firstname} vient ?`
+        joinTitle2.textContent = `Est-que ${user2.firstname} vient ?`
+        foodChoiceTitle.textContent = `Et ${user1.firstname} mangera quoi ?`
+        foodChoiceTitle2.textContent = `Et ${user2.firstname} mangera quoi ?`
+    }
+
     // show or hide checkbox
     const fridayCheckboxContainer = document.getElementById("fridayCheckboxContainer")
     const saturdayCocktailCheckboxContainer = document.getElementById("saturdayCocktailCheckboxContainer")
     const saturdayFullCheckboxContainer = document.getElementById("saturdayFullCheckboxContainer")
     const sundayCheckboxContainer = document.getElementById("sundayCheckboxContainer")
-    fridayCheckboxContainer.hidden = !user.is_invited_friday
-    saturdayCocktailCheckboxContainer.hidden = user.is_invited_full_saturday
-    saturdayFullCheckboxContainer.hidden = !user.is_invited_full_saturday
-    sundayCheckboxContainer.hidden = !user.is_invited_sunday
+    fridayCheckboxContainer.hidden = !user1.is_invited_friday
+    saturdayCocktailCheckboxContainer.hidden = user1.is_invited_full_saturday
+    saturdayFullCheckboxContainer.hidden = !user1.is_invited_full_saturday
+    sundayCheckboxContainer.hidden = !user1.is_invited_sunday
+
+    if(user2 != null) {
+        const fridayCheckboxContainer2 = document.getElementById("fridayCheckboxContainer2")
+        const saturdayCocktailCheckboxContainer2 = document.getElementById("saturdayCocktailCheckboxContainer2")
+        const saturdayFullCheckboxContainer2 = document.getElementById("saturdayFullCheckboxContainer2")
+        const sundayCheckboxContainer2 = document.getElementById("sundayCheckboxContainer2")
+        fridayCheckboxContainer2.hidden = !user2.is_invited_friday
+        saturdayCocktailCheckboxContainer2.hidden = user2.is_invited_full_saturday
+        saturdayFullCheckboxContainer2.hidden = !user2.is_invited_full_saturday
+        sundayCheckboxContainer2.hidden = !user2.is_invited_sunday
+    }
 
     // pre-fill checkbox
     const fridayCheckbox = document.getElementById("fridayCheckbox")
     const saturdayCocktailCheckbox = document.getElementById("saturdayCocktailCheckbox")
     const saturdayFullCheckbox = document.getElementById("saturdayFullCheckbox")
     const sundayCheckbox = document.getElementById("sundayCheckbox")
-    fridayCheckbox.checked = user.join_friday
-    saturdayCocktailCheckbox.checked = user.join_cocktail
-    saturdayFullCheckbox.checked = user.join_full_saturday
-    sundayCheckbox.checked = user.join_sunday
+    fridayCheckbox.checked = user1.join_friday
+    saturdayCocktailCheckbox.checked = user1.join_cocktail
+    saturdayFullCheckbox.checked = user1.join_full_saturday
+    sundayCheckbox.checked = user1.join_sunday
+
+    if(user2 != null) {
+        const fridayCheckbox2 = document.getElementById("fridayCheckbox2")
+        const saturdayCocktailCheckbox2 = document.getElementById("saturdayCocktailCheckbox2")
+        const saturdayFullCheckbox2 = document.getElementById("saturdayFullCheckbox2")
+        const sundayCheckbox2 = document.getElementById("sundayCheckbox2")
+        fridayCheckbox2.checked = user2.join_friday
+        saturdayCocktailCheckbox2.checked = user2.join_cocktail
+        saturdayFullCheckbox2.checked = user2.join_full_saturday
+        sundayCheckbox2.checked = user2.join_sunday
+    }
 
     // show or hide food section
     const formFoodBlock = document.getElementById("formFoodBlock")
-    formFoodBlock.hidden = !user.is_invited_full_saturday
+    formFoodBlock.hidden = !user1.is_invited_full_saturday
+
+    if(user2 != null) {
+        const formFoodBlock2 = document.getElementById("formFoodBlock2")
+        formFoodBlock2.hidden = !user2.is_invited_full_saturday
+    }
 
     // pre-fill food radio buttons
     const burgerClassic = document.getElementById("burgerClassic")
     const burgerCheese = document.getElementById("burgerCheese")
     const burgerVg = document.getElementById("burgerVg")
-    burgerClassic.checked = user.food === FOOD_CHOICE_CLASSIC
-    burgerCheese.checked = user.food === FOOD_CHOICE_CHEESE
-    burgerVg.checked = user.food === FOOD_CHOICE_VG
+    burgerClassic.checked = user1.food === FOOD_CHOICE_CLASSIC
+    burgerCheese.checked = user1.food === FOOD_CHOICE_CHEESE
+    burgerVg.checked = user1.food === FOOD_CHOICE_VG
+
+    const burgerClassic2 = document.getElementById("burgerClassic2")
+    const burgerCheese2 = document.getElementById("burgerCheese2")
+    const burgerVg2 = document.getElementById("burgerVg2")
+    if(user2 != null) {
+        burgerClassic2.checked = user2.food === FOOD_CHOICE_CLASSIC
+        burgerCheese2.checked = user2.food === FOOD_CHOICE_CHEESE
+        burgerVg2.checked = user2.food === FOOD_CHOICE_VG
+    }
 
     // enable or disabled save button + update user
-    triggerSaveButtonDisabled(user)
+    triggerSaveButtonDisabled(user1, user2)
     burgerClassic.onclick = function() { 
-        triggerSaveButtonDisabled(user) 
+        triggerSaveButtonDisabled(user1, user2) 
     }
     burgerCheese.onclick = function() { 
-        triggerSaveButtonDisabled(user)
+        triggerSaveButtonDisabled(user1, user2) 
     }
     burgerVg.onclick = function() { 
-        triggerSaveButtonDisabled(user) 
+        triggerSaveButtonDisabled(user1, user2) 
+    }
+    burgerClassic2.onclick = function() { 
+        triggerSaveButtonDisabled(user1, user2) 
+    }
+    burgerCheese2.onclick = function() { 
+        triggerSaveButtonDisabled(user1, user2) 
+    }
+    burgerVg2.onclick = function() { 
+        triggerSaveButtonDisabled(user1, user2) 
     }
 }
 
-function triggerSaveButtonDisabled(user) {
+function triggerSaveButtonDisabled(user1, user2) {
     const saveButton = document.getElementById("saveButton")
-    saveButton.disabled = user.is_invited_full_saturday && (burgerClassic.checked === false) && (burgerCheese.checked === false) && (burgerVg.checked === false)
+    saveButton.disabled = 
+        (
+            user1.is_invited_full_saturday 
+            && (burgerClassic.checked === false) 
+            && (burgerCheese.checked === false) 
+            && (burgerVg.checked === false)
+        )
+        || (user2 != null &&
+            user2.is_invited_full_saturday 
+            && (burgerClassic2.checked === false) 
+            && (burgerCheese2.checked === false) 
+            && (burgerVg2.checked === false)
+        )
 }
 
 function showSnackbar(text) {
@@ -184,7 +261,8 @@ function showSnackbar(text) {
     }, 3000)
 }
 
-function saveChoices(user) {
+async function saveChoices(user1, user2) {
+    // user1
     const fridayCheckbox = document.getElementById("fridayCheckbox")
     const saturdayCocktailCheckbox = document.getElementById("saturdayCocktailCheckbox")
     const saturdayFullCheckbox = document.getElementById("saturdayFullCheckbox")
@@ -202,37 +280,70 @@ function saveChoices(user) {
     if(burgerVg.checked) {
         foodString = FOOD_CHOICE_VG
     }
-
-    const apiUrl = `https://api.baserow.io/api/database/rows/table/302843/${user.id}/?user_field_names=true`
-
-    const requestOptions = {
-        method: 'PATCH',
-        headers: {
-            'Authorization': `Token ${token}`,
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            has_answered: true,
-            join_friday: fridayCheckbox.checked,
-            join_full_saturday: saturdayFullCheckbox.checked,
-            join_sunday: sundayCheckbox.checked,
-            join_cocktail: saturdayCocktailCheckbox.checked,
-            food: foodString
-        })
+    // user2
+    const fridayCheckbox2 = document.getElementById("fridayCheckbox2")
+    const saturdayCocktailCheckbox2 = document.getElementById("saturdayCocktailCheckbox2")
+    const saturdayFullCheckbox2 = document.getElementById("saturdayFullCheckbox2")
+    const sundayCheckbox2 = document.getElementById("sundayCheckbox2")
+    const burgerClassic2 = document.getElementById("burgerClassic2")
+    const burgerCheese2 = document.getElementById("burgerCheese2")
+    const burgerVg2 = document.getElementById("burgerVg2")
+    let foodString2 = ""
+    if(burgerClassic2.checked) {
+        foodString2 = FOOD_CHOICE_CLASSIC
     }
-    
-    fetch(apiUrl, requestOptions)
-        .then(response => {
-            if(!response.ok) {
-                throw new Error('Network response was not ok')
+    if(burgerCheese2.checked) {
+        foodString2 = FOOD_CHOICE_CHEESE
+    }
+    if(burgerVg2.checked) {
+        foodString2 = FOOD_CHOICE_VG
+    }
+
+    try {
+        // user1
+        const apiUrl = `https://api.baserow.io/api/database/rows/table/302843/${user1.id}/?user_field_names=true`
+        const requestOptions = {
+            method: 'PATCH',
+            headers: {
+                'Authorization': `Token ${token}`,
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                has_answered: true,
+                join_friday: fridayCheckbox.checked,
+                join_full_saturday: saturdayFullCheckbox.checked,
+                join_sunday: sundayCheckbox.checked,
+                join_cocktail: saturdayCocktailCheckbox.checked,
+                food: foodString
+            })
+        }
+        const response = await fetch(apiUrl, requestOptions)
+        const result = await response.json()
+        if(user2 != null) {
+            const apiUrl2 = `https://api.baserow.io/api/database/rows/table/302843/${user2.id}/?user_field_names=true`
+            const requestOptions2 = {
+                method: 'PATCH',
+                headers: {
+                    'Authorization': `Token ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    has_answered: true,
+                    join_friday: fridayCheckbox2.checked,
+                    join_full_saturday: saturdayFullCheckbox2.checked,
+                    join_sunday: sundayCheckbox2.checked,
+                    join_cocktail: saturdayCocktailCheckbox2.checked,
+                    food: foodString2
+                })
             }
-            return response.json()
-        })
-        .then(data => {
-            showSnackbar("Merci d'avoir répondu ! 2")
-        })
-        .catch(error => {
-            console.log(error)
-            showSnackbar(error)
-        })
+            const response = await fetch(apiUrl2, requestOptions2)
+            const result = await response.json()
+            showSnackbar("Merci d'avoir répondu !")
+        } else {
+            showSnackbar("Merci d'avoir répondu !")
+        }
+    } catch(error) {
+        console.log(error)
+        showSnackbar(error)
+    }
 }
