@@ -3,95 +3,66 @@ const FOOD_CHOICE_CLASSIC = "CLASSIC"
 const FOOD_CHOICE_CHEESE = "CHEESE"
 const FOOD_CHOICE_VG = "VG"
 
-// Retrieve the user
-if(sessionStorage.user === undefined) {
-    window.location.href = "index.html"
+loadPage()
+
+async function loadPage() {
+    // Retrieve the user and redirect to the homePage if the user doesn't exist
+    if(sessionStorage.user === undefined) {
+        window.location.href = "index.html"
+    }
+
+    // !!!!! TODO Afficher un loader et cacher le contenu de la page !!!!!
+
+    var user1 = await fetchUser(sessionStorage.user)
+    if (user1 == null) {
+        // TODO afficher une page d'erreur
+    } else {
+        var user2 = null
+        // Get the linked user if it exist
+        if (user1.linked_guest.length != 0) {
+            user2 = await fetchUser(user1.linked_guest[0].id)
+        }
+        // !!!!! TODO cacher le loader et afficher le contenu de la page !!!!!
+        fillThePage(user1, user2)
+    }
 }
 
-//TODO Afficher un loader et cacher le contenu de la page
-
-const getUserApiUrl = `https://api.baserow.io/api/database/rows/table/302843/${sessionStorage.user}/?user_field_names=true`
-const getUserRequestOptions = {
-    method: 'GET',
-    headers: {
-        'Authorization': `Token ${token}`,
-      }
+async function fetchUser(userId) {
+    const getUserApiUrl = `https://api.baserow.io/api/database/rows/table/302843/${userId}/?user_field_names=true`
+    const getUserRequestOptions = {
+        method: 'GET',
+        headers: {
+            'Authorization': `Token ${token}`,
+        }
+    }
+    try {
+        const response = await fetch(getUserApiUrl, getUserRequestOptions)
+        const result = await response.json()
+        return result
+    } catch(error) {
+        console.log(error)
+        return null
+    }
 }
-fetch(getUserApiUrl, getUserRequestOptions)
-        .then(response => {
-            if(!response.ok) {
-                throw new Error('Network response was not ok')
-            }
-            return response.json()
-        })
-        .then(data => {
-            fillThePage(data)
-        })
-        .catch(error => {
-            console.log(error)
-        })
 
 
-function fillThePage(user) {
-    //TODO cacher le loader et afficher le contenu de la page
-    fillHeader(user)
-    fillPlanning(user)
-    fillMaps(user)
-    fillForm(user)
+function fillThePage(user1, user2) {
+    console.log(user1.firstname)
+    console.log(user1.lastname)
+    if(user2 != null) {
+        console.log(user2.firstname)
+        console.log(user2.lastname)
+    }
+
+    fillHeader(user1)
+    fillPlanning(user1)
+    fillMaps(user1)
+    fillForm(user1)
 
     // on save
     const saveButton = document.getElementById("saveButton")
     saveButton.addEventListener("click", function(){
-        const fridayCheckbox = document.getElementById("fridayCheckbox")
-        const saturdayCocktailCheckbox = document.getElementById("saturdayCocktailCheckbox")
-        const saturdayFullCheckbox = document.getElementById("saturdayFullCheckbox")
-        const sundayCheckbox = document.getElementById("sundayCheckbox")
-        const burgerClassic = document.getElementById("burgerClassic")
-        const burgerCheese = document.getElementById("burgerCheese")
-        const burgerVg = document.getElementById("burgerVg")
-        let foodString = ""
-        if(burgerClassic.checked) {
-            foodString = FOOD_CHOICE_CLASSIC
-        }
-        if(burgerCheese.checked) {
-            foodString = FOOD_CHOICE_CHEESE
-        }
-        if(burgerVg.checked) {
-            foodString = FOOD_CHOICE_VG
-        }
-
-        const apiUrl = `https://api.baserow.io/api/database/rows/table/302843/${user.id}/?user_field_names=true`
-
-        const requestOptions = {
-            method: 'PATCH',
-            headers: {
-                'Authorization': `Token ${token}`,
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                has_answered: true,
-                join_friday: fridayCheckbox.checked,
-                join_full_saturday: saturdayFullCheckbox.checked,
-                join_sunday: sundayCheckbox.checked,
-                join_cocktail: saturdayCocktailCheckbox.checked,
-                food: foodString
-            })
-        }
-        
-        fetch(apiUrl, requestOptions)
-            .then(response => {
-                if(!response.ok) {
-                    throw new Error('Network response was not ok')
-                }
-                return response.json()
-            })
-            .then(data => {
-                showSnackbar("Merci d'avoir répondu !")
-            })
-            .catch(error => {
-                console.log(error)
-                showSnackbar(error)
-            })
+        saveChoices(user1)
     })
 } 
 
@@ -207,4 +178,57 @@ function showSnackbar(text) {
     setTimeout(function() { 
         snackbar.className = snackbar.className.replace("show", "")
     }, 3000)
+}
+
+function saveChoices(user) {
+    const fridayCheckbox = document.getElementById("fridayCheckbox")
+    const saturdayCocktailCheckbox = document.getElementById("saturdayCocktailCheckbox")
+    const saturdayFullCheckbox = document.getElementById("saturdayFullCheckbox")
+    const sundayCheckbox = document.getElementById("sundayCheckbox")
+    const burgerClassic = document.getElementById("burgerClassic")
+    const burgerCheese = document.getElementById("burgerCheese")
+    const burgerVg = document.getElementById("burgerVg")
+    let foodString = ""
+    if(burgerClassic.checked) {
+        foodString = FOOD_CHOICE_CLASSIC
+    }
+    if(burgerCheese.checked) {
+        foodString = FOOD_CHOICE_CHEESE
+    }
+    if(burgerVg.checked) {
+        foodString = FOOD_CHOICE_VG
+    }
+
+    const apiUrl = `https://api.baserow.io/api/database/rows/table/302843/${user.id}/?user_field_names=true`
+
+    const requestOptions = {
+        method: 'PATCH',
+        headers: {
+            'Authorization': `Token ${token}`,
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            has_answered: true,
+            join_friday: fridayCheckbox.checked,
+            join_full_saturday: saturdayFullCheckbox.checked,
+            join_sunday: sundayCheckbox.checked,
+            join_cocktail: saturdayCocktailCheckbox.checked,
+            food: foodString
+        })
+    }
+    
+    fetch(apiUrl, requestOptions)
+        .then(response => {
+            if(!response.ok) {
+                throw new Error('Network response was not ok')
+            }
+            return response.json()
+        })
+        .then(data => {
+            showSnackbar("Merci d'avoir répondu ! 2")
+        })
+        .catch(error => {
+            console.log(error)
+            showSnackbar(error)
+        })
 }
