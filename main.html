@@ -18,172 +18,181 @@
         <li><a href="#theme">Le thème</a></li>
         <li><a href="#planning">Le planning</a></li>
       </ul>
-    <!-- HEADER -->
-    <div class="header" id="home"> 
-        <div class="welcome">
-            <h3 id="headerWelcomeLabel"></h3>
-            <h1>Mariage des Zous</h1>
-            <h3 id="headerDateLabel"></h3>
-            <button onclick="location.href='#form'">Je viens !</button>
-        </div>
-        <div class="scrollIndicator">
-            <p>Tu veux tout savoir sur ce mariage ? Ça se passe en dessous !</p>
-            <a class="material-icons" href="#planning">arrow_downward</a>
-        </div>
+    <!-- LOADER -->
+     <div class="mainLoaderContainer" id="mainLoader">
+        <div class="loader"></div>
     </div>
-    <!-- PLANNING -->
-    <div class="planning" id="planning">
-        <div class="planningContainer">
-        <h2 class="sectionTitle">C'est quoi le plannning ?</h2>
-            <div class="planningInfoContainer">
-                <div id="planningFridayBlock" class="planningInfo">
-                    <div class="fakeImage">&#9632;</div>
-                    <p class="planningTitle">Mairie</p>
-                    <p class="planningDate">Vendredi 14 février</p>
-                    <p class="planningHour">16h00</p>
-                    <p class="planningLocation">1 Rue Michelet, 59290 Wasquehal</p>
-                </div>
-                <div id="planningSaturdayBlock" class="planningInfo">
-                    <div class="fakeImage">&#9632;</div>
-                    <p id="planningSaturdayTitle" class="planningTitle"></p>
-                    <p class="planningDate">Samedi 15 février</p>
-                    <p id="planningSaturdayHour" class="planningHour"></p>
-                    <p class="planningLocation">Clos Barthélemy, 1 Grand Rue, 62156 Éterpigny</p>
-                </div>
-                <div id="planningSundayBlock" class="planningInfo">
-                    <div class="fakeImage">&#9632;</div>
-                    <p class="planningTitle">Brunch</p>
-                    <p class="planningDate">Dimanche 16 février</p>
-                    <p class="planningHour">13h00</p>
-                    <p class="planningLocation">Clos Barthélemy, 1 Grand Rue, 62156 Éterpigny</p>
+    <div class="pageContent" id="pageContent">
+        <!-- HEADER -->
+        <div class="header" id="home"> 
+            <div class="welcome">
+                <h3 id="headerWelcomeLabel"></h3>
+                <h1>Mariage des Zous</h1>
+                <h3 id="headerDateLabel"></h3>
+                <button onclick="location.href='#form'">Je viens !</button>
+            </div>
+            <div class="scrollIndicator">
+                <p>Tu veux tout savoir sur ce mariage ? Ça se passe en dessous !</p>
+                <a class="material-icons" href="#planning">arrow_downward</a>
+            </div>
+        </div>
+        <!-- PLANNING -->
+        <div class="planning" id="planning">
+            <div class="planningContainer">
+            <h2 class="sectionTitle">C'est quoi le plannning ?</h2>
+                <div class="planningInfoContainer">
+                    <div id="planningFridayBlock" class="planningInfo">
+                        <div class="fakeImage">&#9632;</div>
+                        <p class="planningTitle">Mairie</p>
+                        <p class="planningDate">Vendredi 14 février</p>
+                        <p class="planningHour">16h00</p>
+                        <p class="planningLocation">1 Rue Michelet, 59290 Wasquehal</p>
+                    </div>
+                    <div id="planningSaturdayBlock" class="planningInfo">
+                        <div class="fakeImage">&#9632;</div>
+                        <p id="planningSaturdayTitle" class="planningTitle"></p>
+                        <p class="planningDate">Samedi 15 février</p>
+                        <p id="planningSaturdayHour" class="planningHour"></p>
+                        <p class="planningLocation">Clos Barthélemy, 1 Grand Rue, 62156 Éterpigny</p>
+                    </div>
+                    <div id="planningSundayBlock" class="planningInfo">
+                        <div class="fakeImage">&#9632;</div>
+                        <p class="planningTitle">Brunch</p>
+                        <p class="planningDate">Dimanche 16 février</p>
+                        <p class="planningHour">13h00</p>
+                        <p class="planningLocation">Clos Barthélemy, 1 Grand Rue, 62156 Éterpigny</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    <!-- THEME -->
-    <div class="theme" id="theme">
-        <div class="themeContainer">
-            <h2 class="sectionTitle">C'est quoi le thème ?</h2>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-            <p class="subSectionTitle">On peut venir avec nos petits ?</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        </div>
-    </div>
-    <!-- GIFT LIST -->
-    <div class="giftList" id="giftList">
-        <div class="giftListContainer">
-            <h2 class="sectionTitle">Il y a une liste de mariage ?</h2>
-            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-            <button>Je participe en ligne</button>
-        </div>
-    </div>
-    <!-- MAPS -->
-    <div class="maps" id="maps">
-        <div class="mapsContainer">
-            <h2 class="sectionTitle">Ça se passe où ?</h2>
-            <div class="eventMapContainer">
-                <div id="mapCityHallBlock" class="eventMapItem">
-                    <p class="subSectionTitle">Vendredi</p>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2528.7128047201236!2d3.1280477764250465!3d50.669592671561084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c329a321013465%3A0xad50a84e49b1ead8!2sMairie%20de%20Wasquehal!5e0!3m2!1sfr!2sfr!4v1717562133570!5m2!1sfr!2sfr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-                <div class="eventMapItem">
-                    <p id="mapCastleTitle" class="subSectionTitle"></p>
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2550.885893738448!2d2.9751920764021347!3d50.256715401294464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2b4c47d74d8e1%3A0x610fe85c7eedb3cc!2sClos%20Barth%C3%A9lemy-Ch%C3%A2teau%20d&#39;Eterpigny!5e0!3m2!1sfr!2sfr!4v1717562468049!5m2!1sfr!2sfr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-            <div id="mapHostelBlock">
-                <p class="subSectionTitle">Besoin de dormir dans les environs ?</p>
+        <!-- THEME -->
+        <div class="theme" id="theme">
+            <div class="themeContainer">
+                <h2 class="sectionTitle">C'est quoi le thème ?</h2>
                 <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                <p class="subSectionTitle">On peut venir avec nos petits ?</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
         </div>
-    </div>
-    <!-- FORM -->
-    <div class="form" id="form">
-        <div class="formContainer">
-            <h2 class="sectionTitle">C'est le moment de t'exprimer !</h2>
-            <!-- Choice User 1 -->
-            <div class="joinChoiceContainer">
-                <p class="subSectionTitle" id="joinTitle">Est-que tu viens ?</p>
-                <p id="fridayCheckboxContainer">
-                    Le vendredi à la mairie
-                    <input id="fridayCheckbox" type="checkbox">
-                </p>
-                <p id="saturdayCocktailCheckboxContainer">
-                    Le samedi pour le cocktail
-                    <input id="saturdayCocktailCheckbox" type="checkbox">
-                </p>
-                <p id="saturdayFullCheckboxContainer">
-                    Le samedi pour la cérémonie, cockatil & soirée
-                    <input id="saturdayFullCheckbox" type="checkbox">
-                </p>
-                <p id="sundayCheckboxContainer">
-                    Le dimanche pour le brunch
-                    <input id="sundayCheckbox" type="checkbox">
-                </p>
+        <!-- GIFT LIST -->
+        <div class="giftList" id="giftList">
+            <div class="giftListContainer">
+                <h2 class="sectionTitle">Il y a une liste de mariage ?</h2>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                <button>Je participe en ligne</button>
             </div>
-            <div id="formFoodBlock">
-                <p class="subSectionTitle" id="foodChoiceTitle">Et tu mangeras quoi ?</p>
-                <div class="foodChoiceContainer">
-                <div class="foodChoice">
-                    <div class="fakeImage">&#9632;</div>
-                    <p>Burger classique</p>
-                    <input type="radio" id="burgerClassic" name="burger" value="classic" />
-                </div>
-                <div class="foodChoice">
-                    <div class="fakeImage">&#9632;</div>
-                    <p>Burger au fromage</p>
-                    <input type="radio" id="burgerCheese" name="burger" value="cheese" />
-                </div>
-                <div class="foodChoice">
-                    <div class="fakeImage">&#9632;</div>
-                    <p>Burger végétarien</p>
-                    <input type="radio" id="burgerVg" name="burger" value="vg" />
-                </div>
-                </div>
-            </div>
-            <!-- Choice User 2 -->
-            <div class="joinChoiceContainer" id="joinBlock2">
-                <p class="subSectionTitle" id="joinTitle2">Est-que tu viens ?</p>
-                <p id="fridayCheckboxContainer2">
-                    Le vendredi à la mairie
-                    <input id="fridayCheckbox2" type="checkbox">
-                </p>
-                <p id="saturdayCocktailCheckboxContainer2">
-                    Le samedi pour le cocktail
-                    <input id="saturdayCocktailCheckbox2" type="checkbox">
-                </p>
-                <p id="saturdayFullCheckboxContainer2">
-                    Le samedi pour la cérémonie, cockatil & soirée
-                    <input id="saturdayFullCheckbox2" type="checkbox">
-                </p>
-                <p id="sundayCheckboxContainer2">
-                    Le dimanche pour le brunch
-                    <input id="sundayCheckbox2" type="checkbox">
-                </p>
-            </div>
-            <div id="formFoodBlock2">
-                <p class="subSectionTitle" id="foodChoiceTitle2">Et tu mangeras quoi ?</p>
-                <div class="foodChoiceContainer">
-                <div class="foodChoice">
-                    <div class="fakeImage">&#9632;</div>
-                    <p>Burger classique</p>
-                    <input type="radio" id="burgerClassic2" name="burger2" value="classic" />
-                </div>
-                <div class="foodChoice">
-                    <div class="fakeImage">&#9632;</div>
-                    <p>Burger au fromage</p>
-                    <input type="radio" id="burgerCheese2" name="burger2" value="cheese" />
-                </div>
-                <div class="foodChoice">
-                    <div class="fakeImage">&#9632;</div>
-                    <p>Burger végétarien</p>
-                    <input type="radio" id="burgerVg2" name="burger2" value="vg" />
-                </div>
-                </div>
-            </div>
-            <button id="saveButton">Sauvegarder</button>
         </div>
+        <!-- MAPS -->
+        <div class="maps" id="maps">
+            <div class="mapsContainer">
+                <h2 class="sectionTitle">Ça se passe où ?</h2>
+                <div class="eventMapContainer">
+                    <div id="mapCityHallBlock" class="eventMapItem">
+                        <p class="subSectionTitle">Vendredi</p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2528.7128047201236!2d3.1280477764250465!3d50.669592671561084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c329a321013465%3A0xad50a84e49b1ead8!2sMairie%20de%20Wasquehal!5e0!3m2!1sfr!2sfr!4v1717562133570!5m2!1sfr!2sfr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                    <div class="eventMapItem">
+                        <p id="mapCastleTitle" class="subSectionTitle"></p>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2550.885893738448!2d2.9751920764021347!3d50.256715401294464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2b4c47d74d8e1%3A0x610fe85c7eedb3cc!2sClos%20Barth%C3%A9lemy-Ch%C3%A2teau%20d&#39;Eterpigny!5e0!3m2!1sfr!2sfr!4v1717562468049!5m2!1sfr!2sfr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+                <div id="mapHostelBlock">
+                    <p class="subSectionTitle">Besoin de dormir dans les environs ?</p>
+                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                </div>
+            </div>
+        </div>
+        <!-- FORM -->
+        <div class="form" id="form">
+            <div class="formContainer">
+                <h2 class="sectionTitle">C'est le moment de t'exprimer !</h2>
+                <!-- Choice User 1 -->
+                <div class="joinChoiceContainer">
+                    <p class="subSectionTitle" id="joinTitle">Est-que tu viens ?</p>
+                    <p id="fridayCheckboxContainer">
+                        Le vendredi à la mairie
+                        <input id="fridayCheckbox" type="checkbox">
+                    </p>
+                    <p id="saturdayCocktailCheckboxContainer">
+                        Le samedi pour le cocktail
+                        <input id="saturdayCocktailCheckbox" type="checkbox">
+                    </p>
+                    <p id="saturdayFullCheckboxContainer">
+                        Le samedi pour la cérémonie, cockatil & soirée
+                        <input id="saturdayFullCheckbox" type="checkbox">
+                    </p>
+                    <p id="sundayCheckboxContainer">
+                        Le dimanche pour le brunch
+                        <input id="sundayCheckbox" type="checkbox">
+                    </p>
+                </div>
+                <div id="formFoodBlock">
+                    <p class="subSectionTitle" id="foodChoiceTitle">Et tu mangeras quoi ?</p>
+                    <div class="foodChoiceContainer">
+                    <div class="foodChoice">
+                        <div class="fakeImage">&#9632;</div>
+                        <p>Burger classique</p>
+                        <input type="radio" id="burgerClassic" name="burger" value="classic" />
+                    </div>
+                    <div class="foodChoice">
+                        <div class="fakeImage">&#9632;</div>
+                        <p>Burger au fromage</p>
+                        <input type="radio" id="burgerCheese" name="burger" value="cheese" />
+                    </div>
+                    <div class="foodChoice">
+                        <div class="fakeImage">&#9632;</div>
+                        <p>Burger végétarien</p>
+                        <input type="radio" id="burgerVg" name="burger" value="vg" />
+                    </div>
+                    </div>
+                </div>
+                <!-- Choice User 2 -->
+                <div class="joinChoiceContainer" id="joinBlock2">
+                    <p class="subSectionTitle" id="joinTitle2">Est-que tu viens ?</p>
+                    <p id="fridayCheckboxContainer2">
+                        Le vendredi à la mairie
+                        <input id="fridayCheckbox2" type="checkbox">
+                    </p>
+                    <p id="saturdayCocktailCheckboxContainer2">
+                        Le samedi pour le cocktail
+                        <input id="saturdayCocktailCheckbox2" type="checkbox">
+                    </p>
+                    <p id="saturdayFullCheckboxContainer2">
+                        Le samedi pour la cérémonie, cockatil & soirée
+                        <input id="saturdayFullCheckbox2" type="checkbox">
+                    </p>
+                    <p id="sundayCheckboxContainer2">
+                        Le dimanche pour le brunch
+                        <input id="sundayCheckbox2" type="checkbox">
+                    </p>
+                </div>
+                <div id="formFoodBlock2">
+                    <p class="subSectionTitle" id="foodChoiceTitle2">Et tu mangeras quoi ?</p>
+                    <div class="foodChoiceContainer">
+                    <div class="foodChoice">
+                        <div class="fakeImage">&#9632;</div>
+                        <p>Burger classique</p>
+                        <input type="radio" id="burgerClassic2" name="burger2" value="classic" />
+                    </div>
+                    <div class="foodChoice">
+                        <div class="fakeImage">&#9632;</div>
+                        <p>Burger au fromage</p>
+                        <input type="radio" id="burgerCheese2" name="burger2" value="cheese" />
+                    </div>
+                    <div class="foodChoice">
+                        <div class="fakeImage">&#9632;</div>
+                        <p>Burger végétarien</p>
+                        <input type="radio" id="burgerVg2" name="burger2" value="vg" />
+                    </div>
+                    </div>
+                </div>
+                <button id="saveButton">Sauvegarder</button>
+                <div class="formLoaderContainer" id="formLoader" hidden="true">
+                    <div class="loader"></div>
+                </div>
+            </div>
+        </div>
+        <div id="snackbar">Some text some message..</div>
     </div>
-    <div id="snackbar">Some text some message..</div>
 </body>
 </html>

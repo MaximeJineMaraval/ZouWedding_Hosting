@@ -6,12 +6,13 @@ const FOOD_CHOICE_VG = "VG"
 loadPage()
 
 async function loadPage() {
+    document.getElementById("mainLoader").hidden = false
+    document.getElementById("pageContent").hidden = true
+
     // Retrieve the user and redirect to the homePage if the user doesn't exist
     if(sessionStorage.user === undefined) {
         window.location.href = "index.html"
     }
-
-    // !!!!! TODO Afficher un loader et cacher le contenu de la page !!!!!
 
     var user1 = await fetchUser(sessionStorage.user)
     if (user1 == null) {
@@ -22,7 +23,6 @@ async function loadPage() {
         if (user1.linked_guest.length != 0) {
             user2 = await fetchUser(user1.linked_guest[0].id)
         }
-        // !!!!! TODO cacher le loader et afficher le contenu de la page !!!!!
         fillThePage(user1, user2)
     }
 }
@@ -47,13 +47,6 @@ async function fetchUser(userId) {
 
 
 function fillThePage(user1, user2) {
-    console.log(user1.firstname)
-    console.log(user1.lastname)
-    if(user2 != null) {
-        console.log(user2.firstname)
-        console.log(user2.lastname)
-    }
-
     fillHeader(user1, user2)
     fillPlanning(user1)
     fillMaps(user1)
@@ -64,6 +57,8 @@ function fillThePage(user1, user2) {
     saveButton.addEventListener("click", function(){
         saveChoices(user1, user2)
     })
+    document.getElementById("mainLoader").hidden = true
+    document.getElementById("pageContent").hidden = false
 } 
 
 function fillHeader(user1, user2) {
@@ -262,6 +257,8 @@ function showSnackbar(text) {
 }
 
 async function saveChoices(user1, user2) {
+    const loader = document.getElementById("formLoader")
+    loader.hidden = false
     // user1
     const fridayCheckbox = document.getElementById("fridayCheckbox")
     const saturdayCocktailCheckbox = document.getElementById("saturdayCocktailCheckbox")
@@ -339,8 +336,10 @@ async function saveChoices(user1, user2) {
             const response = await fetch(apiUrl2, requestOptions2)
             const result = await response.json()
             showSnackbar("Merci d'avoir répondu !")
+            loader.hidden = true
         } else {
             showSnackbar("Merci d'avoir répondu !")
+            loader.hidden = true
         }
     } catch(error) {
         console.log(error)
