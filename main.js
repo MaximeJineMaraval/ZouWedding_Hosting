@@ -16,7 +16,7 @@ async function loadPage() {
 
     var user1 = await fetchUser(sessionStorage.user)
     if (user1 == null) {
-        // TODO afficher une page d'erreur
+         window.location.href = "index.html"
     } else {
         var user2 = null
         // Get the linked user if it exist
