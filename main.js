@@ -54,7 +54,7 @@ function fillThePage(user1, user2) {
         console.log(user2.lastname)
     }
 
-    fillHeader(user1)
+    fillHeader(user1, user2)
     fillPlanning(user1)
     fillMaps(user1)
     fillForm(user1)
@@ -66,21 +66,25 @@ function fillThePage(user1, user2) {
     })
 } 
 
-function fillHeader(user) {
+function fillHeader(user1, user2) {
     const headerWelcomeLabel = document.getElementById("headerWelcomeLabel")
-    headerWelcomeLabel.textContent = `Bienvenue ${user.firstname} ! Tu es invité au`
+    if (user2 == null) {
+        headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname} ! Tu es invité au`
+    } else {
+        headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname} et ${user2.firstname} ! Vous êtes invités au`
+    }
 
     const headerDateLabel = document.getElementById("headerDateLabel")
     let dateString = ""
-    if (user.is_invited_friday) {
-        if(user.is_invited_sunday) {
+    if (user1.is_invited_friday) {
+        if(user1.is_invited_sunday) {
             dateString += "14, "
         } else {
             dateString += "14 & "
         }
     }
     dateString += "15"
-    if (user.is_invited_sunday) {
+    if (user1.is_invited_sunday) {
         dateString += " & 16"
     }
     dateString += " février 2025"
