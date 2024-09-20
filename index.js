@@ -3,7 +3,6 @@ const removeAccents = str => str.normalize('NFD').replace(/[\u0300-\u036f]/g, ''
 
 // API calls info
 const apiUrl = 'https://api.baserow.io/api/database/rows/table/302843/'
-const token = 'o0pJ9uzhCRFeCHA3KKCpWAiTw68oAR8C'
 
 // Views
 let loginButton = document.getElementById("loginButton")
@@ -16,7 +15,7 @@ nameField.addEventListener("input", function() {
 })
 
 // on loginButton click
-loginButton.addEventListener("click", function(){
+loginButton.addEventListener("click", async function(){
     const treatedName = removeAccents(nameField.value)
     const names = treatedName.split(' ')
 
@@ -32,6 +31,8 @@ loginButton.addEventListener("click", function(){
 
     const finalApiUrl = apiUrl + '?' + params.toString()
 
+
+    const token = await getToken()
     const requestOptions = {
         method: 'GET',
         headers: {
@@ -62,3 +63,13 @@ loginButton.addEventListener("click", function(){
             resultsLabel.textContent = error
         })
 })
+
+async function getToken() {
+    const url = "https://europe-west9-zouwedding-424315.cloudfunctions.net/logJsVersion"
+    const requestOptions = {
+        method: 'GET'
+    }
+    const response = await fetch(url, requestOptions)
+    const result = await response.text()
+    return result
+}

@@ -1,4 +1,3 @@
-const token = 'o0pJ9uzhCRFeCHA3KKCpWAiTw68oAR8C'
 const FOOD_CHOICE_CLASSIC = "CLASSIC"
 const FOOD_CHOICE_CHEESE = "CHEESE"
 const FOOD_CHOICE_VG = "VG"
@@ -28,14 +27,15 @@ async function loadPage() {
 }
 
 async function fetchUser(userId) {
-    const getUserApiUrl = `https://api.baserow.io/api/database/rows/table/302843/${userId}/?user_field_names=true`
-    const getUserRequestOptions = {
-        method: 'GET',
-        headers: {
-            'Authorization': `Token ${token}`,
-        }
-    }
     try {
+        const token = await getToken()
+        const getUserApiUrl = `https://api.baserow.io/api/database/rows/table/302843/${userId}/?user_field_names=true`
+        const getUserRequestOptions = {
+            method: 'GET',
+            headers: {
+                'Authorization': `Token ${token}`,
+            }
+        }
         const response = await fetch(getUserApiUrl, getUserRequestOptions)
         const result = await response.json()
         return result
@@ -297,6 +297,7 @@ async function saveChoices(user1, user2) {
     }
 
     try {
+        const token = await getToken()
         // user1
         const apiUrl = `https://api.baserow.io/api/database/rows/table/302843/${user1.id}/?user_field_names=true`
         const requestOptions = {
@@ -345,4 +346,14 @@ async function saveChoices(user1, user2) {
         console.log(error)
         showSnackbar(error)
     }
+}
+
+async function getToken() {
+    const url = "https://europe-west9-zouwedding-424315.cloudfunctions.net/logJsVersion"
+    const requestOptions = {
+        method: 'GET'
+    }
+    const response = await fetch(url, requestOptions)
+    const result = await response.text()
+    return result
 }
