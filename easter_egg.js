@@ -39,6 +39,7 @@ let score = 0;
 let isGameOver = false;
 let isGameStarted = false;
 let backgroundPosition = 0;
+let backgroundInterval;
 
   /*******************/
  /**** FUNCTIONS ****/
@@ -53,7 +54,7 @@ function startGame() {
   startButton.style.visibility = 'hidden';
 
   // Move the background
-  setInterval(updateBackground, 20);
+  backgroundInterval = setInterval(updateBackground, 20);
 
   // Create enemies and bonus
   createEnemy();
@@ -163,9 +164,13 @@ function createEnemy() {
       newEnemy.style.left = enemyPosition + "px";
     }
 
+    console.log(`Enemy position : ${enemyPosition}`)
    if (enemyPosition < 130 && enemyPosition > 80 && !isGameOver) {
-      let enemyBottom = parseInt(newEnemy.style.height);
-      if (playerBottom < enemyBottom) {
+      console.log("First if is ok")
+      let enemyTop = parseInt(newEnemy.style.height) + groundBottom - 5;
+      console.log(`Enemy bottom : ${enemyTop} | Player bottom : ${playerBottom}`)
+      if (playerBottom < enemyTop) {
+          console.log("Second if is ok")
           gameOver();
       }
     }
@@ -216,16 +221,20 @@ function generateBonus() {
 // Fonction pour gérer la fin du jeu
 function gameOver() {
   isGameOver = true;
+  isGameStarted = false;
   clearInterval(enemyInterval);
   clearInterval(bonusInterval);
-  alert("Game Over! Score: " + score);
-  document.location.reload();
+  clearInterval(backgroundInterval);
+  clearInterval(jumpInterval);
+  clearInterval(fallInterval);
+  //alert("Game Over! Score: " + score);
+  //document.location.reload();
 }
 
+// Start the game
 startButton.addEventListener("click", startGame);
-
 document.addEventListener("keydown", (event) => {
-  if ((event.code === "Enter" || event.code === "Space") && !isGameStarted) {
+  if ((event.code === "Enter" || event.code === "Space") && !isGameStarted && !isGameOver) {
     startGame();
   }
 });
