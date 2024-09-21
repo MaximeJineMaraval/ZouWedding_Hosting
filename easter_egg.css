@@ -16,11 +16,9 @@ body {
 
 #game-container {
   position: relative;
-  width: 800px;
-  height: 400px; /* Ajuste la hauteur selon tes besoins */
+  width: 700px;
+  height: 350px;
   overflow: hidden;
-  background-color: #7c1a1a; /* Couleur de fond du jeu */
-  margin-bottom: 10px; /* Ajoute un espace entre le jeu et le bouton */
 }
 
 #start-button {
@@ -29,12 +27,13 @@ body {
   padding: 10px 20px; /* Ajoute un peu d'espace autour du texte */
   font-size: 16px; /* Ajuste la taille de la police */
   cursor: pointer; /* Change le curseur au survol */
+  margin-top: 30px;
 }
 
 #player {
   position: absolute;
-  bottom: 0;
-  left: 50px;
+  bottom: 50px;
+  left: 100px;
   width: 50px;
   height: auto;
 }
@@ -49,16 +48,16 @@ body {
 
 #score {
   position: absolute;
-  top: 10px;
-  left: 10px;
+  top: 15px;
+  left: 15px;
   font-family: Arial, sans-serif;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: bold;
 }
 
 #background {
   position: absolute;
-  width: 200%; /* Largeur double pour le défilement */
+  width: 100%; /* Largeur double pour le défilement */
   height: 100%;
   background-image: url('background.jpg'); /* Remplace par ton image de fond */
   background-size: cover; /* Ajuste l'image pour couvrir toute la zone */

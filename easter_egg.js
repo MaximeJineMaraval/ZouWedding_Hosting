@@ -1,38 +1,65 @@
+  /**********************/
+ /**** VIEW BINDINGS ***/ 
+/**********************/
+
 let player = document.getElementById("player");
-let scoreElement = document.getElementById("score");
+let scoreView = document.getElementById("score");
 let gameContainer = document.getElementById("game-container");
 let startButton = document.getElementById("start-button");
 
+  /******************/
+ /**** VARIABLES ***/ 
+/******************/
+
+// Player variables
 let isJumping = false;
 let playerBottom = 0;
-let gravity = 0.5; // Diminuez cette valeur pour ralentir la gravité
-let gameSpeed = 4;
-let score = 0;
-let isGameOver = false;
-let difficultyIncreaseInterval = 5;
-let isGameStarted = false;
-let enemyActive = false; // Indicateur pour savoir si un ennemi est actif
-let backgroundPosition = 0;
-let enemyInterval, jumpInterval, fallInterval, bonusInterval;
+let gravity = 0.5;
+let jumpInterval;
+let fallInterval;
+const groundBottom = 50;
 
+// Enemies variables
+let enemyActive = false;
+let gameSpeed = 4;
+let difficultyIncreaseInterval = 5;
+let enemyInterval;
 const enemyTypes = [
+  { width: 30, height: 30 },
   { width: 30, height: 40 },
   { width: 30, height: 50 },
-  { width: 30, height: 60 },
 ];
+const enemyInitialPosition = 800;
 
-// Fonction pour démarrer le jeu
+// Bonus variables
+let bonusInterval;
+
+// Game variables
+let score = 0;
+let isGameOver = false;
+let isGameStarted = false;
+let backgroundPosition = 0;
+
+  /*******************/
+ /**** FUNCTIONS ****/
+/*******************/
+
 function startGame() {
+  // Don't start if game is already playing
   if (isGameStarted) return;
 
+  // Start game and hide button
   isGameStarted = true;
   startButton.style.visibility = 'hidden';
 
+  // Move the background
   setInterval(updateBackground, 20);
 
+  // Create enemies and bonus
   createEnemy();
   generateBonus();
 
+  // Jumb on space button
   document.addEventListener("keydown", (event) => {
     if (event.code === "Space") {
       jump();
@@ -41,92 +68,107 @@ function startGame() {
 }
 
 function updateBackground() {
-  backgroundPosition -= gameSpeed / 5; // Ajuste la vitesse du défilement
-  if (backgroundPosition <= -100) { // Réinitialise le fond lorsqu'il est complètement décalé
-      backgroundPosition = 0;
-  }
+  backgroundPosition -= gameSpeed / 3;
+  // Apply position it to the view
   document.getElementById('background').style.backgroundPosition = backgroundPosition + 'px 0';
 }
 
 function jump() {
-    if (isJumping || !isGameStarted) return;
-    isJumping = true;
+  // Don't jump if the player is already jumping or the game is stopped
+  if (isJumping || !isGameStarted) return;
+  
+  // Jump
+  isJumping = true;
 
-    let jumpHeight = 150 + (gameSpeed * 5);
-    let jumpSpeed = 25 - gameSpeed; // Augmentez cette valeur pour ralentir l'ascension
+  // Prepare new values
+  let jumpHeight = 200 + (gameSpeed * 5);
+  let jumpSpeed = 16;
 
-    jumpInterval = setInterval(() => {
-        if (playerBottom >= jumpHeight) {
-            clearInterval(jumpInterval);
-
-            let fallSpeed = jumpSpeed * gravity;
-            fallInterval = setInterval(() => {
-                if (playerBottom <= 0) {
-                    playerBottom = 0; // Empêche de s'enfoncer dans le sol
-                    clearInterval(fallInterval);
-                    isJumping = false;
-                } else {
-                    playerBottom -= fallSpeed;
-                }
-                player.style.bottom = playerBottom + "px";
-            }, 20);
-        } else {
-            playerBottom += jumpSpeed;
+  // Define the action
+  jumpInterval = setInterval(() => {
+    // If the player has reached the top of the jump
+    if (playerBottom >= jumpHeight) {
+        // Stop the jump
+        clearInterval(jumpInterval);
+        // Start the fall
+        let fallSpeed = jumpSpeed * gravity;
+        fallInterval = setInterval(() => {
+            // If player has reached the ground
+            if (playerBottom <= groundBottom) {
+                // Avoid player going to low
+                playerBottom = groundBottom;
+                // Stop the fall
+                clearInterval(fallInterval);
+                isJumping = false;
+            } else {
+                playerBottom -= fallSpeed;
+            }
+            // Applay the position
             player.style.bottom = playerBottom + "px";
-        }
-    }, 20);
+        }, 20);
+    } else {
+        playerBottom += jumpSpeed;
+        // Applay the position
+        player.style.bottom = playerBottom + "px";
+    }
+  }, 20);
 }
 
-
-
-// Fonction pour créer les ennemis
 function createEnemy() {
-  if (enemyActive || isGameOver) return; // Ne crée pas un nouvel ennemi s'il y en a déjà un
+  // Don't create enemy twice or if game is stopped
+  if (enemyActive || isGameOver) return;
 
-  enemyActive = true; // Indique qu'un ennemi est en cours de création
-  let enemyPosition = 800;
+  enemyActive = true;
+  let enemyPosition = enemyInitialPosition;
 
+  // Get a random enemy to create
   const randomEnemy = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
 
+  // Create the view
   let newEnemy = document.createElement('div');
   newEnemy.classList.add('enemy');
   newEnemy.style.width = randomEnemy.width + "px";
   newEnemy.style.height = randomEnemy.height + "px";
   newEnemy.style.position = "absolute";
-  newEnemy.style.bottom = "0";
+  newEnemy.style.bottom = groundBottom + "px";
   newEnemy.style.left = enemyPosition + "px";
   newEnemy.style.backgroundColor = "#e74c3c";
 
+  // Add the view
   gameContainer.appendChild(newEnemy);
 
   enemyInterval = setInterval(() => {
-
-    if (enemyPosition <= -30) {
-      newEnemy.remove();
-      enemyPosition = 800;
+    if (enemyPosition === 60) { // If the enemy is at the left of the player
+      // Increase and update the score
       score++;
-      scoreElement.innerText = "Score: " + score;
+      scoreView.innerText = "Score: " + score;
+    }
+    if (enemyPosition <= -30) { // If the enemy quit the screen
+      // Remove it
+      newEnemy.remove();
+      enemyPosition = enemyInitialPosition;
 
-      // Réinitialise l'indicateur une fois que l'ennemi est hors de vue
-            enemyActive = false;
-
+      // Increase the difficulty (speed) if needed
       if (score % difficultyIncreaseInterval === 0) {
         gameSpeed += 1;
       }
 
+      // Clean the process and a new enemy
+      clearInterval(enemyInterval)
+      enemyActive = false;
       createEnemy();
+    } else {
+      // Move the enemy
+      enemyPosition -= gameSpeed;
+      newEnemy.style.left = enemyPosition + "px";
     }
 
-    // Vérification de collision améliorée
-      if (enemyPosition < 100 && enemyPosition > 50 && !isGameOver) {
-          let enemyBottom = parseInt(newEnemy.style.height);
-          if (playerBottom < enemyBottom) {
-              gameOver();
-          }
+   if (enemyPosition < 130 && enemyPosition > 80 && !isGameOver) {
+      let enemyBottom = parseInt(newEnemy.style.height);
+      if (playerBottom < enemyBottom) {
+          gameOver();
       }
-
-    enemyPosition -= gameSpeed;
-    newEnemy.style.left = enemyPosition + "px";
+    }
   }, 20);
 }
 
@@ -160,7 +202,7 @@ function generateBonus() {
       // Détecte la collision entre le joueur et le bonus
       if (bonusPosition > 0 && bonusPosition < 50 && playerBottom + 50 > bonusHeight && playerBottom < bonusHeight + 30) {
         score += 10; // Ajoute 10 points pour chaque bonus attrapé
-        scoreElement.innerText = "Score: " + score;
+        scoreView.innerText = "Score: " + score;
         newBonus.remove();
         clearInterval(moveBonusInterval);
       }
@@ -183,7 +225,7 @@ function gameOver() {
 startButton.addEventListener("click", startGame);
 
 document.addEventListener("keydown", (event) => {
-  if (event.code === "Enter" && !isGameStarted) {
+  if ((event.code === "Enter" || event.code === "Space") && !isGameStarted) {
     startGame();
   }
 });
