@@ -6,6 +6,8 @@ let player = document.getElementById("player");
 let scoreView = document.getElementById("score");
 let gameContainer = document.getElementById("game-container");
 let startButton = document.getElementById("start-button");
+let gameOverContainer = document.getElementById("game-over-container");
+let gameOverScore = document.getElementById("game-over-score");
 
   /******************/
  /**** VARIABLES ***/ 
@@ -30,6 +32,7 @@ const enemyTypes = [
   { width: 30, height: 50 },
 ];
 const enemyInitialPosition = 800;
+let currentEnemy;
 
 // Bonus variables
 let bonusInterval;
@@ -49,9 +52,24 @@ function startGame() {
   // Don't start if game is already playing
   if (isGameStarted) return;
 
-  // Start game and hide button
+  // Reset variables and show/hide views
+  updateScore(0)
+  
   isGameStarted = true;
+  isGameOver = false;
+  
   startButton.style.visibility = 'hidden';
+  gameOverContainer.style.visibility = 'hidden';
+  scoreView.style.visibility = 'visible';
+  
+  enemyActive = false;
+  if(currentEnemy) {
+    currentEnemy.remove();
+  }
+
+  isJumping = false;
+  playerBottom = 50;
+  updatePlayerPosition();
 
   // Move the background
   backgroundInterval = setInterval(updateBackground, 20);
@@ -105,13 +123,12 @@ function jump() {
                 playerBottom -= fallSpeed;
             }
             // Applay the position
-            player.style.bottom = playerBottom + "px";
+            updatePlayerPosition();
         }, 20);
     } else {
         playerBottom += jumpSpeed;
-        // Applay the position
-        player.style.bottom = playerBottom + "px";
-        console.log(player.style.bottom)
+        // Apply the position
+        updatePlayerPosition();
     }
   }, 20);
 }
@@ -127,27 +144,26 @@ function createEnemy() {
   const randomEnemy = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
 
   // Create the view
-  let newEnemy = document.createElement('div');
-  newEnemy.classList.add('enemy');
-  newEnemy.style.width = randomEnemy.width + "px";
-  newEnemy.style.height = randomEnemy.height + "px";
-  newEnemy.style.position = "absolute";
-  newEnemy.style.bottom = groundBottom + "px";
-  newEnemy.style.left = enemyPosition + "px";
-  newEnemy.style.backgroundColor = "#e74c3c";
+  currentEnemy = document.createElement('div');
+  currentEnemy.classList.add('enemy');
+  currentEnemy.style.width = randomEnemy.width + "px";
+  currentEnemy.style.height = randomEnemy.height + "px";
+  currentEnemy.style.position = "absolute";
+  currentEnemy.style.bottom = groundBottom + "px";
+  currentEnemy.style.left = enemyPosition + "px";
+  currentEnemy.style.backgroundColor = "#e74c3c";
 
   // Add the view
-  gameContainer.appendChild(newEnemy);
+  gameContainer.appendChild(currentEnemy);
 
   enemyInterval = setInterval(() => {
     if (enemyPosition === 60) { // If the enemy is at the left of the player
       // Increase and update the score
-      score++;
-      scoreView.innerText = "Score: " + score;
+      updateScore(score + 1)
     }
     if (enemyPosition <= -30) { // If the enemy quit the screen
       // Remove it
-      newEnemy.remove();
+      currentEnemy.remove();
       enemyPosition = enemyInitialPosition;
 
       // Increase the difficulty (speed) if needed
@@ -162,11 +178,11 @@ function createEnemy() {
     } else {
       // Move the enemy
       enemyPosition -= gameSpeed;
-      newEnemy.style.left = enemyPosition + "px";
+      currentEnemy.style.left = enemyPosition + "px";
     }
 
    if (enemyPosition < 130 && enemyPosition > 80 && !isGameOver) {
-      let enemyTop = parseInt(newEnemy.style.height) + groundBottom - 5;
+      let enemyTop = parseInt(currentEnemy.style.height) + groundBottom - 5;
       if (playerBottom < enemyTop) {
           gameOver();
       }
@@ -203,8 +219,7 @@ function generateBonus() {
 
       // Détecte la collision entre le joueur et le bonus
       if (bonusPosition > 0 && bonusPosition < 50 && playerBottom + 50 > bonusHeight && playerBottom < bonusHeight + 30) {
-        score += 10; // Ajoute 10 points pour chaque bonus attrapé
-        scoreView.innerText = "Score: " + score;
+        updateScore(score + 10);
         newBonus.remove();
         clearInterval(moveBonusInterval);
       }
@@ -224,11 +239,25 @@ function gameOver() {
   clearInterval(backgroundInterval);
   clearInterval(jumpInterval);
   clearInterval(fallInterval);
-  //alert("Game Over! Score: " + score);
+  startButton.style.visibility = 'visible';
+  gameOverContainer.style.visibility = 'visible';
+  scoreView.style.visibility = 'hidden';
+  gameOverScore.innerText = "Score: " + score;
   //document.location.reload();
 }
 
-// Start the game
+function updateScore(newScore) {
+  score = newScore;
+  scoreView.innerText = "Score: " + score;
+}
+
+function updatePlayerPosition() {
+  player.style.bottom = playerBottom + "px";
+}
+
+  /***********************/
+ /**** START THE GAME ***/ 
+/***********************/
 startButton.addEventListener("click", startGame);
 document.addEventListener("keydown", (event) => {
   if ((event.code === "Enter" || event.code === "Space") && !isGameStarted && !isGameOver) {

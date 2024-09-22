@@ -14,6 +14,10 @@ body {
   background-color: #f1f1f1;
 }
 
+p {
+  font-family: Arial, sans-serif;
+}
+
 #game-container {
   position: relative;
   width: 700px;
@@ -50,7 +54,6 @@ body {
   position: absolute;
   top: 15px;
   left: 15px;
-  font-family: Arial, sans-serif;
   font-size: 18px;
   font-weight: bold;
 }
@@ -64,4 +67,35 @@ body {
   background-repeat: repeat-x; /* Répète horizontalement */
   top: 0;
   left: 0;
+}
+
+#game-over-container {
+  position: relative;
+  width: 700px;
+  height: 350px;
+  text-align: center;
+  position: absolute;
+  background-color: rgba(255,255,255,0.5);
+  visibility: hidden;
+}
+
+#game-over-content {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+#game-over-title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+#game-over-score {
+  font-size: 18px;
+  font-weight: bold;
+  position: relative;
+  top: 5px;
 }
