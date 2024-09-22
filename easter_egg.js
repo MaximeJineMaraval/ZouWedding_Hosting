@@ -33,6 +33,7 @@ const enemyTypes = [
 ];
 const enemyInitialPosition = 800;
 let currentEnemy;
+let enemyAvoided = false;
 
 // Bonus variables
 let bonusInterval;
@@ -137,6 +138,7 @@ function createEnemy() {
   // Don't create enemy twice or if game is stopped
   if (enemyActive || isGameOver) return;
 
+  enemyAvoided = false;
   enemyActive = true;
   let enemyPosition = enemyInitialPosition;
 
@@ -157,11 +159,12 @@ function createEnemy() {
   gameContainer.appendChild(currentEnemy);
 
   enemyInterval = setInterval(() => {
-    if (enemyPosition === 60) { // If the enemy is at the left of the player
+    if (!enemyAvoided && getRightPositionOf(currentEnemy) < getLeftPositionOf(player)) { // If the enemy is at the left of the player
       // Increase and update the score
-      updateScore(score + 1)
+      enemyAvoided = true;
+      updateScore(score + 1);
     }
-    if (enemyPosition <= -30) { // If the enemy quit the screen
+    if (getRightPositionOf(currentEnemy) < 0) { // If the enemy quit the screen
       // Remove it
       currentEnemy.remove();
       enemyPosition = enemyInitialPosition;
@@ -181,7 +184,10 @@ function createEnemy() {
       currentEnemy.style.left = enemyPosition + "px";
     }
 
-   if (enemyPosition < 130 && enemyPosition > 80 && !isGameOver) {
+   if (!isGameOver 
+    && getLeftPositionOf(currentEnemy) + 8 < getRightPositionOf(player) // +8 to not count the sprite's blank space
+    && getRightPositionOf(currentEnemy) - 8 > getLeftPositionOf(player) // -8 to not count the sprite's blank space
+  ) {
       let enemyTop = parseInt(currentEnemy.style.height) + groundBottom - 5;
       if (playerBottom < enemyTop) {
           gameOver();
@@ -253,6 +259,14 @@ function updateScore(newScore) {
 
 function updatePlayerPosition() {
   player.style.bottom = playerBottom + "px";
+}
+
+function getLeftPositionOf(htmlElement) {
+  return htmlElement.offsetLeft
+}
+
+function getRightPositionOf(htmlElement) {
+  return htmlElement.offsetLeft + htmlElement.offsetWidth
 }
 
   /***********************/
