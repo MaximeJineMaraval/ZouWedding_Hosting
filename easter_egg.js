@@ -19,6 +19,7 @@ let playerBottom = 50;
 let gravity = 0.5;
 let jumpInterval;
 let fallInterval;
+let animatePlayerSpriteInterval;
 const groundBottom = 50;
 
 // Enemies variables
@@ -75,6 +76,9 @@ function startGame() {
 
   // Move the background
   backgroundInterval = setInterval(updateBackground, 20);
+
+  // Animate player sprite
+  animatePlayerSprite();
 
   // Create enemies and bonus
   createEnemy();
@@ -256,6 +260,7 @@ function gameOver() {
   clearInterval(backgroundInterval);
   clearInterval(jumpInterval);
   clearInterval(fallInterval);
+  clearInterval(animatePlayerSpriteInterval);
   startButton.style.visibility = 'visible';
   gameOverContainer.style.visibility = 'visible';
   scoreView.style.visibility = 'hidden';
@@ -271,6 +276,22 @@ function updateScore(newScore) {
 function updatePlayerPosition() {
   player.style.bottom = playerBottom + "px";
 }
+
+function animatePlayerSprite() {
+  animatePlayerSpriteInterval = setInterval(() => {
+    console.log("Animate Player Sprite")
+    console.log(player.getAttribute("src"))
+    if(player.getAttribute('src') === "res/max1.svg") {
+      player.src = "res/max2.svg";
+    } else {
+      player.src = "res/max1.svg";
+    }
+  },200);
+}
+
+  /**************/
+ /**** UTILS ***/ 
+/**************/
 
 function getLeftPositionOf(htmlElement) {
   return htmlElement.offsetLeft

@@ -62,7 +62,7 @@ p {
   position: absolute;
   width: 100%; /* Largeur double pour le défilement */
   height: 100%;
-  background-image: url('background.jpg'); /* Remplace par ton image de fond */
+  background-image: url('res/background.jpg'); /* Remplace par ton image de fond */
   background-size: cover; /* Ajuste l'image pour couvrir toute la zone */
   background-repeat: repeat-x; /* Répète horizontalement */
   top: 0;
