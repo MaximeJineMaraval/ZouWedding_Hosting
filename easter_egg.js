@@ -13,7 +13,7 @@ let startButton = document.getElementById("start-button");
 
 // Player variables
 let isJumping = false;
-let playerBottom = 0;
+let playerBottom = 50;
 let gravity = 0.5;
 let jumpInterval;
 let fallInterval;
@@ -111,6 +111,7 @@ function jump() {
         playerBottom += jumpSpeed;
         // Applay the position
         player.style.bottom = playerBottom + "px";
+        console.log(player.style.bottom)
     }
   }, 20);
 }
@@ -164,13 +165,9 @@ function createEnemy() {
       newEnemy.style.left = enemyPosition + "px";
     }
 
-    console.log(`Enemy position : ${enemyPosition}`)
    if (enemyPosition < 130 && enemyPosition > 80 && !isGameOver) {
-      console.log("First if is ok")
       let enemyTop = parseInt(newEnemy.style.height) + groundBottom - 5;
-      console.log(`Enemy bottom : ${enemyTop} | Player bottom : ${playerBottom}`)
       if (playerBottom < enemyTop) {
-          console.log("Second if is ok")
           gameOver();
       }
     }
