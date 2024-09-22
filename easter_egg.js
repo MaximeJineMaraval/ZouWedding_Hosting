@@ -22,7 +22,7 @@ let fallInterval;
 const groundBottom = 50;
 
 // Enemies variables
-let enemyActive = false;
+let isEnemyActive = false;
 let gameSpeed = 4;
 let difficultyIncreaseInterval = 5;
 let enemyInterval;
@@ -31,14 +31,15 @@ const enemyTypes = [
   { width: 30, height: 40 },
   { width: 30, height: 50 },
 ];
-const enemyInitialPosition = 800;
 let currentEnemy;
-let enemyAvoided = false;
+let isEnemyAvoided = false;
 
 // Bonus variables
 let bonusInterval;
+let isBonusActive = false;
 
 // Game variables
+const npcStartingPosition = 800;
 let score = 0;
 let isGameOver = false;
 let isGameStarted = false;
@@ -63,7 +64,7 @@ function startGame() {
   gameOverContainer.style.visibility = 'hidden';
   scoreView.style.visibility = 'visible';
   
-  enemyActive = false;
+  isEnemyActive = false;
   if(currentEnemy) {
     currentEnemy.remove();
   }
@@ -77,7 +78,7 @@ function startGame() {
 
   // Create enemies and bonus
   createEnemy();
-  generateBonus();
+  createBonus();
 
   // Jumb on space button
   document.addEventListener("keydown", (event) => {
@@ -136,11 +137,11 @@ function jump() {
 
 function createEnemy() {
   // Don't create enemy twice or if game is stopped
-  if (enemyActive || isGameOver) return;
+  if (isEnemyActive || isGameOver) return;
 
-  enemyAvoided = false;
-  enemyActive = true;
-  let enemyPosition = enemyInitialPosition;
+  isEnemyAvoided = false;
+  isEnemyActive = true;
+  let enemyPosition = npcStartingPosition;
 
   // Get a random enemy to create
   const randomEnemy = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
@@ -159,15 +160,15 @@ function createEnemy() {
   gameContainer.appendChild(currentEnemy);
 
   enemyInterval = setInterval(() => {
-    if (!enemyAvoided && getRightPositionOf(currentEnemy) < getLeftPositionOf(player)) { // If the enemy is at the left of the player
+    if (!isEnemyAvoided && getRightPositionOf(currentEnemy) < getLeftPositionOf(player)) { // If the enemy is at the left of the player
       // Increase and update the score
-      enemyAvoided = true;
+      isEnemyAvoided = true;
       updateScore(score + 1);
     }
     if (getRightPositionOf(currentEnemy) < 0) { // If the enemy quit the screen
       // Remove it
       currentEnemy.remove();
-      enemyPosition = enemyInitialPosition;
+      enemyPosition = npcStartingPosition;
 
       // Increase the difficulty (speed) if needed
       if (score % difficultyIncreaseInterval === 0) {
@@ -176,7 +177,7 @@ function createEnemy() {
 
       // Clean the process and a new enemy
       clearInterval(enemyInterval)
-      enemyActive = false;
+      isEnemyActive = false;
       createEnemy();
     } else {
       // Move the enemy
@@ -196,47 +197,57 @@ function createEnemy() {
   }, 20);
 }
 
-// Fonction pour créer des bonus
-function generateBonus() {
+function createBonus() {
   bonusInterval = setInterval(() => {
-    if (isGameOver) return;
+    if (isGameOver || isBonusActive) return;
 
-    let bonusPosition = 800;
-    let bonusHeight = Math.floor(Math.random() * 150) + 50; // Hauteur aléatoire du bonus
+    let bonusPosition = npcStartingPosition;
+    let bonusHeight = Math.floor(Math.random() * 150) + 50; // Put bonus between 50 and 200
 
     let newBonus = document.createElement('div');
     newBonus.classList.add('bonus');
     newBonus.style.width = "30px";
     newBonus.style.height = "30px";
     newBonus.style.position = "absolute";
-    newBonus.style.bottom = bonusHeight + "px"; // Position aléatoire en hauteur
+    newBonus.style.bottom = bonusHeight + "px";
     newBonus.style.left = bonusPosition + "px";
-    newBonus.style.backgroundColor = "#f1c40f"; // Jaune pour le bonus
+    newBonus.style.backgroundColor = "#f1c40f";
 
     gameContainer.appendChild(newBonus);
 
     let moveBonusInterval = setInterval(() => {
+      // Don't move the bonus if the game is over
       if (isGameOver) return;
 
-      if (bonusPosition <= -30) {
+      if (getRightPositionOf(newBonus) < 0) { // the bonus left the screen
         newBonus.remove();
         clearInterval(moveBonusInterval);
       }
 
-      // Détecte la collision entre le joueur et le bonus
-      if (bonusPosition > 0 && bonusPosition < 50 && playerBottom + 50 > bonusHeight && playerBottom < bonusHeight + 30) {
+      // Detect collision with the bonus
+      /*if (bonusPosition > 0 && bonusPosition < 50 && playerBottom + 50 > bonusHeight && playerBottom < bonusHeight + 30) {
+        updateScore(score + 10);
+        newBonus.remove();
+        clearInterval(moveBonusInterval);
+      }*/
+      if (getLeftPositionOf(newBonus) + 8 < getRightPositionOf(player) // +8 to not count the sprite's blank space
+        && getRightPositionOf(newBonus) - 8 > getLeftPositionOf(player) // -8 to not count the sprite's blank space
+        && getBottomPositionOf(newBonus) < getTopPositionOf(player)
+        && getTopPositionOf(newBonus) > getBottomPositionOf(player)
+      ) {
         updateScore(score + 10);
         newBonus.remove();
         clearInterval(moveBonusInterval);
       }
+      
 
+      // Move bonus
       bonusPosition -= gameSpeed;
       newBonus.style.left = bonusPosition + "px";
     }, 20);
-  }, 8000); // Les bonus apparaissent toutes les 8 secondes
+  }, 8000); // Create bonus every 8 seconds
 }
 
-// Fonction pour gérer la fin du jeu
 function gameOver() {
   isGameOver = true;
   isGameStarted = false;
@@ -269,12 +280,15 @@ function getRightPositionOf(htmlElement) {
   return htmlElement.offsetLeft + htmlElement.offsetWidth
 }
 
+function getTopPositionOf(htmlElement) {
+  return htmlElement.offsetTop
+}
+
+function getBottomPositionOf(htmlElement) {
+  return htmlElement.offsetTop - htmlElement.offsetHeight
+}
+
   /***********************/
  /**** START THE GAME ***/ 
 /***********************/
 startButton.addEventListener("click", startGame);
-document.addEventListener("keydown", (event) => {
-  if ((event.code === "Enter" || event.code === "Space") && !isGameStarted && !isGameOver) {
-    startGame();
-  }
-});
