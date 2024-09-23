@@ -216,14 +216,15 @@ function createBonus() {
     let bonusPosition = npcStartingPosition;
     let bonusHeight = Math.floor(Math.random() * 150) + 50; // Put bonus between 50 and 200
 
-    let newBonus = document.createElement('div');
+    let newBonus = document.createElement('img');
     newBonus.classList.add('bonus');
-    newBonus.style.width = "30px";
-    newBonus.style.height = "30px";
+    newBonus.style.height = "35px";
     newBonus.style.position = "absolute";
     newBonus.style.bottom = bonusHeight + "px";
     newBonus.style.left = bonusPosition + "px";
-    newBonus.style.backgroundColor = "#f1c40f";
+    newBonus.style.opacity = 1;
+    newBonus.style.transition = "opacity 0.5s linear";
+    newBonus.src = "res/bonus_justine.svg";
 
     gameContainer.appendChild(newBonus);
 
@@ -237,18 +238,15 @@ function createBonus() {
       }
 
       // Detect collision with the bonus
-      /*if (bonusPosition > 0 && bonusPosition < 50 && playerBottom + 50 > bonusHeight && playerBottom < bonusHeight + 30) {
-        updateScore(score + 10);
-        newBonus.remove();
-        clearInterval(moveBonusInterval);
-      }*/
       if (getLeftPositionOf(newBonus) + 8 < getRightPositionOf(player) // +8 to not count the sprite's blank space
         && getRightPositionOf(newBonus) - 8 > getLeftPositionOf(player) // -8 to not count the sprite's blank space
         && getBottomPositionOf(newBonus) < getTopPositionOf(player)
         && getTopPositionOf(newBonus) > getBottomPositionOf(player)
       ) {
         updateScore(score + 10);
-        newBonus.remove();
+        newBonus.src = "res/cloud.svg"
+        newBonus.style.opacity = 0;
+        setTimeout(function() { newBonus.remove(); console.log("The bonus is removed"); }, 500);
         clearInterval(moveBonusInterval);
       }
       
