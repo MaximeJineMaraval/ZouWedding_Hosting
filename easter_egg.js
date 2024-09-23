@@ -8,6 +8,9 @@ let gameContainer = document.getElementById("game-container");
 let startButton = document.getElementById("start-button");
 let gameOverContainer = document.getElementById("game-over-container");
 let gameOverScore = document.getElementById("game-over-score");
+let playerChoiceRadioJustine = document.getElementById("player-choice-radio-justine");
+let playerChoiceRadioMaxime = document.getElementById("player-choice-radio-maxime");
+let playerChoiceContainer = document.getElementById("player-choice-container");
 
   /******************/
  /**** VARIABLES ***/ 
@@ -21,6 +24,9 @@ let jumpInterval;
 let fallInterval;
 let animatePlayerSpriteInterval;
 const groundBottom = 50;
+const maximeSprites = ["res/max1.svg", "res/max2.svg"];
+const justineSprites = ["res/justine1.svg", "res/justine2.svg"];
+let currentPlayerSprites;
 
 // Enemies variables
 let isEnemyActive = false;
@@ -63,6 +69,7 @@ function startGame() {
   
   startButton.style.visibility = 'hidden';
   gameOverContainer.style.visibility = 'hidden';
+  playerChoiceContainer.style.visibility = 'hidden';
   scoreView.style.visibility = 'visible';
   
   isEnemyActive = false;
@@ -73,6 +80,7 @@ function startGame() {
   isJumping = false;
   playerBottom = 50;
   updatePlayerPosition();
+  setPlayerInitialSprite();
 
   // Move the background
   backgroundInterval = setInterval(updateBackground, 20);
@@ -263,6 +271,7 @@ function gameOver() {
   clearInterval(animatePlayerSpriteInterval);
   startButton.style.visibility = 'visible';
   gameOverContainer.style.visibility = 'visible';
+  playerChoiceContainer.style.visibility = 'visible';
   scoreView.style.visibility = 'hidden';
   gameOverScore.innerText = "Score: " + score;
   //document.location.reload();
@@ -279,12 +288,10 @@ function updatePlayerPosition() {
 
 function animatePlayerSprite() {
   animatePlayerSpriteInterval = setInterval(() => {
-    console.log("Animate Player Sprite")
-    console.log(player.getAttribute("src"))
-    if(player.getAttribute('src') === "res/max1.svg") {
-      player.src = "res/max2.svg";
+    if(player.getAttribute('src') === currentPlayerSprites[0]) {
+      player.src = currentPlayerSprites[1];
     } else {
-      player.src = "res/max1.svg";
+      player.src = currentPlayerSprites[0];
     }
   },200);
 }
@@ -309,7 +316,33 @@ function getBottomPositionOf(htmlElement) {
   return htmlElement.offsetTop - htmlElement.offsetHeight
 }
 
+function setPlayerInitialSprite() {
+  player.src = currentPlayerSprites[0];
+}
+
+  /*************************/
+ /**** CHOOSE CHARACTER ***/ 
+/*************************/
+playerChoiceRadioJustine.onclick = function() {
+  currentPlayerSprites = justineSprites;
+  // Update sprites only if we are not on the gameOver page
+  if(!isGameOver) {
+    setPlayerInitialSprite();
+  }
+}
+
+playerChoiceRadioMaxime.onclick = function() {
+  currentPlayerSprites = maximeSprites;
+  // Update sprites only if we are not on the gameOver page
+  if(!isGameOver) {
+    setPlayerInitialSprite();
+  }
+}
+
+
   /***********************/
  /**** START THE GAME ***/ 
 /***********************/
+currentPlayerSprites = justineSprites;
+setPlayerInitialSprite();
 startButton.addEventListener("click", startGame);

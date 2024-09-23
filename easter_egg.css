@@ -1,4 +1,6 @@
-/* style.css */
+  /***********************/
+ /* Gobal page settings */
+/***********************/
 
 * {
   margin: 0;
@@ -14,9 +16,17 @@ body {
   background-color: #f1f1f1;
 }
 
+  /*********/
+ /* Texts */
+/*********/
+
 p {
   font-family: Arial, sans-serif;
 }
+
+  /******************/
+ /* Game container */
+/******************/
 
 #game-container {
   position: relative;
@@ -25,14 +35,28 @@ p {
   overflow: hidden;
 }
 
-#start-button {
-  display: block;
-  margin: 0 auto; /* Centre le bouton horizontalement */
-  padding: 10px 20px; /* Ajoute un peu d'espace autour du texte */
-  font-size: 16px; /* Ajuste la taille de la police */
-  cursor: pointer; /* Change le curseur au survol */
-  margin-top: 30px;
+#background {
+  position: absolute;
+  width: 100%; /* Largeur double pour le défilement */
+  height: 100%;
+  background-image: url('res/background.jpg'); /* Remplace par ton image de fond */
+  background-size: cover; /* Ajuste l'image pour couvrir toute la zone */
+  background-repeat: repeat-x; /* Répète horizontalement */
+  top: 0;
+  left: 0;
 }
+
+#score {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+  /**************/
+ /* Characters */
+/**************/
 
 #player {
   position: absolute;
@@ -50,24 +74,9 @@ p {
   background-color: #e74c3c; /* Rouge */
 }
 
-#score {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  font-size: 18px;
-  font-weight: bold;
-}
-
-#background {
-  position: absolute;
-  width: 100%; /* Largeur double pour le défilement */
-  height: 100%;
-  background-image: url('res/background.jpg'); /* Remplace par ton image de fond */
-  background-size: cover; /* Ajuste l'image pour couvrir toute la zone */
-  background-repeat: repeat-x; /* Répète horizontalement */
-  top: 0;
-  left: 0;
-}
+  /*************/
+ /* Game Over */
+/*************/
 
 #game-over-container {
   position: relative;
@@ -99,4 +108,70 @@ p {
   font-weight: bold;
   position: relative;
   top: 5px;
+}
+
+  /********************/
+ /* Starting button */
+/********************/
+
+#start-button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 30px;
+  border-radius: 0%;
+  border: 2px solid #000;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+}
+
+#start-button:focus {
+  background-color: #93cfa4;
+}
+
+  /*****************/
+ /* Player choice */
+/*****************/
+
+#player-choice-container {
+  position: relative;
+  top : 20px;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.player-choice-item {
+  display: inline-flex;
+  margin: 10px;
+}
+
+.player-choice-item input {
+	display: none;
+}
+
+.player-choice-box{
+	cursor: pointer;
+  padding: 20px;
+  text-align: center;
+	border: 2px solid #000;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.player-choice-item input:checked + .player-choice-box {
+	border: 5px solid #349E52;
+	background-color: #faeaf7;
+  -webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+#player-choice-container img {
+  width: 50px;
+  margin: 10px;
 }
