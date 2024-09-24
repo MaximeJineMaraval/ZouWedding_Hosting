@@ -82,6 +82,24 @@ p {
   background-color: #e74c3c; /* Rouge */
 }
 
+  /*********/
+ /* Bonus */
+/*********/
+
+.bonus {
+  height: 35px;
+  position: absolute;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+
+.bonus-label {
+  height: 35px;
+  position: absolute;
+  opacity: 1;
+  transition: opacity 0.5s linear;
+}
+
   /*************/
  /* Game Over */
 /*************/

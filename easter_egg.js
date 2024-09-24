@@ -26,7 +26,10 @@ let animatePlayerSpriteInterval;
 const groundBottom = 50;
 const maximeSprites = ["res/max1.svg", "res/max2.svg"];
 const justineSprites = ["res/justine1.svg", "res/justine2.svg"];
+const maximeBonusSprite = "res/bonus_maxime.svg"
+const justineBonusSprite = "res/bonus_justine.svg"
 let currentPlayerSprites;
+let currentBonusSprite;
 
 // Enemies variables
 let isEnemyActive = false;
@@ -218,13 +221,9 @@ function createBonus() {
 
     let newBonus = document.createElement('img');
     newBonus.classList.add('bonus');
-    newBonus.style.height = "35px";
-    newBonus.style.position = "absolute";
     newBonus.style.bottom = bonusHeight + "px";
     newBonus.style.left = bonusPosition + "px";
-    newBonus.style.opacity = 1;
-    newBonus.style.transition = "opacity 0.5s linear";
-    newBonus.src = "res/bonus_justine.svg";
+    newBonus.src = currentBonusSprite;
 
     gameContainer.appendChild(newBonus);
 
@@ -243,10 +242,14 @@ function createBonus() {
         && getBottomPositionOf(newBonus) < getTopPositionOf(player)
         && getTopPositionOf(newBonus) > getBottomPositionOf(player)
       ) {
+        // Update the score
         updateScore(score + 10);
+        // Show the cloud
         newBonus.src = "res/cloud.svg"
         newBonus.style.opacity = 0;
-        setTimeout(function() { newBonus.remove(); console.log("The bonus is removed"); }, 500);
+        setTimeout(function() { newBonus.remove(); }, 500);
+        showBonusScore(bonusHeight, bonusPosition);
+        // Clear the loop
         clearInterval(moveBonusInterval);
       }
       
@@ -255,7 +258,18 @@ function createBonus() {
       bonusPosition -= gameSpeed;
       newBonus.style.left = bonusPosition + "px";
     }, 20);
-  }, 8000); // Create bonus every 8 seconds
+  }, 1000); // Create bonus every 8 seconds
+}
+
+function showBonusScore(bonusHeight, bonusPosition) {
+  let label = document.createElement('p');
+  label.classList.add('bonus-label');
+  label.style.bottom = (bonusHeight + 10) + "px";
+  label.style.left = (bonusPosition + 10) + "px";
+  label.textContent = "+10";
+  gameContainer.appendChild(label);
+  setTimeout(function() { label.style.opacity = 0; }, 500);
+  setTimeout(function() { label.remove(); }, 1000);
 }
 
 function gameOver() {
@@ -294,6 +308,28 @@ function animatePlayerSprite() {
   },200);
 }
 
+function selectJustinePlayer() {
+  currentPlayerSprites = justineSprites;
+  currentBonusSprite = justineBonusSprite;
+  // Update sprites only if we are not on the gameOver page
+  if(!isGameOver) {
+    setPlayerInitialSprite();
+  }
+}
+
+function selectMaximePlayer() {
+  currentPlayerSprites = maximeSprites;
+  currentBonusSprite = maximeBonusSprite;
+  // Update sprites only if we are not on the gameOver page
+  if(!isGameOver) {
+    setPlayerInitialSprite();
+  }
+}
+
+function setPlayerInitialSprite() {
+  player.src = currentPlayerSprites[0];
+}
+
   /**************/
  /**** UTILS ***/ 
 /**************/
@@ -314,33 +350,21 @@ function getBottomPositionOf(htmlElement) {
   return htmlElement.offsetTop - htmlElement.offsetHeight
 }
 
-function setPlayerInitialSprite() {
-  player.src = currentPlayerSprites[0];
-}
-
   /*************************/
  /**** CHOOSE CHARACTER ***/ 
 /*************************/
 playerChoiceRadioJustine.onclick = function() {
-  currentPlayerSprites = justineSprites;
-  // Update sprites only if we are not on the gameOver page
-  if(!isGameOver) {
-    setPlayerInitialSprite();
-  }
+  selectJustinePlayer();
 }
 
 playerChoiceRadioMaxime.onclick = function() {
-  currentPlayerSprites = maximeSprites;
-  // Update sprites only if we are not on the gameOver page
-  if(!isGameOver) {
-    setPlayerInitialSprite();
-  }
+  selectMaximePlayer();
 }
 
 
   /***********************/
  /**** START THE GAME ***/ 
 /***********************/
-currentPlayerSprites = justineSprites;
+selectJustinePlayer();
 setPlayerInitialSprite();
 startButton.addEventListener("click", startGame);
