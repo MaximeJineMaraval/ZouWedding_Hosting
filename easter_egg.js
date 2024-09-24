@@ -258,7 +258,7 @@ function createBonus() {
       bonusPosition -= gameSpeed;
       newBonus.style.left = bonusPosition + "px";
     }, 20);
-  }, 1000); // Create bonus every 8 seconds
+  }, 8000); // Create bonus every 8 seconds
 }
 
 function showBonusScore(bonusHeight, bonusPosition) {
