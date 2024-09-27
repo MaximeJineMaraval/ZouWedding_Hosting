@@ -37,9 +37,9 @@ let gameSpeed = 4;
 let difficultyIncreaseInterval = 5;
 let enemyInterval;
 const enemyTypes = [
-  { width: 30, height: 30 },
-  { width: 30, height: 40 },
-  { width: 30, height: 50 },
+  { height: 30, collisionVariableHor: 8, collisionVariableVert: 4, sprite: "res/rock1.svg" },
+  { height: 50, collisionVariableHor: 16, collisionVariableVert: 6, sprite: "res/rock2.svg" },
+  { height: 40, collisionVariableHor: 8, collisionVariableVert: 8, sprite: "res/rock3.svg" }
 ];
 let currentEnemy;
 let isEnemyAvoided = false;
@@ -117,7 +117,7 @@ function jump() {
   isJumping = true;
 
   // Prepare new values
-  let jumpHeight = 200 + (gameSpeed * 5);
+  let jumpHeight = 240 - (gameSpeed * 4);//* 5);
   let jumpSpeed = 16;
 
   // Define the action
@@ -162,14 +162,13 @@ function createEnemy() {
   const randomEnemy = enemyTypes[Math.floor(Math.random() * enemyTypes.length)];
 
   // Create the view
-  currentEnemy = document.createElement('div');
+  currentEnemy = document.createElement('img');
   currentEnemy.classList.add('enemy');
-  currentEnemy.style.width = randomEnemy.width + "px";
   currentEnemy.style.height = randomEnemy.height + "px";
   currentEnemy.style.position = "absolute";
   currentEnemy.style.bottom = groundBottom + "px";
   currentEnemy.style.left = enemyPosition + "px";
-  currentEnemy.style.backgroundColor = "#e74c3c";
+  currentEnemy.src = randomEnemy.sprite;
 
   // Add the view
   gameContainer.appendChild(currentEnemy);
@@ -200,11 +199,12 @@ function createEnemy() {
       currentEnemy.style.left = enemyPosition + "px";
     }
 
+    // Detect collision
    if (!isGameOver 
-    && getLeftPositionOf(currentEnemy) + 8 < getRightPositionOf(player) // +8 to not count the sprite's blank space
-    && getRightPositionOf(currentEnemy) - 8 > getLeftPositionOf(player) // -8 to not count the sprite's blank space
+    && getLeftPositionOf(currentEnemy) + randomEnemy.collisionVariableHor < getRightPositionOf(player) // +8 to not count the sprite's blank space
+    && getRightPositionOf(currentEnemy) - randomEnemy.collisionVariableHor > getLeftPositionOf(player) // -8 to not count the sprite's blank space
   ) {
-      let enemyTop = parseInt(currentEnemy.style.height) + groundBottom - 5;
+      let enemyTop = parseInt(currentEnemy.style.height) + groundBottom - randomEnemy.collisionVariableVert;
       if (playerBottom < enemyTop) {
           gameOver();
       }
