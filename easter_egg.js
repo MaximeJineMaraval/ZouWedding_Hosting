@@ -11,6 +11,7 @@ let gameOverScore = document.getElementById("game-over-score");
 let playerChoiceRadioJustine = document.getElementById("player-choice-radio-justine");
 let playerChoiceRadioMaxime = document.getElementById("player-choice-radio-maxime");
 let playerChoiceContainer = document.getElementById("player-choice-container");
+let closeIcon = document.getElementById("close-icon");
 
   /******************/
  /**** VARIABLES ***/ 
@@ -361,6 +362,13 @@ playerChoiceRadioMaxime.onclick = function() {
   selectMaximePlayer();
 }
 
+  /*******************/
+ /**** CLOSE ICON ***/ 
+/*******************/
+
+closeIcon.onclick = function() {
+  window.location.href = "main.html"
+}
 
   /***********************/
  /**** START THE GAME ***/ 

@@ -114,6 +114,11 @@ body {
     background-color: #dddddd;
   }
 
+#hidden-button {
+    opacity: 0%;
+    margin-right: 50px;
+}
+
 /* HEADER */
 
 .header {
