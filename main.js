@@ -5,6 +5,7 @@ const FOOD_CHOICE_VG = "VG"
 loadPage()
 
 async function loadPage() {
+    // Show loading
     document.getElementById("mainLoader").hidden = false
     document.getElementById("pageContent").hidden = true
 
@@ -13,19 +14,28 @@ async function loadPage() {
         window.location.href = "index.html"
     }
 
+    // Get the user1
     var user1 = await fetchUser(sessionStorage.user)
+    
+    // If user is not found, return to the index
     if (user1 == null) {
          window.location.href = "index.html"
     } else {
+        // Get the linked users if it exist
         var user2 = null
-        // Get the linked user if it exist
-        if (user1.linked_guest.length != 0) {
+        var user3 = null
+        if (user1.linked_guest.length >= 1) {
             user2 = await fetchUser(user1.linked_guest[0].id)
         }
-        fillThePage(user1, user2)
+        if (user1.linked_guest.length >= 2) {
+            user3 = await fetchUser(user1.linked_guest[1].id)
+        }
+        // Fill the page
+        fillThePage(user1, user2, user3)
     }
 }
 
+// Get the full user info from the ID
 async function fetchUser(userId) {
     try {
         const token = await getToken()
@@ -45,28 +55,34 @@ async function fetchUser(userId) {
     }
 }
 
-
-function fillThePage(user1, user2) {
-    fillHeader(user1, user2)
+// Fill the screen with the users
+function fillThePage(user1, user2, user3) {
+    // Fill the screen
+    fillHeader(user1, user2, user3)
     fillPlanning(user1)
     fillMaps(user1)
-    fillForm(user1, user2)
+    fillForm(user1, user2, user3)
 
-    // on save
+    // Set SaveButton click
     const saveButton = document.getElementById("saveButton")
     saveButton.addEventListener("click", function(){
-        saveChoices(user1, user2)
+        saveChoices(user1, user2, user3)
     })
+
+    // Hide loader
     document.getElementById("mainLoader").hidden = true
     document.getElementById("pageContent").hidden = false
 } 
 
-function fillHeader(user1, user2) {
+// Fill the header
+function fillHeader(user1, user2, user3) {
     const headerWelcomeLabel = document.getElementById("headerWelcomeLabel")
-    if (user2 == null) {
-        headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname} ! Tu es invité au`
-    } else {
+    if (user2 != null && user3 != null) { // If there is 3 guests
+        headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname}, ${user2.firstname} et ${user3.firstname} ! Vous êtes invités au`
+    } else if (user2 != null) { // If there is 2 guests
         headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname} et ${user2.firstname} ! Vous êtes invités au`
+    } else { // If there is one guest
+        headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname} ! Tu es invité au`
     }
 
     const headerDateLabel = document.getElementById("headerDateLabel")
@@ -119,118 +135,108 @@ function fillMaps(user) {
     mapHostelBlock.hidden = !user.is_invited_sunday && !user.is_invited_full_saturday
 }
 
-function fillForm(user1, user2) {
-    if(user2 == null) {
-        // hide the user2 section if needed
-        const joinBlock2 = document.getElementById("joinBlock2")
-        const formFoodBlock2 = document.getElementById("formFoodBlock2")
-        joinBlock2.hidden = true
-        formFoodBlock2.hidden = true
+function fillForm(user1, user2, user3) {
+    // Change labels
+    if (user3 == null) {
+        document.getElementById("joinBlock3").hidden = true
+        document.getElementById("formFoodBlock3").hidden = true
     } else {
-        // impact the title and size if there's two guest
-        const form = document.getElementById("form")
-        form.style.height = "150%"
-        const joinTitle = document.getElementById("joinTitle")
-        const joinTitle2 = document.getElementById("joinTitle2")
-        const foodChoiceTitle = document.getElementById("foodChoiceTitle")
-        const foodChoiceTitle2 = document.getElementById("foodChoiceTitle2")
-        joinTitle.textContent = `Est-que ${user1.firstname} vient ?`
-        joinTitle2.textContent = `Est-que ${user2.firstname} vient ?`
-        foodChoiceTitle.textContent = `Et ${user1.firstname} mangera quoi ?`
-        foodChoiceTitle2.textContent = `Et ${user2.firstname} mangera quoi ?`
+        document.getElementById("form").style.height = "200%"
+        document.getElementById("joinTitle3").textContent = `Est-que ${user3.firstname} vient ?`
+        document.getElementById("foodChoiceTitle3").textContent = `Et ${user3.firstname} mangera quoi ?`
+    }
+    if (user2 == null) {
+        document.getElementById("joinBlock2").hidden = true
+        document.getElementById("formFoodBlock2").hidden = true
+    } else {
+        document.getElementById("joinTitle").textContent = `Est-que ${user1.firstname} vient ?`
+        document.getElementById("joinTitle2").textContent = `Est-que ${user2.firstname} vient ?`
+        document.getElementById("foodChoiceTitle").textContent = `Et ${user1.firstname} mangera quoi ?`
+        document.getElementById("foodChoiceTitle2").textContent = `Et ${user2.firstname} mangera quoi ?`
+    }
+    if (user2 != null && user3 != null) {
+        document.getElementById("form").style.height = "200%"
+    } else if (user2 != null) {
+        document.getElementById("form").style.height = "150%"
     }
 
-    // show or hide checkbox
-    const fridayCheckboxContainer = document.getElementById("fridayCheckboxContainer")
-    const saturdayCocktailCheckboxContainer = document.getElementById("saturdayCocktailCheckboxContainer")
-    const saturdayFullCheckboxContainer = document.getElementById("saturdayFullCheckboxContainer")
-    const sundayCheckboxContainer = document.getElementById("sundayCheckboxContainer")
-    fridayCheckboxContainer.hidden = !user1.is_invited_friday
-    saturdayCocktailCheckboxContainer.hidden = user1.is_invited_full_saturday
-    saturdayFullCheckboxContainer.hidden = !user1.is_invited_full_saturday
-    sundayCheckboxContainer.hidden = !user1.is_invited_sunday
-
+    // Show or hide checkboxes
+    document.getElementById("fridayCheckboxContainer").hidden = !user1.is_invited_friday
+    document.getElementById("saturdayCocktailCheckboxContainer").hidden = user1.is_invited_full_saturday
+    document.getElementById("saturdayFullCheckboxContainer").hidden = !user1.is_invited_full_saturday
+    document.getElementById("sundayCheckboxContainer").hidden = !user1.is_invited_sunday
     if(user2 != null) {
-        const fridayCheckboxContainer2 = document.getElementById("fridayCheckboxContainer2")
-        const saturdayCocktailCheckboxContainer2 = document.getElementById("saturdayCocktailCheckboxContainer2")
-        const saturdayFullCheckboxContainer2 = document.getElementById("saturdayFullCheckboxContainer2")
-        const sundayCheckboxContainer2 = document.getElementById("sundayCheckboxContainer2")
-        fridayCheckboxContainer2.hidden = !user2.is_invited_friday
-        saturdayCocktailCheckboxContainer2.hidden = user2.is_invited_full_saturday
-        saturdayFullCheckboxContainer2.hidden = !user2.is_invited_full_saturday
-        sundayCheckboxContainer2.hidden = !user2.is_invited_sunday
+        document.getElementById("fridayCheckboxContainer2").hidden = !user2.is_invited_friday
+        document.getElementById("saturdayCocktailCheckboxContainer2").hidden = user2.is_invited_full_saturday
+        document.getElementById("saturdayFullCheckboxContainer2").hidden = !user2.is_invited_full_saturday
+        document.getElementById("sundayCheckboxContainer2").hidden = !user2.is_invited_sunday
+    }
+    if(user3 != null) {
+        document.getElementById("fridayCheckboxContainer3").hidden = !user3.is_invited_friday
+        document.getElementById("saturdayCocktailCheckboxContainer3").hidden = user3.is_invited_full_saturday
+        document.getElementById("saturdayFullCheckboxContainer3").hidden = !user3.is_invited_full_saturday
+        document.getElementById("sundayCheckboxContainer3").hidden = !user3.is_invited_sunday
     }
 
-    // pre-fill checkbox
-    const fridayCheckbox = document.getElementById("fridayCheckbox")
-    const saturdayCocktailCheckbox = document.getElementById("saturdayCocktailCheckbox")
-    const saturdayFullCheckbox = document.getElementById("saturdayFullCheckbox")
-    const sundayCheckbox = document.getElementById("sundayCheckbox")
-    fridayCheckbox.checked = user1.join_friday
-    saturdayCocktailCheckbox.checked = user1.join_cocktail
-    saturdayFullCheckbox.checked = user1.join_full_saturday
-    sundayCheckbox.checked = user1.join_sunday
-
+    // Pre-fill checkboxes
+    document.getElementById("fridayCheckbox").checked = user1.join_friday
+    document.getElementById("saturdayCocktailCheckbox").checked = user1.join_cocktail
+    document.getElementById("saturdayFullCheckbox").checked = user1.join_full_saturday
+    document.getElementById("sundayCheckbox").checked = user1.join_sunday
     if(user2 != null) {
-        const fridayCheckbox2 = document.getElementById("fridayCheckbox2")
-        const saturdayCocktailCheckbox2 = document.getElementById("saturdayCocktailCheckbox2")
-        const saturdayFullCheckbox2 = document.getElementById("saturdayFullCheckbox2")
-        const sundayCheckbox2 = document.getElementById("sundayCheckbox2")
-        fridayCheckbox2.checked = user2.join_friday
-        saturdayCocktailCheckbox2.checked = user2.join_cocktail
-        saturdayFullCheckbox2.checked = user2.join_full_saturday
-        sundayCheckbox2.checked = user2.join_sunday
+        document.getElementById("fridayCheckbox2").checked = user2.join_friday
+        document.getElementById("saturdayCocktailCheckbox2").checked = user2.join_cocktail
+        document.getElementById("saturdayFullCheckbox2").checked = user2.join_full_saturday
+        document.getElementById("sundayCheckbox2").checked = user2.join_sunday
+    }
+    if(user3 != null) {
+        document.getElementById("fridayCheckbox3").checked = user3.join_friday
+        document.getElementById("saturdayCocktailCheckbox3").checked = user3.join_cocktail
+        document.getElementById("saturdayFullCheckbox3").checked = user3.join_full_saturday
+        document.getElementById("sundayCheckbox3").checked = user3.join_sunday
     }
 
-    // show or hide food section
-    const formFoodBlock = document.getElementById("formFoodBlock")
-    formFoodBlock.hidden = !user1.is_invited_full_saturday
-
+    // Show or hide food section
+    document.getElementById("formFoodBlock").hidden = !user1.is_invited_full_saturday
     if(user2 != null) {
-        const formFoodBlock2 = document.getElementById("formFoodBlock2")
-        formFoodBlock2.hidden = !user2.is_invited_full_saturday
+        document.getElementById("formFoodBlock2").hidden = !user2.is_invited_full_saturday
+    }
+    if(user3 != null) {
+        document.getElementById("formFoodBlock3").hidden = !user3.is_invited_full_saturday
     }
 
-    // pre-fill food radio buttons
-    const burgerClassic = document.getElementById("burgerClassic")
-    const burgerCheese = document.getElementById("burgerCheese")
-    const burgerVg = document.getElementById("burgerVg")
-    burgerClassic.checked = user1.food === FOOD_CHOICE_CLASSIC
-    burgerCheese.checked = user1.food === FOOD_CHOICE_CHEESE
-    burgerVg.checked = user1.food === FOOD_CHOICE_VG
-
-    const burgerClassic2 = document.getElementById("burgerClassic2")
-    const burgerCheese2 = document.getElementById("burgerCheese2")
-    const burgerVg2 = document.getElementById("burgerVg2")
+    // Pre-fill food radio buttons
+    document.getElementById("burgerClassic").checked = user1.food === FOOD_CHOICE_CLASSIC
+    document.getElementById("burgerCheese").checked = user1.food === FOOD_CHOICE_CHEESE
+    document.getElementById("burgerVg").checked = user1.food === FOOD_CHOICE_VG
     if(user2 != null) {
-        burgerClassic2.checked = user2.food === FOOD_CHOICE_CLASSIC
-        burgerCheese2.checked = user2.food === FOOD_CHOICE_CHEESE
-        burgerVg2.checked = user2.food === FOOD_CHOICE_VG
+        document.getElementById("burgerClassic2").checked = user2.food === FOOD_CHOICE_CLASSIC
+        document.getElementById("burgerCheese2").checked = user2.food === FOOD_CHOICE_CHEESE
+        document.getElementById("burgerVg2").checked = user2.food === FOOD_CHOICE_VG
+    }
+    if(user3 != null) {
+        document.getElementById("burgerClassic3").checked = user3.food === FOOD_CHOICE_CLASSIC
+        document.getElementById("burgerCheese3").checked = user3.food === FOOD_CHOICE_CHEESE
+        document.getElementById("burgerVg3").checked = user3.food === FOOD_CHOICE_VG
     }
 
-    // enable or disabled save button + update user
-    triggerSaveButtonDisabled(user1, user2)
-    burgerClassic.onclick = function() { 
-        triggerSaveButtonDisabled(user1, user2) 
+    // Enable or disabled save button + update user
+    let triggerFunction = function() { 
+        triggerSaveButtonDisabled(user1, user2, user3) 
     }
-    burgerCheese.onclick = function() { 
-        triggerSaveButtonDisabled(user1, user2) 
-    }
-    burgerVg.onclick = function() { 
-        triggerSaveButtonDisabled(user1, user2) 
-    }
-    burgerClassic2.onclick = function() { 
-        triggerSaveButtonDisabled(user1, user2) 
-    }
-    burgerCheese2.onclick = function() { 
-        triggerSaveButtonDisabled(user1, user2) 
-    }
-    burgerVg2.onclick = function() { 
-        triggerSaveButtonDisabled(user1, user2) 
-    }
+    triggerFunction()
+    burgerClassic.onclick = triggerFunction
+    burgerCheese.onclick = triggerFunction
+    burgerVg.onclick = triggerFunction
+    burgerClassic2.onclick = triggerFunction
+    burgerCheese2.onclick = triggerFunction
+    burgerVg2.onclick = triggerFunction
+    burgerClassic3.onclick = triggerFunction
+    burgerCheese3.onclick = triggerFunction
+    burgerVg3.onclick = triggerFunction
 }
 
-function triggerSaveButtonDisabled(user1, user2) {
+function triggerSaveButtonDisabled(user1, user2, user3) {
     const saveButton = document.getElementById("saveButton")
     saveButton.disabled = 
         (
@@ -245,8 +251,15 @@ function triggerSaveButtonDisabled(user1, user2) {
             && (burgerCheese2.checked === false) 
             && (burgerVg2.checked === false)
         )
+        || (user3 != null &&
+            user3.is_invited_full_saturday 
+            && (burgerClassic3.checked === false) 
+            && (burgerCheese3.checked === false) 
+            && (burgerVg3.checked === false)
+        )
 }
 
+// Show snackBar at the screen's bottom
 function showSnackbar(text) {
     let snackbar = document.getElementById("snackbar")
     snackbar.textContent = text
@@ -256,7 +269,8 @@ function showSnackbar(text) {
     }, 3000)
 }
 
-async function saveChoices(user1, user2) {
+// Save the user choices
+async function saveChoices(user1, user2, user3) {
     const loader = document.getElementById("formLoader")
     loader.hidden = false
     // user1
@@ -264,17 +278,14 @@ async function saveChoices(user1, user2) {
     const saturdayCocktailCheckbox = document.getElementById("saturdayCocktailCheckbox")
     const saturdayFullCheckbox = document.getElementById("saturdayFullCheckbox")
     const sundayCheckbox = document.getElementById("sundayCheckbox")
-    const burgerClassic = document.getElementById("burgerClassic")
-    const burgerCheese = document.getElementById("burgerCheese")
-    const burgerVg = document.getElementById("burgerVg")
     let foodString = ""
-    if(burgerClassic.checked) {
+    if(document.getElementById("burgerClassic").checked) {
         foodString = FOOD_CHOICE_CLASSIC
     }
-    if(burgerCheese.checked) {
+    if(document.getElementById("burgerCheese").checked) {
         foodString = FOOD_CHOICE_CHEESE
     }
-    if(burgerVg.checked) {
+    if(document.getElementById("burgerVg").checked) {
         foodString = FOOD_CHOICE_VG
     }
     // user2
@@ -282,20 +293,33 @@ async function saveChoices(user1, user2) {
     const saturdayCocktailCheckbox2 = document.getElementById("saturdayCocktailCheckbox2")
     const saturdayFullCheckbox2 = document.getElementById("saturdayFullCheckbox2")
     const sundayCheckbox2 = document.getElementById("sundayCheckbox2")
-    const burgerClassic2 = document.getElementById("burgerClassic2")
-    const burgerCheese2 = document.getElementById("burgerCheese2")
-    const burgerVg2 = document.getElementById("burgerVg2")
     let foodString2 = ""
-    if(burgerClassic2.checked) {
+    if(document.getElementById("burgerClassic2").checked) {
         foodString2 = FOOD_CHOICE_CLASSIC
     }
-    if(burgerCheese2.checked) {
+    if(document.getElementById("burgerCheese2").checked) {
         foodString2 = FOOD_CHOICE_CHEESE
     }
-    if(burgerVg2.checked) {
+    if(document.getElementById("burgerVg2").checked) {
         foodString2 = FOOD_CHOICE_VG
     }
+    // user3
+    const fridayCheckbox3 = document.getElementById("fridayCheckbox3")
+    const saturdayCocktailCheckbox3 = document.getElementById("saturdayCocktailCheckbox3")
+    const saturdayFullCheckbox3 = document.getElementById("saturdayFullCheckbox3")
+    const sundayCheckbox3 = document.getElementById("sundayCheckbox3")
+    let foodString3 = ""
+    if(document.getElementById("burgerClassic3").checked) {
+        foodString3 = FOOD_CHOICE_CLASSIC
+    }
+    if(document.getElementById("burgerCheese3").checked) {
+        foodString3 = FOOD_CHOICE_CHEESE
+    }
+    if(document.getElementById("burgerVg3").checked) {
+        foodString3 = FOOD_CHOICE_VG
+    }
 
+    // api calls
     try {
         const token = await getToken()
         // user1
@@ -316,7 +340,7 @@ async function saveChoices(user1, user2) {
             })
         }
         const response = await fetch(apiUrl, requestOptions)
-        const result = await response.json()
+        await response.json()
         if(user2 != null) {
             const apiUrl2 = `https://api.baserow.io/api/database/rows/table/302843/${user2.id}/?user_field_names=true`
             const requestOptions2 = {
@@ -335,19 +359,37 @@ async function saveChoices(user1, user2) {
                 })
             }
             const response = await fetch(apiUrl2, requestOptions2)
-            const result = await response.json()
-            showSnackbar("Merci d'avoir répondu !")
-            loader.hidden = true
-        } else {
-            showSnackbar("Merci d'avoir répondu !")
-            loader.hidden = true
+            await response.json()
         }
+        if(user3 != null) {
+            const apiUrl3 = `https://api.baserow.io/api/database/rows/table/302843/${user3.id}/?user_field_names=true`
+            const requestOptions3 = {
+                method: 'PATCH',
+                headers: {
+                    'Authorization': `Token ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    has_answered: true,
+                    join_friday: fridayCheckbox3.checked,
+                    join_full_saturday: saturdayFullCheckbox3.checked,
+                    join_sunday: sundayCheckbox3.checked,
+                    join_cocktail: saturdayCocktailCheckbox3.checked,
+                    food: foodString3
+                })
+            }
+            const response = await fetch(apiUrl3, requestOptions3)
+            await response.json()
+        }
+        showSnackbar("Merci d'avoir répondu !")
+        loader.hidden = true
     } catch(error) {
         console.log(error)
         showSnackbar(error)
     }
 }
 
+// Get the BDD token
 async function getToken() {
     const url = "https://europe-west9-zouwedding-424315.cloudfunctions.net/logJsVersion"
     const requestOptions = {
