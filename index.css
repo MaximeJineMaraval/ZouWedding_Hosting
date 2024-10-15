@@ -77,40 +77,6 @@ input[type=text]:focus {
     -webkit-box-sizing: border-box;
   }
 
-  /*button {
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: 0.66em;
-    padding-bottom: 0.66em;
-    font-family: bebasKai;
-    font-size: 1.1em;
-    line-height: 1.25;
-    letter-spacing: 0.05em;
-    border-radius: 100px;
-    border: none;
-    background-color: #47642D;
-    color: white;
-    min-width: 35%;
-  }
-
-  button::before {
-    padding-left: 1em;
-    padding-right: 1em;
-    padding-top: 0.66em;
-    padding-bottom: 0.66em;
-    font-family: bebasKai;
-    font-size: 1.1em;
-    line-height: 1.25;
-    letter-spacing: 0.05em;
-    border-radius: 100px;
-    border: none;
-    background-color: #47642D;
-    color: white;
-    min-width: 35%;
-    bottom: -7px;
-  left: -2px;
-  }*/
-
   button {
     position: relative; /* Enable the 'after' view */
     min-width: 35%;
@@ -149,6 +115,16 @@ button:active {
 }
 
 button:active::after {
+    top: 2px;
+    left: 3px;
+}
+
+button:disabled {
+    background-color: color-mix(in oklab, white 66%, #47642D);
+    cursor: default;
+}
+
+button:disabled::after {
     top: 2px;
     left: 3px;
 }
