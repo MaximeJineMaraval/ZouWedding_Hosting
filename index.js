@@ -21,6 +21,7 @@ nameField.addEventListener("input", function() {
 
 // on loginButton click
 loginButton.addEventListener("click", async function(){
+    showLoader(true)
     const treatedName = removeAccents(nameField.value)
     const names = treatedName.split(' ')
 
@@ -53,6 +54,7 @@ loginButton.addEventListener("click", async function(){
             return response.json()
         })
         .then(data => {
+            showLoader(false)
             const suffixErrorLabel = "Vérifie que ton nom est complet et correctement écrit, et si le problème persiste, contacte directement Maxime ou Justine 🙂"
             if(data.count === 0) {
                 showSnackbar(`Nous n'avons trouvé aucun invité à ce nom.\r\n${suffixErrorLabel}`)
@@ -65,6 +67,7 @@ loginButton.addEventListener("click", async function(){
             }
         })
         .catch(error => {
+            showLoader(false)
             showSnackbar(error)
         })
 })
@@ -88,3 +91,9 @@ function showSnackbar(text) {
         snackbar.className = snackbar.className.replace("show", "")
     }, 5000)
 }
+
+function showLoader(show) {
+    document.getElementById("loaderContainer").hidden = !show
+}
+
+showLoader(false)
