@@ -1,3 +1,23 @@
+@font-face {
+    font-family: bebasBook;
+    src: url(res/bebas_neue_pro_book.otf);
+}
+
+@font-face {
+    font-family: bebasRegular;
+    src: url(res/bebas_neue_pro_regular.otf);
+}
+
+@font-face {
+    font-family: bebasKai;
+    src: url(res/bebas_kai.otf);
+}
+
+@font-face {
+    font-family: auromiya;
+    src: url(res/auromiya.ttf);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -15,6 +35,10 @@ html, body {
 
 body {
     background-color: white;
+    font-family: bebasBook;
+    font-size: 1.1em;
+    line-height: 1.25;
+    letter-spacing: 0.05em;
 }
 
 /* COMMON ASSETS */
@@ -68,7 +92,8 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: white;
+    background-color:rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
     position: fixed;
     top: 0;
     width: 100%;
@@ -88,8 +113,13 @@ body {
 }
 
 .navBar li a:hover {
-    background-color: #dddddd;
+    font-family: bebasRegular;
   }
+
+.navBar li a:active {
+    font-family: bebasRegular;
+    scale: 0.9;
+}
 
 #hidden-button {
     opacity: 0%;
