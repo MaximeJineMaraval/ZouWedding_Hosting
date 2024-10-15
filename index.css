@@ -22,14 +22,12 @@
 html, body {
     width: 100%;
     height: 100%;
-}
-
-body {
-    background-color:white;
+    background-color: white;
 }
 
 .loginContent {
     position: absolute;
+    width: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -128,3 +126,40 @@ button:disabled::after {
     top: 2px;
     left: 3px;
 }
+
+
+/* Phone design */
+@media only screen and (max-width: 600px) {
+    .loginContent {
+        width: 80%;
+    }
+}
+
+/* Large Phone design and portrait tablet */
+@media only screen and (min-width: 600px) {
+    .loginContent {
+        width: 70%;
+    }
+}
+
+/* Landscape tablets */
+@media only screen and (min-width: 768px) {
+    .loginContent {
+        width: 50%;
+    }
+}
+
+/* Laptop and desktop */
+@media only screen and (min-width: 992px) {
+    .loginContent {
+        width: 40%;
+    }
+}
+
+/* Large laptop and desktop */
+@media only screen and (min-width: 1200px) {
+    .loginContent {
+        width: 35%;
+    }
+}
+  

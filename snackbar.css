@@ -55,3 +55,38 @@
     from {bottom: 30px; opacity: 1;}
     to {bottom: 0; opacity: 0;}
 }
+
+/* Phone design */
+@media only screen and (max-width: 600px) {
+    #snackbar {
+        width: 80%;
+    }
+}
+
+/* Large Phone design and portrait tablet */
+@media only screen and (min-width: 600px) {
+    #snackbar {
+        width: 70%;
+    }
+}
+
+/* Landscape tablets */
+@media only screen and (min-width: 768px) {
+    #snackbar {
+        width: 50%;
+    }
+}
+
+/* Laptop and desktop */
+@media only screen and (min-width: 992px) {
+    #snackbar {
+        width: 40%;
+    }
+}
+
+/* Large laptop and desktop */
+@media only screen and (min-width: 1200px) {
+    #snackbar {
+        width: 35%;
+    }
+}
