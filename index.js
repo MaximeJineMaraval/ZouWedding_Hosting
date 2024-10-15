@@ -1,3 +1,9 @@
+/* TODO
+
+- Ajouter un loader
+
+*/
+
 // Helpers
 const removeAccents = str => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 
@@ -7,7 +13,6 @@ const apiUrl = 'https://api.baserow.io/api/database/rows/table/302843/'
 // Views
 let loginButton = document.getElementById("loginButton")
 let nameField = document.getElementById("guestname")
-let resultsLabel = document.getElementById("results")
 
 // on nameField input
 nameField.addEventListener("input", function() {
@@ -40,7 +45,6 @@ loginButton.addEventListener("click", async function(){
           }
     }
 
-    resultsLabel.textContent = "chargement..."
     fetch(finalApiUrl, requestOptions)
         .then(response => {
             if(!response.ok) {
@@ -49,10 +53,11 @@ loginButton.addEventListener("click", async function(){
             return response.json()
         })
         .then(data => {
+            const suffixErrorLabel = "Vérifie que ton nom est complet et correctement écrit, et si le problème persiste, contacte directement Maxime ou Justine 🙂"
             if(data.count === 0) {
-                resultsLabel.textContent = "Nous n'avons trouvé aucun invité à ce nom. Si le problème persiste, contacte directement Maxime ou Justine 🙂"
+                showSnackbar(`Nous n'avons trouvé aucun invité à ce nom.\r\n${suffixErrorLabel}`)
             } else if (data.count > 1) {
-                resultsLabel.textContent = "Trop d'invités correspondent à ce nom. Si le problème persiste, contacte directement Maxime ou Justine 🙂"
+                showSnackbar(`Trop d'invités correspondent à ce nom.\n${suffixErrorLabel}`)
             } else {
                 const user = data.results[0]
                 sessionStorage.user = user.id
@@ -60,7 +65,7 @@ loginButton.addEventListener("click", async function(){
             }
         })
         .catch(error => {
-            resultsLabel.textContent = error
+            showSnackbar(error)
         })
 })
 
@@ -72,4 +77,14 @@ async function getToken() {
     const response = await fetch(url, requestOptions)
     const result = await response.text()
     return result
+}
+
+// Show snackBar at the screen's bottom
+function showSnackbar(text) {
+    let snackbar = document.getElementById("snackbar")
+    snackbar.textContent = text
+    snackbar.className = "show"
+    setTimeout(function() { 
+        snackbar.className = snackbar.className.replace("show", "")
+    }, 5000)
 }

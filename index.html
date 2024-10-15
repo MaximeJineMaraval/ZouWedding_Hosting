@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <title>Le mariage des Zous</title>
     <link href="index.css" rel="stylesheet">
+    <link href="snackbar.css" rel="stylesheet">
     <script src="index.js" defer></script>
 </head>
 <body>
     <div class="loginContent">
-        <p id="fakeResults"></p>
-        <h1>Le mariage des Zous</h1>
-        <p>Bienvenue sur le site du mariage des Zous !</p>
-        <p>Renseigne ton prénom et ton nom pour accéder au contenu du site</p>
-        <input type="text" id="guestname" name="guestname" placeholder="Entre ton prénom et ton nom" size="30">
+        <h1>Les Zous se marient</h1>
+        <p>Bienvenue sur le site du mariage des Zous !<br>Renseigne ton prénom et ton nom pour accéder au contenu du site</p>
+        <input type="text" id="guestname" name="guestname" placeholder="Entre ton prénom et ton nom" autocomplete="off">
         <br>
-        <button id="loginButton" disabled="true">C'est partit!</button>
-        <p id="results">Les résultats ici</p>
+        <button id="loginButton" disabled="true">ZOU !</button>
     </div>
+    <div id="snackbar"></div>
 </body>
 </html>
