@@ -78,11 +78,11 @@ function fillThePage(user1, user2, user3) {
 function fillHeader(user1, user2, user3) {
     const headerWelcomeLabel = document.getElementById("headerWelcomeLabel")
     if (user2 != null && user3 != null) { // If there is 3 guests
-        headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname}, ${user2.firstname} et ${user3.firstname} ! Vous êtes invités au`
+        headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname}, ${user2.firstname} et ${user3.firstname} !\n\r Vous êtes invités au`
     } else if (user2 != null) { // If there is 2 guests
-        headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname} et ${user2.firstname} ! Vous êtes invités au`
+        headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname} et ${user2.firstname} !\n\r Vous êtes invités au`
     } else { // If there is one guest
-        headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname} ! Tu es invité au`
+        headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname} !\n\r Tu es invité au`
     }
 
     const headerDateLabel = document.getElementById("headerDateLabel")
