@@ -13,8 +13,8 @@ a {
 }
 
 @font-face {
-    font-family: auromiya;
-    src: url(res/auromiya.ttf);
+    font-family: bebasBook;
+    src: url(res/bebas_neue_pro_book.otf);
 }
 
 nav {
@@ -85,6 +85,10 @@ nav a:active {
     
     .navBurger {
         display: flex;
+    }
+
+    nav a:hover {
+        font-family: bebasBook;
     }
 }
 
