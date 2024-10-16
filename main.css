@@ -85,53 +85,6 @@ body {
     position: relative;
 }
 
-/* NAVBAR */
-
-nav {
-    position: fixed;
-    width: 100%;
-    z-index: 1;
-    background-color:rgba(255,255,255,0.75);
-    backdrop-filter: blur(10px);
-}
-
-.navItems {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-}
-
-.navItems .leftGroup {
-    display: flex;
-}
-
-.navItems .rightGroup {
-    display: flex;
-}
-
-
-.navItems a {
-    color: black;
-    padding: 2vh 3vh;
-    padding-top: 2vh;
-    text-decoration: none;
-    /* display: block; À utiliser pour afficher à la vertical ?*/
-}
-
-.navItems a:hover {
-    font-family: bebasRegular;
-}
-
-.navItems a:active {
-    font-family: bebasRegular;
-    scale: 0.9;
-}
-
-#hidden-button {
-    opacity: 0%;
-    margin-right: 50px;
-}
-
 /* HEADER */
 
 .header {
@@ -345,10 +298,11 @@ nav {
 
 
 
-
-
 /* Phone design */
 @media only screen and (max-width: 600px) {
+
+    /* Welcome Section */
+
     .welcome {
         white-space: pre-line; /* Add line break for each \n\r */
     }
@@ -363,35 +317,24 @@ nav {
         margin-top: 2vh;
     }
 
-    .navItems {
-        display: none;
-    }
 }
 
 /* Large Phone design and portrait tablet */
 @media only screen and (min-width: 600px) {
-    .navItems {
-        display: none;
-    }
+    
 }
 
 /* Landscape tablets */
 @media only screen and (min-width: 768px) {
-    .navItems {
-        display: flex;
-    }
+    
 }
 
 /* Laptop and desktop */
 @media only screen and (min-width: 992px) {
-    .navItems {
-        display: flex;
-    }
+    
 }
 
 /* Large laptop and desktop */
 @media only screen and (min-width: 1200px) {
-    .navItems {
-        display: flex;
-    }
+    
 }

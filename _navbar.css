@@ -1,0 +1,109 @@
+@font-face {
+    font-family: bebasRegular;
+    src: url(res/bebas_neue_pro_regular.otf);
+}
+
+@font-face {
+    font-family: auromiya;
+    src: url(res/auromiya.ttf);
+}
+
+nav {
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
+.navBar {
+    background-color:rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.leftNavItems {
+    display: flex;
+}
+
+.rightNavItems {
+    display: flex;
+}
+
+nav a {
+    padding: 2vh 3vh;
+    text-decoration: none;
+    color: black;
+    align-self: center;
+}
+
+nav a:hover {
+    font-family: bebasRegular;
+}
+
+.nav a:active {
+    font-family: bebasRegular;
+    scale: 0.9;
+}
+
+.menuOpened {
+    background-color:rgba(255,255,255,0.75);
+    backdrop-filter: blur(10px);
+    display: none;
+}
+
+.menuItem {
+    align-self: flex-end;
+}
+
+.navBurger {
+    display: none;
+}
+
+.navBurger label {
+    cursor: pointer;
+    padding: 3vw 3vw;
+}
+
+#burgerToggle:checked ~ * .menuOpened {
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Phone design */
+@media only screen and (max-width: 600px) {
+
+    /* Navigation */
+    .rightNavItems {
+        display: none;
+    }
+    
+    .navBurger {
+        display: flex;
+    }
+
+}
+
+/* Large Phone design and portrait tablet */
+@media only screen and (min-width: 600px) {
+    
+}
+
+/* Landscape tablets */
+@media only screen and (min-width: 768px) {
+    
+}
+
+/* Laptop and desktop */
+@media only screen and (min-width: 992px) {
+    
+}
+
+/* Large laptop and desktop */
+@media only screen and (min-width: 1200px) {
+    
+}

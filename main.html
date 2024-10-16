@@ -8,25 +8,38 @@
     <link href="_snackbar.css" rel="stylesheet">
     <link href="_loader.css" rel="stylesheet">
     <link href="_button.css" rel="stylesheet">
+    <link href="_navbar.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
     <script src="main.js" defer></script>
 </head>
 <body>
+
+    <!-- TODO TODO TODO  <a id="hidden-button" href="easter_egg.html">👀</a> -->
+
     <!-- NAVBAR-->
-     <nav>
-        <div class="navItems">
-            <div class="leftGroup">
-                <a href="#home">Le mariage des Zous</a>
+    <input type="checkbox" id="burgerToggle" hidden>   
+    <nav>
+        <div class="navBar">
+            <div class="leftNavItems">
+                <a class="leftItem" href="#home">Le mariage des Zous</a>
             </div>
-            <div class="rightGroup">
-                <a id="hidden-button" href="easter_egg.html">👀</a>
-                <a href="#planning">Le planning</a>
-                <a href="#theme">Le thème</a>
-                <a href="#maps">Les lieux</a>
-                <a href="#form">Je viens !</a>
+            <div class="navBurger">
+                <label class="material-icons" for="burgerToggle">menu</label>
+            </div>
+            <div class="rightNavItems">
+                <a class="rightItem" href="#planning">Le planning</a>
+                <a class="rightItem" href="#theme">Le thème</a>
+                <a class="rightItem" href="#maps">Les lieux</a>
+                <a class="rightItem" href="#form">Je viens !</a>
             </div>
         </div>
-     </nav>
+        <div class="menuOpened">
+            <a class="menuItem" href="#planning">Le planning</a>
+            <a class="menuItem" href="#theme">Le thème</a>
+            <a class="menuItem" href="#maps">Les lieux</a>
+            <a class="menuItem" href="#form">Je viens !</a>
+        </div>
+    </nav>
     <!-- LOADER -->
      <div class="mainLoaderContainer" id="mainLoader">
         <div class="loader"></div>
