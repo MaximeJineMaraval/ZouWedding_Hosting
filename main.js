@@ -2,18 +2,8 @@ const FOOD_CHOICE_CLASSIC = "CLASSIC"
 const FOOD_CHOICE_CHEESE = "CHEESE"
 const FOOD_CHOICE_VG = "VG"
 
-// Trigger the page click to close the mobile navBar menu
-const burgerToggle = document.getElementById("burgerToggle")
-document.getElementById("pageContent").addEventListener("click", function() {
-    burgerToggle.checked = false
-})
-document.getElementById("nav").addEventListener("click", function() {
-    if(burgerToggle.checked) {
-        burgerToggle.checked = false
-    }
-})
 
-// Load the page
+initNavBar()
 loadPage()
 
 async function loadPage() {
@@ -410,4 +400,25 @@ async function getToken() {
     const response = await fetch(url, requestOptions)
     const result = await response.text()
     return result
+}
+
+// Set the navBar burger menu behavior
+function initNavBar() {
+    const menuOpened = document.getElementById("menuOpened")
+    document.getElementById("pageContent").addEventListener("click", function() {
+        menuOpened.style.display = "none"
+    })
+    document.getElementById("burgerIcon").addEventListener("click", (event) => {
+        if(menuOpened.style.display === "flex") {
+            menuOpened.style.display = "none"
+        } else {
+            menuOpened.style.display = "flex"
+        }
+        event.stopImmediatePropagation()
+    })
+    document.getElementById("nav").addEventListener("click", function() {
+        if(menuOpened.style.display === "flex") {
+            menuOpened.style.display = "none"
+        }
+    })
 }

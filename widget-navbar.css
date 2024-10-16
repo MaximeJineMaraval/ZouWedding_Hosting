@@ -44,15 +44,15 @@ nav a:hover {
     font-family: bebasRegular;
 }
 
-.nav a:active {
-    font-family: bebasRegular;
-    scale: 0.9;
+nav a:active {
+    scale: 0.97;
 }
 
 .menuOpened {
     background-color:rgba(255,255,255,0.75);
     backdrop-filter: blur(10px);
     display: none;
+    flex-direction: column;
 }
 
 .menuItem {
@@ -68,16 +68,8 @@ nav a:hover {
     padding: 3vw 3vw;
 }
 
-#burgerToggle:checked ~ * .menuOpened {
-    display: flex;
-    flex-direction: column;
-}
-
-
-/* Phone design */
-@media only screen and (max-width: 600px) {
-
-    /* Navigation */
+/* Phone design (custom size) */
+@media only screen and (max-width: 672px) {
     .rightNavItems {
         display: none;
     }
@@ -85,11 +77,10 @@ nav a:hover {
     .navBurger {
         display: flex;
     }
-
 }
 
-/* Large Phone design and portrait tablet */
-@media only screen and (min-width: 600px) {
+/* Large Phone design and portrait tablet (custom size)*/
+@media only screen and (min-width: 672px) {
     
 }
 
