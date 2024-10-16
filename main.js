@@ -2,6 +2,18 @@ const FOOD_CHOICE_CLASSIC = "CLASSIC"
 const FOOD_CHOICE_CHEESE = "CHEESE"
 const FOOD_CHOICE_VG = "VG"
 
+// Trigger the page click to close the mobile navBar menu
+const burgerToggle = document.getElementById("burgerToggle")
+document.getElementById("pageContent").addEventListener("click", function() {
+    burgerToggle.checked = false
+})
+document.getElementById("nav").addEventListener("click", function() {
+    if(burgerToggle.checked) {
+        burgerToggle.checked = false
+    }
+})
+
+// Load the page
 loadPage()
 
 async function loadPage() {
