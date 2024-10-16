@@ -1,3 +1,12 @@
+input,
+textarea,
+button,
+select,
+label,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 @font-face {
     font-family: bebasRegular;
     src: url(res/bebas_neue_pro_regular.otf);

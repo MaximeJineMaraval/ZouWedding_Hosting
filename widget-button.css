@@ -1,3 +1,11 @@
+input,
+textarea,
+button,
+select,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
 button {
     position: relative; /* Enable the 'after' view */
     min-width: 35%;
