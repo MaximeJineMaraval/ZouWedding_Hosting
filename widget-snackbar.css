@@ -6,7 +6,7 @@
 /* The snackbar - position it at the bottom and in the middle of the screen */
 #snackbar {
     visibility: hidden; /* Hidden by default. Visible on click */
-    background-color: #F6B5BB; /* Black background color */
+    background-color: #E85C18; /* Background color */
     color: #000; /* White text color */
     font-family: bebasBook; /* Define font */
     font-size: 0.95em;
