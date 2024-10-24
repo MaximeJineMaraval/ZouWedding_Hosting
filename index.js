@@ -87,7 +87,11 @@ function showSnackbar(text) {
 }
 
 function showLoader(show) {
-    document.getElementById("loaderContainer").hidden = !show
+    let display = "none"
+    if (show) { 
+        display = "flex"
+    }
+    document.getElementById("loaderContainer").style.display = display
 }
 
 showLoader(false)

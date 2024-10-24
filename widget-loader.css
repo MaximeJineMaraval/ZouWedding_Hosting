@@ -1,22 +1,48 @@
 .loader {
-    border: 16px solid #f5bdc3;
-    border-radius: 50%;
-    border-top: 16px solid #4b6528;
-    border-left: 16px solid #4b6528;
-    -webkit-animation: spin 2s linear infinite;
-    animation: spin 2s linear infinite;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    position: relative;
+    height: 30%;
+    animation: beat .7s infinite alternate;
+    transform-origin: center;
 }
 
-@-webkit-keyframes spin {
-    0% { -webkit-transform: rotate(0deg); }
-    100% { -webkit-transform: rotate(360deg); }
+@keyframes beat{
+	to { transform: scale(1.4); }
 }
-  
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+   
+.loaderContainer {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Phone design (custom size) */
+@media only screen and (max-width: 672px) {
+    .loader {
+        height: 20%;
+    }
+}
+
+/* Large Phone design and portrait tablet (custom size)*/
+@media only screen and (min-width: 672px) {
+    
+}
+
+/* Landscape tablets */
+@media only screen and (min-width: 768px) {
+    
+}
+
+/* Laptop and desktop */
+@media only screen and (min-width: 992px) {
+    
+}
+
+/* Large laptop and desktop */
+@media only screen and (min-width: 1200px) {
+    
 }
