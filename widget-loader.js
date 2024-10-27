@@ -19,4 +19,4 @@ async function showLoader(show) {
     }
 }
 
-window.showLoader = showLoader;
+window.showLoader = showLoader
