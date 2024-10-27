@@ -75,3 +75,5 @@ async function getToken() {
     const result = await response.text()
     return result
 }
+
+applySparklesBackground()
