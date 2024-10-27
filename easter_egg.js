@@ -25,10 +25,10 @@ let jumpInterval;
 let fallInterval;
 let animatePlayerSpriteInterval;
 const groundBottom = 50;
-const maximeSprites = ["res/max1.svg", "res/max2.svg"];
-const justineSprites = ["res/justine1.svg", "res/justine2.svg"];
-const maximeBonusSprite = "res/bonus_maxime.svg"
-const justineBonusSprite = "res/bonus_justine.svg"
+const maximeSprites = ["res/ee_max1.svg", "res/ee_max2.svg"];
+const justineSprites = ["res/ee_justine1.svg", "res/ee_justine2.svg"];
+const maximeBonusSprite = "res/ee_bonus_maxime.svg"
+const justineBonusSprite = "res/ee_bonus_justine.svg"
 let currentPlayerSprites;
 let currentBonusSprite;
 
@@ -38,9 +38,9 @@ let gameSpeed = 4;
 let difficultyIncreaseInterval = 5;
 let enemyInterval;
 const enemyTypes = [
-  { height: 30, collisionVariableHor: 8, collisionVariableVert: 4, sprite: "res/rock1.svg" },
-  { height: 50, collisionVariableHor: 16, collisionVariableVert: 6, sprite: "res/rock2.svg" },
-  { height: 40, collisionVariableHor: 8, collisionVariableVert: 8, sprite: "res/rock3.svg" }
+  { height: 30, collisionVariableHor: 8, collisionVariableVert: 4, sprite: "res/ee_rock1.svg" },
+  { height: 50, collisionVariableHor: 16, collisionVariableVert: 6, sprite: "res/ee_rock2.svg" },
+  { height: 40, collisionVariableHor: 8, collisionVariableVert: 8, sprite: "res/ee_rock3.svg" }
 ];
 let currentEnemy;
 let isEnemyAvoided = false;
@@ -246,7 +246,7 @@ function createBonus() {
         // Update the score
         updateScore(score + 10);
         // Show the cloud
-        newBonus.src = "res/cloud.svg"
+        newBonus.src = "res/ee_cloud.svg"
         newBonus.style.opacity = 0;
         setTimeout(function() { newBonus.remove(); }, 500);
         showBonusScore(bonusHeight, bonusPosition);
