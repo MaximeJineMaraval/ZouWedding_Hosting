@@ -60,7 +60,7 @@ async function fetchUser(userId) {
 // Fill the screen with the users
 function fillThePage(user1, user2, user3) {
     // Fill the screen
-    fillHeader(user1, user2, user3)
+    fillWelcome(user1, user2, user3)
     fillPlanning(user1)
     fillMaps(user1)
     fillForm(user1, user2, user3)
@@ -76,18 +76,18 @@ function fillThePage(user1, user2, user3) {
     document.getElementById("pageContent").hidden = false
 } 
 
-// Fill the header
-function fillHeader(user1, user2, user3) {
-    const headerWelcomeLabel = document.getElementById("headerWelcomeLabel")
+// Fill the welcome section
+function fillWelcome(user1, user2, user3) {
+    const welcomeMainLabel = document.getElementById("welcomeMainLabel")
     if (user2 != null && user3 != null) { // If there is 3 guests
-        headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname}, ${user2.firstname} et ${user3.firstname} !\n\r Vous êtes invités au`
+        welcomeMainLabel.textContent = `Bienvenue ${user1.firstname}, ${user2.firstname} et ${user3.firstname} !\n\r Vous êtes invités au`
     } else if (user2 != null) { // If there is 2 guests
-        headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname} et ${user2.firstname} !\n\r Vous êtes invités au`
+        welcomeMainLabel.textContent = `Bienvenue ${user1.firstname} et ${user2.firstname} !\n\r Vous êtes invités au`
     } else { // If there is one guest
-        headerWelcomeLabel.textContent = `Bienvenue ${user1.firstname} !\n\r Tu es invité au`
+        welcomeMainLabel.textContent = `Bienvenue ${user1.firstname} !\n\r Tu es invité au`
     }
 
-    const headerDateLabel = document.getElementById("headerDateLabel")
+    const welcomeDateLabel = document.getElementById("welcomeDateLabel")
     let dateString = ""
     if (user1.is_invited_friday) {
         if(user1.is_invited_sunday) {
@@ -101,7 +101,7 @@ function fillHeader(user1, user2, user3) {
         dateString += " & 16"
     }
     dateString += " février 2025"
-    headerDateLabel.textContent = dateString
+    welcomeDateLabel.textContent = dateString
 }
 
 function fillPlanning(user) {
