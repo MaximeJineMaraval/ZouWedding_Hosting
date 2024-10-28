@@ -8,8 +8,9 @@ loadPage()
 
 async function loadPage() {
     // Show loading
-    document.getElementById("mainLoader").hidden = false
-    document.getElementById("pageContent").hidden = true
+    document.getElementById("welcomeLabels").hidden = true
+    document.getElementById("scrollIndicator").hidden = true
+    showLoader(true)
 
     // Retrieve the user and redirect to the homePage if the user doesn't exist
     if(sessionStorage.user === undefined) {
@@ -72,8 +73,9 @@ function fillThePage(user1, user2, user3) {
     })
 
     // Hide loader
-    document.getElementById("mainLoader").hidden = true
-    document.getElementById("pageContent").hidden = false
+    showLoader(false)
+    document.getElementById("welcomeLabels").hidden = false
+    document.getElementById("scrollIndicator").hidden = false
 } 
 
 // Fill the welcome section

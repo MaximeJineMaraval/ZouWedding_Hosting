@@ -7,7 +7,9 @@
     <link rel="icon" type="image/x-icon" href="res/favicon.svg">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="widget-snackbar.css" rel="stylesheet">
+    <script src="widget-snackbar.js"></script>
     <link href="widget-loader.css" rel="stylesheet">
+    <script src="widget-loader.js"></script>
     <link href="widget-button.css" rel="stylesheet">
     <link href="widget-navbar.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
@@ -37,21 +39,23 @@
             <a class="menuItem" href="#form">Je viens !</a>
         </div>
     </nav>
-    <!-- LOADER -->
-     <div class="mainLoaderContainer" id="mainLoader">
-        <div class="loader"></div>
-    </div>
     <div class="pageContent" id="pageContent">
         <a id="hidden-button" href="easter_egg.html">👀</a>
         <!-- WELCOME -->
         <div class="welcome" id="welcome"> 
-            <div class="welcomeLabels">
+            <!-- LOADER -->
+            <div class="loaderContainer" id="loaderContainer">
+                <img class="loader" src="res/loader_image.png"/>
+            </div>
+            <!-- SPARKLES -->
+            <!-- CONTENT -->
+            <div id="welcomeLabels" class="welcomeLabels">
                 <h3 id="welcomeMainLabel"></h3>
                 <h1>Mariage des Zous</h1>
                 <h3 id="welcomeDateLabel"></h3>
                 <button onclick="location.href='#form'">Je viens !</button>
             </div>
-            <div class="scrollIndicator">
+            <div id="scrollIndicator" class="scrollIndicator">
                 <p>Tu veux tout savoir sur ce mariage ? Ça se passe en dessous !</p>
                 <a class="material-icons" href="#planning">arrow_downward</a>
             </div>

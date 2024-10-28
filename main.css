@@ -42,7 +42,7 @@ html, body {
 }
 
 body {
-    background-color: white;
+    background-color: #4C6627;
     font-family: bebasBook;
     font-size: 1.1em;
     line-height: 1.25;
@@ -112,6 +112,7 @@ body {
     width: 100%;
     height: 100%;
     position: relative;
+    background-color: #4C6627;
 }
 
 .welcome a {
