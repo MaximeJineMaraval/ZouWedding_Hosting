@@ -68,12 +68,6 @@ p {
     letter-spacing: 0.05em;
 }
 
-.loaderContainer {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-
 input {
     margin-top: 8vh;
     margin-bottom: 8vh;
