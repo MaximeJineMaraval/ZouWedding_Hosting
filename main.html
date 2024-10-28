@@ -52,20 +52,25 @@
                 <img class="loader" src="res/loader_image.png"/>
             </div>
             <!-- CONTENT -->
-            <div id="welcomeLabels" class="welcomeLabels">
-                <img id="welcomeHeart" src="res/welcome_heart.png"/>
-                <h3 id="welcomeMainLabel"></h3>
-                <h1>Mariage des Zous</h1>
-                <h3 id="welcomeDateLabel"></h3>
-                <button onclick="location.href='#form'">Je viens !</button>
+            <div id="welcomeLabels">
+                <img id="welcomeCookie" src="res/index_background.png"/>
+                <div class="welcomeLabels">
+                    <img id="welcomeHeart" src="res/welcome_heart.png"/>
+                    <h3 id="welcomeMainLabel"></h3>
+                    <h1>Mariage des Zous</h1>
+                    <h3 id="welcomeDateLabel"></h3>
+                    <button onclick="location.href='#form'">Je viens !</button>
+                </div>
             </div>
             <div id="scrollIndicator" class="scrollIndicator">
                 <p>Tu veux tout savoir sur ce mariage ? Ça se passe en dessous !</p>
-                <a class="material-icons" href="#planning">arrow_downward</a>
+                <a href="#planning">
+                    <img id="welcomeArrow" src="res/welcome_arrow.png"/>
+                </a>
             </div>
         </div>
         <!-- PLANNING -->
-        <div class="planning" id="planning" hidden="true">
+        <div class="planning" id="planning">
             <div class="planningContainer">
             <h2 class="sectionTitle">C'est quoi le plannning ?</h2>
                 <div class="planningInfoContainer">

@@ -74,9 +74,9 @@ function fillThePage(user1, user2, user3) {
     })
 
     // Hide loader
-    showLoader(false)
     document.getElementById("welcomeLabels").hidden = false
     document.getElementById("scrollIndicator").hidden = false
+    showLoader(false)
 } 
 
 // Fill the welcome section
@@ -96,12 +96,12 @@ function fillWelcome(user1, user2, user3) {
         if(user1.is_invited_sunday) {
             dateString += "14, "
         } else {
-            dateString += "14 & "
+            dateString += "14 et "
         }
     }
     dateString += "15"
     if (user1.is_invited_sunday) {
-        dateString += " & 16"
+        dateString += " et 16"
     }
     dateString += " février 2025"
     welcomeDateLabel.textContent = dateString

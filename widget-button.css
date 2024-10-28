@@ -10,7 +10,7 @@ button {
     position: relative; /* Enable the 'after' view */
     min-width: 35%;
     background-color: #4C6627;
-    color: white;
+    color: #FFFBF1;
     padding: 0.66em 1em;
     border: none;
     border-radius: 100px;

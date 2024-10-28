@@ -4,7 +4,16 @@ function getRandomOffset() {
 
 function applySparklesBackground() {
     const rows = Math.floor(window.innerHeight / 150);  // Number of virtual rows to put the sparkles
-    const cols = Math.floor(window.innerWidth / 200);  // Number of virtual columns to put the sparkles
+    let cols = 0;
+    // Number of virtual columns to put the sparkles
+    if (window.innerWidth < 600) {
+        cols = Math.floor(window.innerWidth / 100);
+    } else if (window.innerWidth < 800) {
+        cols = Math.floor(window.innerWidth / 150);
+    } else {
+        cols = Math.floor(window.innerWidth / 200);
+    }
+    console.log(window.innerWidth)
     const sparkesBackground = document.getElementById('sparklesBackground');
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
