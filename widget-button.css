@@ -9,7 +9,7 @@ a {
 button {
     position: relative; /* Enable the 'after' view */
     min-width: 35%;
-    background-color: #47642D;
+    background-color: #4C6627;
     color: white;
     padding: 0.66em 1em;
     border: none;
@@ -29,7 +29,7 @@ button::after {
     height: 95%;
     top: 2px;
     left: 3px;
-    border: 2px solid #EED46E;
+    border: 2px solid #F3D868;
     border-radius: 100px;
     transition: all 0.2s ease;
 }
