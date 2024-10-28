@@ -3,10 +3,8 @@ function getRandomOffset() {
 }
 
 function applySparklesBackground() {
-    const rows = Math.floor(window.innerHeight / 120);  // Number of virtual rows to put the sparkles
-    const cols = Math.floor(window.innerWidth / 120);  // Number of virtual columns to put the sparkles
-    console.log(`${window.innerHeight}`)
-    console.log(`${rows}`)
+    const rows = Math.floor(window.innerHeight / 150);  // Number of virtual rows to put the sparkles
+    const cols = Math.floor(window.innerWidth / 200);  // Number of virtual columns to put the sparkles
     const sparkesBackground = document.getElementById('sparklesBackground');
     for (let row = 0; row < rows; row++) {
         for (let col = 0; col < cols; col++) {
