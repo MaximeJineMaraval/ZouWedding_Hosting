@@ -115,6 +115,12 @@ body {
     background-color: #4C6627;
 }
 
+#welcomeHeart {
+    height: 0.8em;
+    width: auto;
+    margin-bottom:5vh;
+}
+
 .welcome a {
     text-decoration: none;
     color: black;
@@ -131,14 +137,14 @@ body {
 }
 
 .welcomeLabels h1 {
-    margin-top: 8vh;
-    margin-bottom: 8vh;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
     font-family: auromiya;
     font-size: 2.2em;
 }
 
 .welcomeLabels button {
-    margin-top: 8vh;
+    margin-top: 5vh;
     min-width: 15vw;
 }
 
