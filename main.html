@@ -15,6 +15,8 @@
     <link href="widget-button.css" rel="stylesheet">
     <link href="widget-navbar.css" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
+    <link href="main_welcome.css" rel="stylesheet">
+    <link href="main_planning.css" rel="stylesheet">
     <script src="main.js" defer></script>
 </head>
 <body>
@@ -46,7 +48,7 @@
         <!-- WELCOME -->
         <div class="welcome" id="welcome"> 
             <!-- SPARKLES -->
-            <div id="sparklesBackground"></div>
+            <div class="sparklesBackground"></div>
             <!-- LOADER -->
             <div class="loaderContainer" id="loaderContainer">
                 <img class="loader" src="res/loader_image.png"/>
@@ -71,8 +73,12 @@
         </div>
         <!-- PLANNING -->
         <div class="planning" id="planning">
+            <!-- SPARKLES -->
+            <div class="sparklesBackground"></div>
+            <div class="sectionTransition red"></div>
+            <!-- CONTENT-->
             <div class="planningContainer">
-            <h2 class="sectionTitle">C'est quoi le plannning ?</h2>
+                <h2 class="sectionTitle">C'est quoi le plannning ?</h2>
                 <div class="planningInfoContainer">
                     <div id="planningFridayBlock" class="planningInfo">
                         <div class="fakeImage">&#9632;</div>

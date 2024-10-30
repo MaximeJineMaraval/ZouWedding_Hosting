@@ -1,0 +1,119 @@
+/* WELCOME */
+
+.welcome {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    background-color: #4C6627;
+}
+
+#welcomeHeart {
+    height: 0.8em;
+    width: auto;
+    margin-bottom:3vh;
+}
+
+.welcome a {
+    text-decoration: none;
+    color: black;
+}
+
+.welcomeLabels {
+    position: absolute;
+    padding: 50px;
+    text-align: center;
+    color: black;
+    white-space: pre-line; /* Add line break for each \n\r */
+}
+
+#welcomeLabels {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#welcomeCookie {
+    width: 28em;
+    position: absolute;
+}
+
+.welcomeLabels h1 {
+    font-family: auromiya;
+    font-size: 2em;
+}
+
+.welcomeLabels button {
+    margin-top: 3vh;
+    min-width: 12vw;
+}
+
+.scrollIndicator {
+    width: 80%;
+    position: absolute;
+    top: 95%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: black;
+}
+
+.scrollIndicator p {
+    font-size: small;
+    margin-bottom: 1vh;
+    color:#FFFBF1
+}
+
+#welcomeArrow {
+    height: 1.5em;
+    margin-bottom: 1vh;
+    width: auto;
+}
+
+/* Phone design */
+@media only screen and (max-width: 600px) {
+
+    /* Welcome Section */
+
+    .welcomeLabels h1 {
+        margin-top: 2vh;
+        margin-bottom: 2vh;
+        font-size: 1.8em;
+    }
+    
+    .welcomeLabels button {
+        margin-top: 2vh;
+        min-width: 30vw; 
+    }
+
+}
+
+/* Large Phone design and portrait tablet */
+@media only screen and (min-width: 600px) {
+    .welcomeLabels button {
+        min-width: 20vw;
+    }
+}
+
+/* Landscape tablets */
+@media only screen and (min-width: 768px) {
+    .welcomeLabels button {
+        min-width: 18vw;
+    }
+}
+
+/* Laptop and desktop */
+@media only screen and (min-width: 992px) {
+    .welcomeLabels button {
+        min-width: 15vw;
+    }
+}
+
+/* Large laptop and desktop */
+@media only screen and (min-width: 1200px) {
+    .welcomeLabels button {
+        min-width: 12vw;
+    }
+}
