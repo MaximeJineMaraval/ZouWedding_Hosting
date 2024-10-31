@@ -2,21 +2,24 @@
 
 .planning {
     width: 100%;
-    height: 100%;
+    height: max-content;
+    min-height: 100%;
     background-color: #FFFBF1;
+    display: flex;
+    flex-direction: column;
 }
 
 .planningContainer {
+    flex: 1;
     position: relative;
     padding-left: 10%;
     padding-right: 10%;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    align-content: center;
 }
 
 .planningInfoContainer {
     display: flex;
+    flex-direction: row;
     text-align: center;
     align-items: top;
 }
@@ -57,7 +60,34 @@
 
 /* Phone design */
 @media only screen and (max-width: 600px) {
+    .planningInfoContainer {
+        flex-direction: column;
+    }
 
+    .planningInfo {
+        margin-bottom: 8vh;
+    }
+
+    .planningDate {
+        margin-top: 1vh;
+    }
+    
+    .planningHour {
+        margin-top: 1vh;
+    }
+    
+    .planningEventType {
+        margin-top: 1vh;
+    }
+    
+    .planningLocation {
+        margin-top: 1vh;
+        margin-bottom: 1vh;
+    }
+    
+    .planningImage {
+        margin-bottom: 1vh;
+    }
 }
 
 /* Large Phone design and portrait tablet */
