@@ -9,7 +9,7 @@ function applySparklesBackground() {
     if (window.innerWidth < 600) {
         cols = Math.floor(window.innerWidth / 100);
     } else if (window.innerWidth < 800) {
-        cols = Math.floor(window.innerWidth / 150);
+        cols = Math.floor(window.innerWidth / 200);
     } else {
         cols = Math.floor(window.innerWidth / 300);
     }
