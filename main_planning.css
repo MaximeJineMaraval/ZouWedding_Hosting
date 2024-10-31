@@ -8,39 +8,51 @@
 
 .planningContainer {
     position: relative;
+    padding-left: 10%;
+    padding-right: 10%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: blueviolet;
 }
 
 .planningInfoContainer {
     display: flex;
     text-align: center;
-    align-items: center;
+    align-items: top;
 }
 
 .planningInfo {
     flex: 1;
 }
 
-.planningTitle {
-    font-weight: bold;
-    margin-bottom: 1vh;
-    margin-top: 2vh;
-}
-
 .planningDate {
-    font-weight: normal;
+    font-family: auromiya;
+    margin-top: 1.5vh;
+    font-size: 1em;
 }
 
 .planningHour {
-    font-weight: normal;
-    margin-bottom: 1vh;
+    margin-top: 1.5vh;
+    font-size: 1em;
+}
+
+.planningEventType {
+    font-family: auromiya;
+    margin-top: 1.5vh;
+    white-space: pre-line;
+    font-size: 1em;
 }
 
 .planningLocation {
+    margin-top: 1.5vh;
+    margin-bottom: 1.5vh;
     font-size: 80%;
+    font-size: 0.9em;
+}
+
+.planningImage {
+    height: 3.5em;
+    margin-bottom: 1.5vh;
 }
 
 /* Phone design */

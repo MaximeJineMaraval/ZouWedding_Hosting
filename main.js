@@ -114,14 +114,14 @@ function fillPlanning(user) {
     const planningSundayBlock = document.getElementById("planningSundayBlock")
     planningSundayBlock.hidden = !user.is_invited_sunday
 
-    const planningSaturdayTitle = document.getElementById("planningSaturdayTitle")
+    const planningSaturdayEventType = document.getElementById("planningSaturdayEventType")
     const planningSaturdayHour = document.getElementById("planningSaturdayHour")
     if(user.is_invited_full_saturday) {
-        planningSaturdayTitle.textContent = "Cérémonie, Cocktail & Soirée"
-        planningSaturdayHour.textContent = "16h00"
+        planningSaturdayEventType.textContent = "Cérémonie laïque\nVin d'honneur\nRepas"
+        planningSaturdayHour.textContent = "15h00"
     } else {
-        planningSaturdayTitle.textContent = "Cocktail"
-        planningSaturdayHour.textContent = "18h00"
+        planningSaturdayEventType.textContent = "Vin d'honneur"
+        planningSaturdayHour.textContent = "16h30"
     }
 }
 
