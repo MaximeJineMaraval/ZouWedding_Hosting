@@ -13,7 +13,6 @@ function applySparklesBackground() {
     } else {
         cols = Math.floor(window.innerWidth / 300);
     }
-    console.log(window.innerWidth)
     
     const sparklesBackgrounds = document.getElementsByClassName("sparklesBackground")
     for(var i = 0; i < sparklesBackgrounds.length; i++) {

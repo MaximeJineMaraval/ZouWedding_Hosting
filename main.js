@@ -126,7 +126,7 @@ function fillPlanning(user) {
 }
 
 function fillMaps(user) {
-    const mapCityHallBlock = document.getElementById("mapCityHallBlock")
+    /*const mapCityHallBlock = document.getElementById("mapCityHallBlock")
     mapCityHallBlock.hidden = !user.is_invited_friday
 
     const mapCastleTitle = document.getElementById("mapCastleTitle")
@@ -137,7 +137,7 @@ function fillMaps(user) {
     }
 
     const mapHostelBlock = document.getElementById("mapHostelBlock")
-    mapHostelBlock.hidden = !user.is_invited_sunday && !user.is_invited_full_saturday
+    mapHostelBlock.hidden = !user.is_invited_sunday && !user.is_invited_full_saturday*/
 }
 
 function fillForm(user1, user2, user3) {

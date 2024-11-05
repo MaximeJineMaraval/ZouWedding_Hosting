@@ -17,7 +17,7 @@
     <link href="main.css" rel="stylesheet">
     <link href="main_welcome.css" rel="stylesheet">
     <link href="main_planning.css" rel="stylesheet">
-    <link href="main_theme.css" rel="stylesheet">
+    <link href="main_maps.css" rel="stylesheet">
     <script src="main.js" defer></script>
 </head>
 <body>
@@ -113,7 +113,7 @@
             <!-- Transition -->
             <div class="sectionTransition beige"></div>
             <!-- CONTENT-->
-            <div id="planningSection" class="sectionContainer">
+            <div class="sectionContainer">
                 <h2 class="sectionTitle">Les infos à retenir</h2>
                 <p class="subSectionTitle">Le thème du mariage</p>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -122,23 +122,36 @@
             </div>
         </div>
         <!-- MAPS -->
-        <div class="maps" id="maps" hidden="true">
-            <div class="mapsContainer">
+        <div class="section beige" id="maps">
+            <!-- SPARKLES -->
+            <div class="sparklesBackground"></div>
+            <!-- Transition -->
+            <div class="sectionTransition pink"></div>
+            <!-- CONTENT-->
+            <div class="sectionContainer">
                 <h2 class="sectionTitle">Ça se passe où ?</h2>
-                <div class="eventMapContainer">
-                    <div id="mapCityHallBlock" class="eventMapItem">
+                <div class="mapContainer">
+                    <div class="mapBlock">
                         <p class="subSectionTitle">Vendredi</p>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2528.7128047201236!2d3.1280477764250465!3d50.669592671561084!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c329a321013465%3A0xad50a84e49b1ead8!2sMairie%20de%20Wasquehal!5e0!3m2!1sfr!2sfr!4v1717562133570!5m2!1sfr!2sfr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <div class="mapItem">
+                            <img class="mapImage" src="res/main_map_wasquehal.jpg"/>
+                            <div class="mapHover">
+                                <p>Voir sur Google Maps</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="eventMapItem">
-                        <p id="mapCastleTitle" class="subSectionTitle"></p>
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2550.885893738448!2d2.9751920764021347!3d50.256715401294464!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c2b4c47d74d8e1%3A0x610fe85c7eedb3cc!2sClos%20Barth%C3%A9lemy-Ch%C3%A2teau%20d&#39;Eterpigny!5e0!3m2!1sfr!2sfr!4v1717562468049!5m2!1sfr!2sfr" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <div class="mapBlock">
+                        <p class="subSectionTitle">Samedi et Dimanche</p>
+                        <div class="mapItem">
+                            <img class="mapImage" src="res/main_map_eterpigny.png"/>
+                            <div class="mapHover">
+                                <p>Voir sur Google Maps</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div id="mapHostelBlock">
-                    <p class="subSectionTitle">Besoin de dormir dans les environs ?</p>
-                    <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
-                </div>
+                <p class="subSectionTitle">Besoin de dormir dans les environs ?</p>
+                <p id="sleepLabel">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
         </div>
         <!-- FORM -->
