@@ -1,22 +1,3 @@
-/* PLANNING */
-
-.planning {
-    width: 100%;
-    height: max-content;
-    min-height: 100%;
-    background-color: #FFFBF1;
-    display: flex;
-    flex-direction: column;
-}
-
-.planningContainer {
-    flex: 1;
-    position: relative;
-    padding-left: 10%;
-    padding-right: 10%;
-    align-content: center;
-}
-
 .planningInfoContainer {
     display: flex;
     flex-direction: row;
@@ -64,7 +45,7 @@
         flex-direction: column;
     }
 
-    .planningInfo {
+    .planningInfo.spaced {
         margin-bottom: 8vh;
     }
 
