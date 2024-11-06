@@ -9,7 +9,7 @@ loadPage()
 
 async function loadPage() {
     // Show loading
-    document.getElementById("welcomeLabels").hidden = true
+    document.getElementById("welcomeLabelsContainer").hidden = true
     document.getElementById("scrollIndicator").hidden = true
     showLoader(true)
 
@@ -74,7 +74,7 @@ function fillThePage(user1, user2, user3) {
     })
 
     // Hide loader
-    document.getElementById("welcomeLabels").hidden = false
+    document.getElementById("welcomeLabelsContainer").hidden = false
     document.getElementById("scrollIndicator").hidden = false
     showLoader(false)
 } 
