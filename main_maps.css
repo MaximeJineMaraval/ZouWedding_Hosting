@@ -63,3 +63,60 @@
 #mapSectionContainer {
     margin-bottom:22vh;
 }
+
+.mapPinContainer {
+    position: absolute;
+    top: 1em;
+    right: 1em;
+    background-color: white;
+    padding: 0.25em;
+    display: flex;
+    width: fit-content;
+    border-radius: 100%;
+    border: 0.2em solid #E85C18;
+    visibility: hidden;
+}
+
+.mapPinImage {
+    height: 1.5em;
+    width: auto;
+}
+
+/* Phone design */
+@media only screen and (max-width: 600px) {
+    #mapSectionContainer {
+        margin-bottom:15vh;
+    }
+
+    .mapContainer {
+        flex-direction: column;
+    }
+
+    .mapBlock .subSectionTitle {
+        text-align: center;
+    }
+
+    .mapPinContainer {
+        visibility: visible;
+    }
+}
+
+/* Large Phone design and portrait tablet */
+@media only screen and (min-width: 600px) {
+
+}
+
+/* Landscape tablets */
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Laptop and desktop */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Large laptop and desktop */
+@media only screen and (min-width: 1200px) {
+
+}
