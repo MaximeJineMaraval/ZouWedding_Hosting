@@ -5,19 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Le mariage des Zous</title>
     <link rel="icon" type="image/x-icon" href="res/favicon.svg">
+    <!-- Icon Font Family import -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Snackbar imports -->
     <link href="widget-snackbar.css" rel="stylesheet">
     <script src="widget-snackbar.js"></script>
+    <!-- Loader imports -->
     <link href="widget-loader.css" rel="stylesheet">
     <script src="widget-loader.js"></script>
+    <!-- Sparkles Background imports -->
     <link href="widget-sparklesBackground.css" rel="stylesheet">
     <script src="widget-sparklesBackground.js"></script>
+    <!-- Button imports -->
     <link href="widget-button.css" rel="stylesheet">
+    <!-- NavBar import -->
     <link href="widget-navbar.css" rel="stylesheet">
-    <link href="main.css" rel="stylesheet">
+    <script src="widget-navbar.js"></script>
+    <!-- Welcome Section imports -->
     <link href="main_welcome.css" rel="stylesheet">
+    <script src="main_welcome.js"></script>
+    <!-- Planning Section imports -->
     <link href="main_planning.css" rel="stylesheet">
+    <script src="main_planning.js"></script>
+    <!-- Maps Section imports -->
     <link href="main_maps.css" rel="stylesheet">
+    <script src="main_maps.js"></script>
+    <!-- Form Section imports -->
+    <link href="main_form.css" rel="stylesheet">
+    <script src="main_form.js"></script>
+    <!-- Main Page imports -->
+    <link href="main.css" rel="stylesheet">
     <script src="main.js" defer></script>
 </head>
 <body>
@@ -161,7 +178,12 @@
             </div>
         </div>
         <!-- FORM -->
-        <div class="form" id="form" hidden="true">
+        <div class="section pink" id="form">
+            <!-- SPARKLES -->
+            <div class="sparklesBackground"></div>
+            <!-- Transition -->
+            <div class="sectionTransition beige"></div>
+            <!-- CONTENT-->
             <div class="formContainer">
                 <h2 class="sectionTitle">C'est le moment de t'exprimer !</h2>
                 <!-- Choice User 1 -->
@@ -290,7 +312,7 @@
                 </div>
             </div>
         </div>
-        <div id="snackbar">Some text some message..</div>
+        <div id="snackbar"></div>
     </div>
 </body>
 </html>
