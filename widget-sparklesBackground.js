@@ -3,20 +3,22 @@ function getRandomOffset() {
 }
 
 function applySparklesBackground() {
-    const rows = Math.floor(window.innerHeight / 150);  // Number of virtual rows to put the sparkles
-    let cols = 0;
-    // Number of virtual columns to put the sparkles
-    if (window.innerWidth < 600) {
-        cols = Math.floor(window.innerWidth / 100);
-    } else if (window.innerWidth < 800) {
-        cols = Math.floor(window.innerWidth / 200);
-    } else {
-        cols = Math.floor(window.innerWidth / 300);
-    }
-    
     const sparklesBackgrounds = document.getElementsByClassName("sparklesBackground")
     for(var i = 0; i < sparklesBackgrounds.length; i++) {
         const sparklesBackground = sparklesBackgrounds[i]
+        const sectionWidth = sparklesBackground.parentElement.clientWidth
+        const sectionHeight = sparklesBackground.parentElement.clientHeight
+        const rows = Math.floor(sectionHeight / 150);  // Number of virtual rows to put the sparkles
+        let cols = 0;
+        // Number of virtual columns to put the sparkles
+        if (sectionWidth < 600) {
+            cols = Math.floor(sectionWidth / 100);
+        } else if (sectionWidth < 800) {
+            cols = Math.floor(sectionWidth / 200);
+        } else {
+            cols = Math.floor(sectionWidth / 300);
+        }
+
         for (let row = 0; row < rows; row++) {
             for (let col = 0; col < cols; col++) {
                 const sparkles = document.createElement('img');
@@ -30,8 +32,8 @@ function applySparklesBackground() {
                 sparkles.style.height = `auto`;
         
                 // Position the sparkles with random offset
-                const posX = (col / cols) * window.innerWidth + getRandomOffset();
-                const posY = (row / rows) * window.innerHeight + getRandomOffset();
+                const posX = (col / cols) * sectionWidth + getRandomOffset();
+                const posY = (row / rows) * sectionHeight + getRandomOffset();
                 sparkles.style.left = `${posX}px`;
                 sparkles.style.top = `${posY}px`;
         
