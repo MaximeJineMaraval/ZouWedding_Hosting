@@ -1,0 +1,41 @@
+/* FORM */
+
+.formContainer {
+    background-color:rgba(255,255,255,0.66);
+    backdrop-filter: blur(5px);
+    width: 100%;
+    padding: 2.5em;
+    border-radius: 1.5em;
+}
+
+.formUserName {
+    font-family: auromiya;
+    font-size: 1.15em;
+}
+
+.formSeparator {
+    width: 100%;
+    height: 1px;
+    background-color: rgba(0,0,0,0.33);
+    margin-top: 2em;
+    margin-bottom: 2em;
+}
+
+
+
+
+
+
+
+
+/*#user1Container {
+    background-color: aqua;
+}
+
+#user2Container {
+    background-color: rebeccapurple;
+}
+
+#user3Container {
+    background-color: orange;
+}*/

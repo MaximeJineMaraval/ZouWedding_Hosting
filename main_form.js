@@ -1,4 +1,30 @@
 function fillForm(user1, user2, user3) {
+    fillUser1(user1)
+    fillUser2(user2)
+    fillUser3(user3)
+}
+
+function fillUser1(user) {
+    document.getElementById("formUserName1").textContent = user.firstname
+}
+
+function fillUser2(user) {
+    if(user === null) {
+        document.getElementById("user2Container").hidden = true
+    } else {
+        document.getElementById("formUserName2").textContent = user.firstname
+    }
+}
+
+function fillUser3(user) {
+    if(user === null) {
+        document.getElementById("user3Container").hidden = true
+    } else {
+        document.getElementById("formUserName3").textContent = user.firstname
+    }
+}
+
+/*function fillForm(user1, user2, user3) {
     // Change labels
     if (user3 == null) {
         document.getElementById("joinBlock3").hidden = true
@@ -97,7 +123,7 @@ function fillForm(user1, user2, user3) {
     burgerClassic3.onclick = triggerFunction
     burgerCheese3.onclick = triggerFunction
     burgerVg3.onclick = triggerFunction
-}
+}*/
 
 function triggerSaveButtonDisabled(user1, user2, user3) {
     const saveButton = document.getElementById("saveButton")
