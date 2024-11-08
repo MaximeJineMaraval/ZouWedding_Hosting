@@ -2,7 +2,28 @@ const SERVER_VALUE_CLASSIC = "CLASSIC"
 const SERVER_VALUE_CHEESE = "CHEESE"
 const SERVER_VALUE_VG = "VG"
 
+let burgerClassic1
+let burgerClassic2
+let burgerClassic3
+let burgerCheese1
+let burgerCheese2
+let burgerCheese3
+let burgerVg1
+let burgerVg2
+let burgerVg3
+
 function fillForm(user1, user2, user3) {
+    burgerClassic1 = document.getElementById("radioClassic1")
+    burgerClassic2 = document.getElementById("radioClassic2")
+    burgerClassic3 = document.getElementById("radioClassic3")
+    burgerCheese1 = document.getElementById("radioCheese1")
+    burgerCheese2 = document.getElementById("radioCheese2")
+    burgerCheese3 = document.getElementById("radioCheese3")
+    burgerVg1 = document.getElementById("radioVg1")
+    burgerVg2 = document.getElementById("radioVg2")
+    burgerVg3 = document.getElementById("radioVg3")
+
+
     if(user2 != null || user3 != null) {
         document.getElementById("formTitle").textContent = "Alors, vous venez ?"
     }
@@ -51,6 +72,21 @@ function fillForm(user1, user2, user3) {
         "radioCheese3",
         "radioVg3"
     )
+
+    // Enable or disabled save button
+    let triggerFunction = function() { 
+        triggerSaveButtonDisabled(user1, user2, user3) 
+    }
+    triggerFunction()
+    burgerClassic1.onclick = triggerFunction
+    burgerCheese2.onclick = triggerFunction
+    burgerVg3.onclick = triggerFunction
+    burgerClassic2.onclick = triggerFunction
+    burgerCheese2.onclick = triggerFunction
+    burgerVg2.onclick = triggerFunction
+    burgerClassic3.onclick = triggerFunction
+    burgerCheese3.onclick = triggerFunction
+    burgerVg3.onclick = triggerFunction
 }
 
 function fillUser(
@@ -122,9 +158,9 @@ function triggerSaveButtonDisabled(user1, user2, user3) {
     saveButton.disabled = 
         (
             user1.is_invited_full_saturday 
-            && (burgerClassic.checked === false) 
-            && (burgerCheese.checked === false) 
-            && (burgerVg.checked === false)
+            && (burgerClassic1.checked === false) 
+            && (burgerCheese1.checked === false) 
+            && (burgerVg1.checked === false)
         )
         || (user2 != null &&
             user2.is_invited_full_saturday 
@@ -142,8 +178,7 @@ function triggerSaveButtonDisabled(user1, user2, user3) {
 
 // Save the user choices
 async function saveChoices(user1, user2, user3) {
-    const loader = document.getElementById("formLoader")
-    loader.hidden = false
+    showLoader(true)
     // user1
     const fridayCheckbox = document.getElementById("fridayCheckbox")
     const saturdayCocktailCheckbox = document.getElementById("saturdayCocktailCheckbox")
@@ -253,10 +288,11 @@ async function saveChoices(user1, user2, user3) {
             await response.json()
         }
         showSnackbar("Merci d'avoir répondu !")
-        loader.hidden = true
+        showLoader(false)
     } catch(error) {
         console.log(error)
         showSnackbar(error)
+        showLoader(false)
     }
 }
 
