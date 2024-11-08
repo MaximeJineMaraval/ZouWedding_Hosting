@@ -83,6 +83,11 @@ body {
     background-color: #F6BEC4;
 }
 
+.section.form {
+    background-image: url(res/main_form_background.png);
+    background-size: cover;
+}
+
 .sectionContainer {
     flex: 1;
     position: relative;

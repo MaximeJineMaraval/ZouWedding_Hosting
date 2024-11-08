@@ -104,9 +104,8 @@ function fillUser(
     foodCheeseRadio,
     foodVgRadio
 ) {
-    if(user === null) {
-        document.getElementById(containerId).hidden = true
-    } else {
+    if(user != null) {
+        document.getElementById(containerId).hidden = false
         // Fill name
         document.getElementById(nameId).textContent = user.firstname
         // Hide sunday if needed
@@ -124,9 +123,9 @@ function fillUser(
         document.getElementById(saturdayCheckboxId).checked = user.join_cocktail || user.join_full_saturday
         document.getElementById(sundayCheckboxId).checked = user.join_sunday
         // Hide food section if needed
-        if(!user.is_invited_full_saturday) {
-            document.getElementById(foodSectionTitle).style.display = "none"
-            document.getElementById(foodContainer).style.display = "none"
+        if(user.is_invited_full_saturday) {
+            document.getElementById(foodSectionTitle).style.display = "block"
+            document.getElementById(foodContainer).style.display = "flex"
         }
         // Prefill food radios
         document.getElementById(foodClassicRadio).checked = user.food === SERVER_VALUE_CLASSIC

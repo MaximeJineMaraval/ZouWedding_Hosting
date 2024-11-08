@@ -32,6 +32,30 @@
     align-items: center;
 }
 
+#foodSectionTitle1 {
+    display: none;
+}
+
+#foodSectionTitle2 {
+    display: none;
+}
+
+#foodSectionTitle3 {
+    display: none;
+}
+
+#formFoodContainer1 {
+    display: none;
+}
+
+#formFoodContainer2 {
+    display: none;
+}
+
+#formFoodContainer3 {
+    display: none;
+}
+
 /*** GENERIC SELECTOR ***/
 
 .formSelectorContainer {
@@ -71,7 +95,7 @@
 }
 /* Card when hovered */
 .selectorItemContent:hover {
-	background-color: rgba(255, 255, 255, 0.66);
+	background-color: rgba(255, 255, 255, 0.9);
     transition: background-color 0.3s;
 }
 /* Card when checkbox is selected*/
