@@ -8,6 +8,7 @@
     border-radius: 1.5em;
     display: flex;
     flex-direction: column;
+    margin-bottom: 22vh;
 }
 
 .formUserName {

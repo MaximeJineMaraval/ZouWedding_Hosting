@@ -63,13 +63,6 @@ body {
 
 /* COMMON ASSETS */
 
-.fakeImage {
-    color: red;
-    font-size:20vh;
-    line-height: 8vh;
-    size: 1vh;
-}
-
 .section {
     width: 100%;
     height: max-content;
@@ -120,6 +113,10 @@ body {
     background-position: center top;
 }
 
+.sectionTransition.greenInverse {
+    background-image: url(res/main_section_transition-green_inverse.png);
+}
+
 .sectionTransition.green {
     background-image: url(res/main_section_transition-green.png);
 }
@@ -138,6 +135,19 @@ body {
     width: 100%;
     height: 100%;
     position: relative;
+}
+
+/* FOOTER */
+
+.footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.footer img {
+    margin: 1em;
+    height: 8vh;
 }
 
 /* Phone design */
