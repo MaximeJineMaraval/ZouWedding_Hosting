@@ -6,6 +6,8 @@
     width: 100%;
     padding: 2.5em;
     border-radius: 1.5em;
+    display: flex;
+    flex-direction: column;
 }
 
 .formUserName {
@@ -19,6 +21,14 @@
     background-color: rgba(0,0,0,0.33);
     margin-top: 2em;
     margin-bottom: 2em;
+}
+
+.buttonContainer {
+    width: 60%;
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /*** GENERIC SELECTOR ***/
