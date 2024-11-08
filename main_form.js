@@ -1,4 +1,7 @@
 function fillForm(user1, user2, user3) {
+    if(user2 != null || user3 != null) {
+        document.getElementById("formTitle").textContent = "Alors, vous venez ?"
+    }
     fillUser(
         user1, 
         "user1Container",
