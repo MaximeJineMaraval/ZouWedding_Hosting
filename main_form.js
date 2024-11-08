@@ -1,3 +1,7 @@
+const SERVER_VALUE_CLASSIC = "CLASSIC"
+const SERVER_VALUE_CHEESE = "CHEESE"
+const SERVER_VALUE_VG = "VG"
+
 function fillForm(user1, user2, user3) {
     if(user2 != null || user3 != null) {
         document.getElementById("formTitle").textContent = "Alors, vous venez ?"
@@ -6,31 +10,46 @@ function fillForm(user1, user2, user3) {
         user1, 
         "user1Container",
         "formUserName1",
-        "formCheckboxContainer1",
+        "formDaysContainer1",
         "checkboxItemSunday1",
         "checkboxFriday1",
         "checkboxSaturday1",
-        "checkboxSunday1"
+        "checkboxSunday1",
+        "foodSectionTitle1",
+        "formFoodContainer1",
+        "radioClassic1",
+        "radioCheese1",
+        "radioVg1"
     )
     fillUser(
         user2, 
         "user2Container",
         "formUserName2",
-        "formCheckboxContainer2",
+        "formDaysContainer2",
         "checkboxItemSunday2",
         "checkboxFriday2",
         "checkboxSaturday2",
-        "checkboxSunday2"
+        "checkboxSunday2",
+        "foodSectionTitle2",
+        "formFoodContainer2",
+        "radioClassic2",
+        "radioCheese2",
+        "radioVg2"
     )
     fillUser(
         user3, 
         "user3Container",
         "formUserName3",
-        "formCheckboxContainer3",
+        "formDaysContainer3",
         "checkboxItemSunday3",
         "checkboxFriday3",
         "checkboxSaturday3",
-        "checkboxSunday3"
+        "checkboxSunday3",
+        "foodSectionTitle3",
+        "formFoodContainer3",
+        "radioClassic3",
+        "radioCheese3",
+        "radioVg3"
     )
 }
 
@@ -42,7 +61,12 @@ function fillUser(
     sundayItemId, 
     fridayCheckboxId,
     saturdayCheckboxId,
-    sundayCheckboxId
+    sundayCheckboxId,
+    foodSectionTitle,
+    foodContainer,
+    foodClassicRadio,
+    foodCheeseRadio,
+    foodVgRadio
 ) {
     if(user === null) {
         document.getElementById(containerId).hidden = true
@@ -63,95 +87,20 @@ function fillUser(
         document.getElementById(fridayCheckboxId).checked = user.join_friday
         document.getElementById(saturdayCheckboxId).checked = user.join_cocktail || user.join_full_saturday
         document.getElementById(sundayCheckboxId).checked = user.join_sunday
+        // Hide food section if needed
+        if(!user.is_invited_full_saturday) {
+            document.getElementById(foodSectionTitle).style.display = "none"
+            document.getElementById(foodContainer).style.display = "none"
+        }
+        // Prefill food radios
+        document.getElementById(foodClassicRadio).checked = user.food === SERVER_VALUE_CLASSIC
+        document.getElementById(foodCheeseRadio).checked = user.food === SERVER_VALUE_CHEESE
+        document.getElementById(foodVgRadio).checked = user.food === SERVER_VALUE_VG
     }
 }
 
 
 /*function fillForm(user1, user2, user3) {
-    // Change labels
-    if (user3 == null) {
-        document.getElementById("joinBlock3").hidden = true
-        document.getElementById("formFoodBlock3").hidden = true
-    } else {
-        document.getElementById("form").style.height = "200%"
-        document.getElementById("joinTitle3").textContent = `Est-que ${user3.firstname} vient ?`
-        document.getElementById("foodChoiceTitle3").textContent = `Et ${user3.firstname} mangera quoi ?`
-    }
-    if (user2 == null) {
-        document.getElementById("joinBlock2").hidden = true
-        document.getElementById("formFoodBlock2").hidden = true
-    } else {
-        document.getElementById("joinTitle").textContent = `Est-que ${user1.firstname} vient ?`
-        document.getElementById("joinTitle2").textContent = `Est-que ${user2.firstname} vient ?`
-        document.getElementById("foodChoiceTitle").textContent = `Et ${user1.firstname} mangera quoi ?`
-        document.getElementById("foodChoiceTitle2").textContent = `Et ${user2.firstname} mangera quoi ?`
-    }
-    if (user2 != null && user3 != null) {
-        document.getElementById("form").style.height = "200%"
-    } else if (user2 != null) {
-        document.getElementById("form").style.height = "150%"
-    }
-
-    // Show or hide checkboxes
-    document.getElementById("fridayCheckboxContainer").hidden = !user1.is_invited_friday
-    document.getElementById("saturdayCocktailCheckboxContainer").hidden = user1.is_invited_full_saturday
-    document.getElementById("saturdayFullCheckboxContainer").hidden = !user1.is_invited_full_saturday
-    document.getElementById("sundayCheckboxContainer").hidden = !user1.is_invited_sunday
-    if(user2 != null) {
-        document.getElementById("fridayCheckboxContainer2").hidden = !user2.is_invited_friday
-        document.getElementById("saturdayCocktailCheckboxContainer2").hidden = user2.is_invited_full_saturday
-        document.getElementById("saturdayFullCheckboxContainer2").hidden = !user2.is_invited_full_saturday
-        document.getElementById("sundayCheckboxContainer2").hidden = !user2.is_invited_sunday
-    }
-    if(user3 != null) {
-        document.getElementById("fridayCheckboxContainer3").hidden = !user3.is_invited_friday
-        document.getElementById("saturdayCocktailCheckboxContainer3").hidden = user3.is_invited_full_saturday
-        document.getElementById("saturdayFullCheckboxContainer3").hidden = !user3.is_invited_full_saturday
-        document.getElementById("sundayCheckboxContainer3").hidden = !user3.is_invited_sunday
-    }
-
-    // Pre-fill checkboxes
-    document.getElementById("fridayCheckbox").checked = user1.join_friday
-    document.getElementById("saturdayCocktailCheckbox").checked = user1.join_cocktail
-    document.getElementById("saturdayFullCheckbox").checked = user1.join_full_saturday
-    document.getElementById("sundayCheckbox").checked = user1.join_sunday
-    if(user2 != null) {
-        document.getElementById("fridayCheckbox2").checked = user2.join_friday
-        document.getElementById("saturdayCocktailCheckbox2").checked = user2.join_cocktail
-        document.getElementById("saturdayFullCheckbox2").checked = user2.join_full_saturday
-        document.getElementById("sundayCheckbox2").checked = user2.join_sunday
-    }
-    if(user3 != null) {
-        document.getElementById("fridayCheckbox3").checked = user3.join_friday
-        document.getElementById("saturdayCocktailCheckbox3").checked = user3.join_cocktail
-        document.getElementById("saturdayFullCheckbox3").checked = user3.join_full_saturday
-        document.getElementById("sundayCheckbox3").checked = user3.join_sunday
-    }
-
-    // Show or hide food section
-    document.getElementById("formFoodBlock").hidden = !user1.is_invited_full_saturday
-    if(user2 != null) {
-        document.getElementById("formFoodBlock2").hidden = !user2.is_invited_full_saturday
-    }
-    if(user3 != null) {
-        document.getElementById("formFoodBlock3").hidden = !user3.is_invited_full_saturday
-    }
-
-    // Pre-fill food radio buttons
-    document.getElementById("burgerClassic").checked = user1.food === FOOD_CHOICE_CLASSIC
-    document.getElementById("burgerCheese").checked = user1.food === FOOD_CHOICE_CHEESE
-    document.getElementById("burgerVg").checked = user1.food === FOOD_CHOICE_VG
-    if(user2 != null) {
-        document.getElementById("burgerClassic2").checked = user2.food === FOOD_CHOICE_CLASSIC
-        document.getElementById("burgerCheese2").checked = user2.food === FOOD_CHOICE_CHEESE
-        document.getElementById("burgerVg2").checked = user2.food === FOOD_CHOICE_VG
-    }
-    if(user3 != null) {
-        document.getElementById("burgerClassic3").checked = user3.food === FOOD_CHOICE_CLASSIC
-        document.getElementById("burgerCheese3").checked = user3.food === FOOD_CHOICE_CHEESE
-        document.getElementById("burgerVg3").checked = user3.food === FOOD_CHOICE_VG
-    }
-
     // Enable or disabled save button + update user
     let triggerFunction = function() { 
         triggerSaveButtonDisabled(user1, user2, user3) 

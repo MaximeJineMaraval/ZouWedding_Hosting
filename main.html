@@ -190,97 +190,175 @@
                     <div id="user1Container">
                         <p id="formUserName1" class="formUserName"></p>
                         <p class="subSectionTitle">Est-ce que tu viens ?</p>
-                        <div class="formCheckboxContainer" id="formCheckboxContainer1">
-                            <label class="checkboxItem" id="checkboxItemFriday1">
+                        <div class="formSelectorContainer" id="formDaysContainer1">
+                            <label class="selectorItem" id="checkboxItemFriday1">
                                 <input type="checkbox" id="checkboxFriday1">
-                                <div class="checkboxItemContent">
-                                    <img class="checkboxItemImage" src="res/main_planning_friday.png"/>
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_planning_friday.png"/>
                                     <p>Vendredi</p>
                                     <div class="checkboxItemCheckmark"></div>
                                 </div>
                             </label>
-                            <label class="checkboxItem" id="checkboxItemSaturday1">
+                            <label class="selectorItem" id="checkboxItemSaturday1">
                                 <input type="checkbox" id="checkboxSaturday1">
-                                <div class="checkboxItemContent">
-                                    <img class="checkboxItemImage" src="res/main_planning_saturday.png"/>
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_planning_saturday.png"/>
                                     <p>Samedi</p>
                                     <div class="checkboxItemCheckmark"></div>
                                 </div>
                             </label>
-                            <label class="checkboxItem" id="checkboxItemSunday1">
+                            <label class="selectorItem" id="checkboxItemSunday1">
                                 <input type="checkbox" id="checkboxSunday1">
-                                <div class="checkboxItemContent">
-                                    <img class="checkboxItemImage" src="res/main_planning_sunday.png"/>
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_planning_sunday.png"/>
                                     <p>Dimanche</p>
                                     <div class="checkboxItemCheckmark"></div>
                                 </div>
                             </label>
                         </div>    
-                        <p class="subSectionTitle">Tu mangeras quoi le samedi soir ?</p>
+                        <p class="subSectionTitle" id="foodSectionTitle1">Tu mangeras quoi le samedi soir ?</p>
+                        <div class="formSelectorContainer" id="formFoodContainer1">
+                            <label class="selectorItem" id="radioItemClassic1">
+                                <input type="radio" id="radioClassic1" name="radioFood1">
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_form_classic.png"/>
+                                    <p>Classique</p>
+                                    <div class="radioItemCheckmark"></div>
+                                </div>
+                            </label>
+                            <label class="selectorItem" id="radioItemCheese1">
+                                <input type="radio" id="radioCheese1" name="radioFood1">
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_form_cheese.png"/>
+                                    <p>Fromage du ch'nord</p>
+                                    <div class="radioItemCheckmark"></div>
+                                </div>
+                            </label>
+                            <label class="selectorItem" id="radioItemVg1">
+                                <input type="radio" id="radioVg1" name="radioFood1">
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_form_vg.png"/>
+                                    <p>Végétarien</p>
+                                    <div class="radioItemCheckmark"></div>
+                                </div>
+                            </label>
+                        </div>    
                         <div class="formSeparator"></div>
                     </div>
                     <div id="user2Container">
                         <p id="formUserName2" class="formUserName"></p>
                         <p class="subSectionTitle">Est-ce que tu viens ?</p>
-                        <div class="formCheckboxContainer" id="formCheckboxContainer2">
-                            <label class="checkboxItem" id="checkboxItemFriday2">
+                        <div class="formSelectorContainer" id="formDaysContainer2">
+                            <label class="selectorItem" id="checkboxItemFriday2">
                                 <input type="checkbox" id="checkboxFriday2">
-                                <div class="checkboxItemContent">
-                                    <img class="checkboxItemImage" src="res/main_planning_friday.png"/>
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_planning_friday.png"/>
                                     <p>Vendredi</p>
                                     <div class="checkboxItemCheckmark"></div>
                                 </div>
                             </label>
-                            <label class="checkboxItem" id="checkboxItemSaturday2">
+                            <label class="selectorItem" id="checkboxItemSaturday2">
                                 <input type="checkbox" id="checkboxSaturday2">
-                                <div class="checkboxItemContent">
-                                    <img class="checkboxItemImage" src="res/main_planning_saturday.png"/>
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_planning_saturday.png"/>
                                     <p>Samedi</p>
                                     <div class="checkboxItemCheckmark"></div>
                                 </div>
                             </label>
-                            <label class="checkboxItem" id="checkboxItemSunday2">
+                            <label class="selectorItem" id="checkboxItemSunday2">
                                 <input type="checkbox" id="checkboxSunday2">
-                                <div class="checkboxItemContent">
-                                    <img class="checkboxItemImage" src="res/main_planning_sunday.png"/>
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_planning_sunday.png"/>
                                     <p>Dimanche</p>
                                     <div class="checkboxItemCheckmark"></div>
                                 </div>
                             </label>
                         </div>    
-                        <p class="subSectionTitle">Tu mangeras quoi le samedi soir ?</p>
+                        <p class="subSectionTitle" id="foodSectionTitle2">Tu mangeras quoi le samedi soir ?</p>
+                        <div class="formSelectorContainer" id="formFoodContainer2">
+                            <label class="selectorItem" id="radioItemClassic2">
+                                <input type="radio" id="radioClassic2" name="radioFood2">
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_form_classic.png"/>
+                                    <p>Classique</p>
+                                    <div class="radioItemCheckmark"></div>
+                                </div>
+                            </label>
+                            <label class="selectorItem" id="radioItemCheese2">
+                                <input type="radio" id="radioCheese2" name="radioFood2">
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_form_cheese.png"/>
+                                    <p>Fromage du ch'nord</p>
+                                    <div class="radioItemCheckmark"></div>
+                                </div>
+                            </label>
+                            <label class="selectorItem" id="radioItemVg2">
+                                <input type="radio" id="radioVg2" name="radioFood2">
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_form_vg.png"/>
+                                    <p>Végétarien</p>
+                                    <div class="radioItemCheckmark"></div>
+                                </div>
+                            </label>
+                        </div>
                         <div class="formSeparator"></div>
                     </div>
                     <div id="user3Container">
                         <p id="formUserName3" class="formUserName"></p>
                         <p class="subSectionTitle">Est-ce que tu viens ?</p>
-                        <div class="formCheckboxContainer" id="formCheckboxContainer3">
-                            <label class="checkboxItem" id="checkboxItemFriday3">
+                        <div class="formSelectorContainer" id="formDaysContainer3">
+                            <label class="selectorItem" id="checkboxItemFriday3">
                                 <input type="checkbox" id="checkboxFriday3">
-                                <div class="checkboxItemContent">
-                                    <img class="checkboxItemImage" src="res/main_planning_friday.png"/>
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_planning_friday.png"/>
                                     <p>Vendredi</p>
                                     <div class="checkboxItemCheckmark"></div>
                                 </div>
                             </label>
-                            <label class="checkboxItem" id="checkboxItemSaturday3">
+                            <label class="selectorItem" id="checkboxItemSaturday3">
                                 <input type="checkbox" id="checkboxSaturday3">
-                                <div class="checkboxItemContent">
-                                    <img class="checkboxItemImage" src="res/main_planning_saturday.png"/>
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_planning_saturday.png"/>
                                     <p>Samedi</p>
                                     <div class="checkboxItemCheckmark"></div>
                                 </div>
                             </label>
-                            <label class="checkboxItem" id="checkboxItemSunday3">
+                            <label class="selectorItem" id="checkboxItemSunday3">
                                 <input type="checkbox" id="checkboxSunday3">
-                                <div class="checkboxItemContent">
-                                    <img class="checkboxItemImage" src="res/main_planning_sunday.png"/>
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_planning_sunday.png"/>
                                     <p>Dimanche</p>
                                     <div class="checkboxItemCheckmark"></div>
                                 </div>
                             </label>
                         </div>    
-                        <p class="subSectionTitle">Tu mangeras quoi le samedi soir ?</p>
+                        <p class="subSectionTitle" id="foodSectionTitle3">Tu mangeras quoi le samedi soir ?</p>
+                        <div class="formSelectorContainer" id="formFoodContainer3">
+                            <label class="selectorItem" id="radioItemClassic3">
+                                <input type="radio" id="radioClassic3" name="radioFood3">
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_form_classic.png"/>
+                                    <p>Classique</p>
+                                    <div class="radioItemCheckmark"></div>
+                                </div>
+                            </label>
+                            <label class="selectorItem" id="radioItemCheese3">
+                                <input type="radio" id="radioCheese3" name="radioFood3">
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_form_cheese.png"/>
+                                    <p>Fromage du ch'nord</p>
+                                    <div class="radioItemCheckmark"></div>
+                                </div>
+                            </label>
+                            <label class="selectorItem" id="radioItemVg3">
+                                <input type="radio" id="radioVg3" name="radioFood3">
+                                <div class="selectorItemContent">
+                                    <img class="selectorItemImage" src="res/main_form_vg.png"/>
+                                    <p>Végétarien</p>
+                                    <div class="radioItemCheckmark"></div>
+                                </div>
+                            </label>
+                        </div>
                         <div class="formSeparator"></div>
                     </div>
                 </div>

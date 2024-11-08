@@ -21,9 +21,9 @@
     margin-bottom: 2em;
 }
 
-/*** CHECHBOX ***/
+/*** GENERIC SELECTOR ***/
 
-.formCheckboxContainer {
+.formSelectorContainer {
     padding-top: 3vh;
     padding-bottom: 3vh;
     padding-left: 10%;
@@ -33,16 +33,16 @@
     justify-content: space-between;
 }
 
-.checkboxItem {
+.selectorItem {
     width: 12vw;
 }
-  
-.checkboxItemImage {
+
+.selectorItemImage {
     height: 3.5em;
 }
 
-  /* Checkbox card */
-.checkboxItemContent {
+/* Card */
+.selectorItemContent {
 	background-color: transparent;
   	display: flex;
   	flex-direction: column;
@@ -58,17 +58,26 @@
     user-select: none;
     transition: background-color 0.3s, border 0.3s;
 }
-/* Checkbox card when hovered */
-.checkboxItemContent:hover {
+/* Card when hovered */
+.selectorItemContent:hover {
 	background-color: rgba(255, 255, 255, 0.66);
     transition: background-color 0.3s;
 }
-/* Checkbox card when checkbox is selected*/
-.checkboxItem input[type="checkbox"]:checked + .checkboxItemContent {
+/* Card when checkbox is selected*/
+.selectorItem input[type="checkbox"]:checked + .selectorItemContent {
     background-color: white;
     border: 0.15em solid #4C6627;
     transition: background-color 0.3s, border 0.3s;
-  }
+}
+
+/* Card when radio is selected*/
+.selectorItem input[type="radio"]:checked + .selectorItemContent {
+    background-color: white;
+    border: 0.15em solid #4C6627;
+    transition: background-color 0.3s, border 0.3s;
+}
+
+/*** SPECIFIC CHECKBOX ***/
 
 /* Checkbox checkmark container */
 .checkboxItemCheckmark {
@@ -81,12 +90,12 @@
     transition: background-color 0.3s, border 0.3s;
 }
 /* Checkbox checkmark container when card id hovered*/
-.checkboxItemContent:hover .checkboxItemCheckmark {
+.selectorItemContent:hover .checkboxItemCheckmark {
 	border: 0.14em solid #4C6627;
     transition: border 0.3s;
 }
 /* Checkbox checkmark container when checkbox is selected*/
-.checkboxItem input[type="checkbox"]:checked ~ .checkboxItemContent .checkboxItemCheckmark {
+.selectorItem input[type="checkbox"]:checked ~ .selectorItemContent .checkboxItemCheckmark {
     background-color: #4C6627;
     border: 0.14em solid #4C6627;
     transition: background-color 0.3s, border 0.3s;
@@ -108,13 +117,63 @@
 }
 
 /* Checkbox checkmark check icon when checkbox is selected */
-.checkboxItem input[type="checkbox"]:checked ~ .checkboxItemContent .checkboxItemCheckmark:after {
+.selectorItem input[type="checkbox"]:checked ~ .selectorItemContent .checkboxItemCheckmark:after {
     display: block;
     transition: opacity 0.3s;
   }
 
 /* Hide the real checkbox */
-.checkboxItem input[type="checkbox"] {
+.selectorItem input[type="checkbox"] {
+	position: absolute;
+  	opacity: 0;
+}
+
+/*** SPECIFIC RADIO ***/
+
+/* Checkbox checkmark container */
+.radioItemCheckmark {
+    height: 1em;
+    width: 1em;
+    background-color: transparent;
+    border: 0.14em solid #959595;
+    border-radius: 1em;
+    position: relative;
+    transition: background-color 0.3s, border 0.3s;
+}
+/* Checkbox checkmark container when card id hovered*/
+.selectorItemContent:hover .radioItemCheckmark {
+	border: 0.14em solid #4C6627;
+    transition: border 0.3s;
+}
+/* Checkbox checkmark container when checkbox is selected*/
+.selectorItem input[type="radio"]:checked ~ .selectorItemContent .radioItemCheckmark {
+    border: 0.14em solid #4C6627;
+    transition: background-color 0.3s, border 0.3s;
+}
+
+/* Checkbox checkmark check icon */
+.radioItemCheckmark:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.55em;
+    height: 0.55em;
+    border-radius: 0.55em;
+    background-color: #4C6627;
+    transform: translate(-50%, -50%);
+    display: none;
+    transition: opacity 0.3s;
+}
+
+/* Checkbox checkmark check icon when checkbox is selected */
+.selectorItem input[type="radio"]:checked ~ .selectorItemContent .radioItemCheckmark:after {
+    display: block;
+    transition: opacity 0.3s;
+  }
+
+/* Hide the real checkbox */
+.selectorItem input[type="radio"] {
 	position: absolute;
   	opacity: 0;
 }
