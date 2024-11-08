@@ -112,6 +112,10 @@
     transition: background-color 0.3s, border 0.3s;
 }
 
+.selectorItemContent p {
+    text-align: center;
+}
+
 /*** SPECIFIC CHECKBOX ***/
 
 /* Checkbox checkmark container */
@@ -211,4 +215,49 @@
 .selectorItem input[type="radio"] {
 	position: absolute;
   	opacity: 0;
+}
+
+/* Phone design */
+@media only screen and (max-width: 600px) {
+    
+}
+
+/* Large Phone design and portrait tablet */
+@media only screen and (min-width: 600px) {
+    .selectorItem {
+        width: 16vw;
+    }
+    .buttonContainer {
+        width: 100%;
+    }
+}
+
+/* Landscape tablets */
+@media only screen and (min-width: 768px) {
+    .selectorItem {
+        width: 16vw;
+    }
+    .buttonContainer {
+        width: 90%;
+    }
+}
+
+/* Laptop and desktop */
+@media only screen and (min-width: 992px) {
+    .selectorItem {
+        width: 14vw;
+    }
+    .buttonContainer {
+        width: 70%;
+    }
+}
+
+/* Large laptop and desktop */
+@media only screen and (min-width: 1200px) {
+    .selectorItem {
+        width: 12vw;
+    }
+    .buttonContainer {
+        width: 60%;
+    }
 }
