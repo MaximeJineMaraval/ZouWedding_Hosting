@@ -1,8 +1,3 @@
-const FOOD_CHOICE_CLASSIC = "CLASSIC"
-const FOOD_CHOICE_CHEESE = "CHEESE"
-const FOOD_CHOICE_VG = "VG"
-
-
 applySparklesBackground()
 initNavBar()
 loadPage()

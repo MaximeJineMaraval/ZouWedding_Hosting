@@ -135,24 +135,6 @@ function fillUser(
     }
 }
 
-
-/*function fillForm(user1, user2, user3) {
-    // Enable or disabled save button + update user
-    let triggerFunction = function() { 
-        triggerSaveButtonDisabled(user1, user2, user3) 
-    }
-    triggerFunction()
-    burgerClassic.onclick = triggerFunction
-    burgerCheese.onclick = triggerFunction
-    burgerVg.onclick = triggerFunction
-    burgerClassic2.onclick = triggerFunction
-    burgerCheese2.onclick = triggerFunction
-    burgerVg2.onclick = triggerFunction
-    burgerClassic3.onclick = triggerFunction
-    burgerCheese3.onclick = triggerFunction
-    burgerVg3.onclick = triggerFunction
-}*/
-
 function triggerSaveButtonDisabled(user1, user2, user3) {
     const saveButton = document.getElementById("saveButton")
     saveButton.disabled = 
@@ -180,49 +162,49 @@ function triggerSaveButtonDisabled(user1, user2, user3) {
 async function saveChoices(user1, user2, user3) {
     showLoader(true)
     // user1
-    const fridayCheckbox = document.getElementById("fridayCheckbox")
-    const saturdayCocktailCheckbox = document.getElementById("saturdayCocktailCheckbox")
-    const saturdayFullCheckbox = document.getElementById("saturdayFullCheckbox")
-    const sundayCheckbox = document.getElementById("sundayCheckbox")
-    let foodString = ""
-    if(document.getElementById("burgerClassic").checked) {
-        foodString = FOOD_CHOICE_CLASSIC
+    const joinFriday1 = document.getElementById("checkboxFriday1").checked
+    const joinSunday1 = document.getElementById("checkboxSunday1").checked
+    const joinCocktail1 = document.getElementById("checkboxSaturday1").checked
+    const joinFullSaturday1 = document.getElementById("checkboxSaturday1").checked && user1.is_invited_full_saturday
+    let foodString1 = ""
+    if(burgerClassic1.checked) {
+        foodString1 = SERVER_VALUE_CLASSIC
     }
-    if(document.getElementById("burgerCheese").checked) {
-        foodString = FOOD_CHOICE_CHEESE
+    if(burgerCheese1.checked) {
+        foodString1 = SERVER_VALUE_CHEESE
     }
-    if(document.getElementById("burgerVg").checked) {
-        foodString = FOOD_CHOICE_VG
+    if(burgerVg1.checked) {
+        foodString1 = SERVER_VALUE_VG
     }
     // user2
-    const fridayCheckbox2 = document.getElementById("fridayCheckbox2")
-    const saturdayCocktailCheckbox2 = document.getElementById("saturdayCocktailCheckbox2")
-    const saturdayFullCheckbox2 = document.getElementById("saturdayFullCheckbox2")
-    const sundayCheckbox2 = document.getElementById("sundayCheckbox2")
+    const joinFriday2 = document.getElementById("checkboxFriday2").checked
+    const joinSunday2 = document.getElementById("checkboxSunday2").checked
+    const joinCocktail2 = document.getElementById("checkboxSaturday2").checked
+    const joinFullSaturday2 = document.getElementById("checkboxSaturday2").checked && user2.is_invited_full_saturday
     let foodString2 = ""
-    if(document.getElementById("burgerClassic2").checked) {
-        foodString2 = FOOD_CHOICE_CLASSIC
+    if(burgerClassic2.checked) {
+        foodString2 = SERVER_VALUE_CLASSIC
     }
-    if(document.getElementById("burgerCheese2").checked) {
-        foodString2 = FOOD_CHOICE_CHEESE
+    if(burgerCheese2.checked) {
+        foodString2 = SERVER_VALUE_CHEESE
     }
-    if(document.getElementById("burgerVg2").checked) {
-        foodString2 = FOOD_CHOICE_VG
+    if(burgerVg2.checked) {
+        foodString2 = SERVER_VALUE_VG
     }
     // user3
-    const fridayCheckbox3 = document.getElementById("fridayCheckbox3")
-    const saturdayCocktailCheckbox3 = document.getElementById("saturdayCocktailCheckbox3")
-    const saturdayFullCheckbox3 = document.getElementById("saturdayFullCheckbox3")
-    const sundayCheckbox3 = document.getElementById("sundayCheckbox3")
+    const joinFriday3 = document.getElementById("checkboxFriday3").checked
+    const joinSunday3 = document.getElementById("checkboxSunday3").checked
+    const joinCocktail3 = document.getElementById("checkboxSaturday3").checked
+    const joinFullSaturday3 = document.getElementById("checkboxSaturday3").checked && user3.is_invited_full_saturday
     let foodString3 = ""
-    if(document.getElementById("burgerClassic3").checked) {
-        foodString3 = FOOD_CHOICE_CLASSIC
+    if(burgerClassic3.checked) {
+        foodString3 = SERVER_VALUE_CLASSIC
     }
-    if(document.getElementById("burgerCheese3").checked) {
-        foodString3 = FOOD_CHOICE_CHEESE
+    if(burgerCheese3.checked) {
+        foodString3 = SERVER_VALUE_CHEESE
     }
-    if(document.getElementById("burgerVg3").checked) {
-        foodString3 = FOOD_CHOICE_VG
+    if(burgerVg3.checked) {
+        foodString3 = SERVER_VALUE_VG
     }
 
     // api calls
@@ -238,11 +220,11 @@ async function saveChoices(user1, user2, user3) {
             },
             body: JSON.stringify({
                 has_answered: true,
-                join_friday: fridayCheckbox.checked,
-                join_full_saturday: saturdayFullCheckbox.checked,
-                join_sunday: sundayCheckbox.checked,
-                join_cocktail: saturdayCocktailCheckbox.checked,
-                food: foodString
+                join_friday: joinFriday1,
+                join_full_saturday: joinFullSaturday1,
+                join_sunday: joinSunday1,
+                join_cocktail: joinCocktail1,
+                food: foodString1
             })
         }
         const response = await fetch(apiUrl, requestOptions)
@@ -257,10 +239,10 @@ async function saveChoices(user1, user2, user3) {
                 },
                 body: JSON.stringify({
                     has_answered: true,
-                    join_friday: fridayCheckbox2.checked,
-                    join_full_saturday: saturdayFullCheckbox2.checked,
-                    join_sunday: sundayCheckbox2.checked,
-                    join_cocktail: saturdayCocktailCheckbox2.checked,
+                    join_friday: joinFriday2,
+                    join_full_saturday: joinFullSaturday2,
+                    join_sunday: joinSunday2,
+                    join_cocktail: joinCocktail2,
                     food: foodString2
                 })
             }
@@ -277,10 +259,10 @@ async function saveChoices(user1, user2, user3) {
                 },
                 body: JSON.stringify({
                     has_answered: true,
-                    join_friday: fridayCheckbox3.checked,
-                    join_full_saturday: saturdayFullCheckbox3.checked,
-                    join_sunday: sundayCheckbox3.checked,
-                    join_cocktail: saturdayCocktailCheckbox3.checked,
+                    join_friday: joinFriday3,
+                    join_full_saturday: joinFullSaturday3,
+                    join_sunday: joinSunday3,
+                    join_cocktail: joinCocktail3,
                     food: foodString3
                 })
             }
