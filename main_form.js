@@ -1,28 +1,68 @@
 function fillForm(user1, user2, user3) {
-    fillUser1(user1)
-    fillUser2(user2)
-    fillUser3(user3)
+    fillUser(
+        user1, 
+        "user1Container",
+        "formUserName1",
+        "formCheckboxContainer1",
+        "checkboxItemSunday1",
+        "checkboxFriday1",
+        "checkboxSaturday1",
+        "checkboxSunday1"
+    )
+    fillUser(
+        user2, 
+        "user2Container",
+        "formUserName2",
+        "formCheckboxContainer2",
+        "checkboxItemSunday2",
+        "checkboxFriday2",
+        "checkboxSaturday2",
+        "checkboxSunday2"
+    )
+    fillUser(
+        user3, 
+        "user3Container",
+        "formUserName3",
+        "formCheckboxContainer3",
+        "checkboxItemSunday3",
+        "checkboxFriday3",
+        "checkboxSaturday3",
+        "checkboxSunday3"
+    )
 }
 
-function fillUser1(user) {
-    document.getElementById("formUserName1").textContent = user.firstname
-}
-
-function fillUser2(user) {
+function fillUser(
+    user, 
+    containerId,
+    nameId, 
+    checkboxContainerId, 
+    sundayItemId, 
+    fridayCheckboxId,
+    saturdayCheckboxId,
+    sundayCheckboxId
+) {
     if(user === null) {
-        document.getElementById("user2Container").hidden = true
+        document.getElementById(containerId).hidden = true
     } else {
-        document.getElementById("formUserName2").textContent = user.firstname
+        // Fill name
+        document.getElementById(nameId).textContent = user.firstname
+        // Hide sunday if needed
+        const sundayCheckBoxItem = document.getElementById(sundayItemId)
+        if(user.is_invited_sunday) {
+            sundayCheckBoxItem.hidden = false
+        } else {
+            sundayCheckBoxItem.hidden = true
+            const checkboxContainer = document.getElementById(checkboxContainerId)
+            checkboxContainer.style.paddingLeft = "22%"
+            checkboxContainer.style.paddingRight = "22%"
+        }
+        // Prefill day checkboxes
+        document.getElementById(fridayCheckboxId).checked = user.join_friday
+        document.getElementById(saturdayCheckboxId).checked = user.join_cocktail || user.join_full_saturday
+        document.getElementById(sundayCheckboxId).checked = user.join_sunday
     }
 }
 
-function fillUser3(user) {
-    if(user === null) {
-        document.getElementById("user3Container").hidden = true
-    } else {
-        document.getElementById("formUserName3").textContent = user.firstname
-    }
-}
 
 /*function fillForm(user1, user2, user3) {
     // Change labels

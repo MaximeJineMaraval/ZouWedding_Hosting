@@ -21,21 +21,100 @@
     margin-bottom: 2em;
 }
 
+/*** CHECHBOX ***/
 
-
-
-
-
-
-
-/*#user1Container {
-    background-color: aqua;
+.formCheckboxContainer {
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    padding-left: 10%;
+    padding-right: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
-#user2Container {
-    background-color: rebeccapurple;
+.checkboxItem {
+    width: 12vw;
+}
+  
+.checkboxItemImage {
+    height: 3.5em;
 }
 
-#user3Container {
-    background-color: orange;
-}*/
+  /* Checkbox card */
+.checkboxItemContent {
+	background-color: transparent;
+  	display: flex;
+  	flex-direction: column;
+  	align-items: center;
+  	gap: 0.6em;
+  	padding-top: 1.5em;
+    padding-bottom: 1.5em;
+    width: 100%;
+    border-radius: 0.5em;
+    border: 0.15em solid transparent;
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+    transition: background-color 0.3s, border 0.3s;
+}
+/* Checkbox card when hovered */
+.checkboxItemContent:hover {
+	background-color: rgba(255, 255, 255, 0.66);
+    transition: background-color 0.3s;
+}
+/* Checkbox card when checkbox is selected*/
+.checkboxItem input[type="checkbox"]:checked + .checkboxItemContent {
+    background-color: white;
+    border: 0.15em solid #4C6627;
+    transition: background-color 0.3s, border 0.3s;
+  }
+
+/* Checkbox checkmark container */
+.checkboxItemCheckmark {
+    height: 1em;
+    width: 1em;
+    background-color: transparent;
+    border: 0.14em solid #959595;
+    border-radius: 0.2em;
+    position: relative;
+    transition: background-color 0.3s, border 0.3s;
+}
+/* Checkbox checkmark container when card id hovered*/
+.checkboxItemContent:hover .checkboxItemCheckmark {
+	border: 0.14em solid #4C6627;
+    transition: border 0.3s;
+}
+/* Checkbox checkmark container when checkbox is selected*/
+.checkboxItem input[type="checkbox"]:checked ~ .checkboxItemContent .checkboxItemCheckmark {
+    background-color: #4C6627;
+    border: 0.14em solid #4C6627;
+    transition: background-color 0.3s, border 0.3s;
+}
+
+/* Checkbox checkmark check icon */
+.checkboxItemCheckmark:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0.2em;
+    height: 0.5em;
+    border: solid white;
+    border-width: 0 0.15em 0.15em 0;
+    transform: translate(-50%, -70%) rotate(45deg);
+    display: none;
+    transition: opacity 0.3s;
+}
+
+/* Checkbox checkmark check icon when checkbox is selected */
+.checkboxItem input[type="checkbox"]:checked ~ .checkboxItemContent .checkboxItemCheckmark:after {
+    display: block;
+    transition: opacity 0.3s;
+  }
+
+/* Hide the real checkbox */
+.checkboxItem input[type="checkbox"] {
+	position: absolute;
+  	opacity: 0;
+}
