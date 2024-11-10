@@ -60,9 +60,7 @@
     object-fit: cover;
 }
 
-#mapSectionContainer {
-    margin-bottom:22vh;
-}
+
 
 .mapPinContainer {
     position: absolute;
@@ -84,9 +82,6 @@
 
 /* Phone design */
 @media only screen and (max-width: 600px) {
-    #mapSectionContainer {
-        margin-bottom:15vh;
-    }
 
     .mapContainer {
         flex-direction: column;
