@@ -158,12 +158,14 @@ body {
 /* Phone design */
 @media only screen and (max-width: 600px) {
     .sectionTitle {
-        margin-top:15vh;
+        margin-top:11vh;
         text-align: center;
     }
 
     .sectionContainer {
-        margin-bottom: 15vh;
+        margin-bottom: 11vh;
+        padding-left: 7.5%;
+        padding-right: 7.5%;
     }
 }
 

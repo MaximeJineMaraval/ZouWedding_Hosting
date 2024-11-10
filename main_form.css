@@ -219,7 +219,37 @@
 
 /* Phone design */
 @media only screen and (max-width: 600px) {
-    
+    .formContainer {
+        margin-bottom: 0;
+        padding-left: 0em;
+        padding-right: 0em;
+    }
+    .formUserName {
+        text-align: center;
+    }
+    .formContainer .subSectionTitle {
+        text-align: center;
+    }
+    .selectorItem {
+        width: 23vw;
+    }
+    .buttonContainer {
+        width: 100%;
+    }
+    .buttonContainer button {
+        width: 50%;
+    }
+    .formSeparator {
+        width: 85%;
+        margin: 7.5%;
+    }
+    .selectorItemImage {
+        height: 2.8em;
+    }
+    .formSelectorContainer {
+        padding-left: 6.5%;
+        padding-right: 6.5%;
+    }
 }
 
 /* Large Phone design and portrait tablet */
