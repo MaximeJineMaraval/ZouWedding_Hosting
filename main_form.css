@@ -229,8 +229,15 @@
     .formContainer .subSectionTitle {
         text-align: center;
     }
+    .formSelectorContainer {
+        padding-left: 6.5%;
+        padding-right: 6.5%;
+    }
     .selectorItem {
         width: 23vw;
+    }
+    .selectorItemImage {
+        height: 2.8em;
     }
     .buttonContainer {
         width: 100%;
@@ -241,13 +248,6 @@
     .formSeparator {
         width: 85%;
         margin: 7.5%;
-    }
-    .selectorItemImage {
-        height: 2.8em;
-    }
-    .formSelectorContainer {
-        padding-left: 6.5%;
-        padding-right: 6.5%;
     }
 }
 

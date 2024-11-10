@@ -115,8 +115,13 @@ function fillUser(
         } else {
             sundayCheckBoxItem.hidden = true
             const checkboxContainer = document.getElementById(checkboxContainerId)
-            checkboxContainer.style.paddingLeft = "22%"
-            checkboxContainer.style.paddingRight = "22%"
+            if(window.screen.width <= 600) {
+                checkboxContainer.style.paddingLeft = "15%"
+                checkboxContainer.style.paddingRight = "15%"
+            } else {
+                checkboxContainer.style.paddingLeft = "22%"
+                checkboxContainer.style.paddingRight = "22%"
+            }
         }
         // Prefill day checkboxes
         document.getElementById(fridayCheckboxId).checked = user.join_friday
