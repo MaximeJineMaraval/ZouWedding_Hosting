@@ -24,6 +24,7 @@ nav {
     display: flex;
     flex-direction: column;
     align-items: end;
+    transition: top 0.4s; /* Transition effect when sliding down (and up) */
 }
 
 .navBar {
