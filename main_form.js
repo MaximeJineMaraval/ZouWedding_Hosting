@@ -136,6 +136,8 @@ function fillUser(
         document.getElementById(foodClassicRadio).checked = user.food === SERVER_VALUE_CLASSIC
         document.getElementById(foodCheeseRadio).checked = user.food === SERVER_VALUE_CHEESE
         document.getElementById(foodVgRadio).checked = user.food === SERVER_VALUE_VG
+        // Prefill comment section
+        document.getElementById("formComments").value = user.comment
     }
 }
 
@@ -221,6 +223,8 @@ async function saveChoices(user1, user2, user3) {
     if(burgerVg3.checked && joinFullSaturday3) {
         foodString3 = SERVER_VALUE_VG
     }
+    // comment
+    const formComment = document.getElementById("formComments").value
 
     // api calls
     try {
@@ -239,7 +243,8 @@ async function saveChoices(user1, user2, user3) {
                 join_full_saturday: joinFullSaturday1,
                 join_sunday: joinSunday1,
                 join_cocktail: joinCocktail1,
-                food: foodString1
+                food: foodString1,
+                comment: formComment
             })
         }
         const response = await fetch(apiUrl, requestOptions)
@@ -258,7 +263,8 @@ async function saveChoices(user1, user2, user3) {
                     join_full_saturday: joinFullSaturday2,
                     join_sunday: joinSunday2,
                     join_cocktail: joinCocktail2,
-                    food: foodString2
+                    food: foodString2,
+                    comment: formComment
                 })
             }
             const response = await fetch(apiUrl2, requestOptions2)
@@ -278,7 +284,8 @@ async function saveChoices(user1, user2, user3) {
                     join_full_saturday: joinFullSaturday3,
                     join_sunday: joinSunday3,
                     join_cocktail: joinCocktail3,
-                    food: foodString3
+                    food: foodString3,
+                    comment: formComment
                 })
             }
             const response = await fetch(apiUrl3, requestOptions3)
