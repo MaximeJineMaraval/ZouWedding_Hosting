@@ -291,7 +291,7 @@ async function saveChoices(user1, user2, user3) {
             const response = await fetch(apiUrl3, requestOptions3)
             await response.json()
         }
-        showSnackbar("Merci d'avoir répondu !")
+        showSnackbar("✨ Merci d'avoir répondu ! ✨")
         showLoader(false)
     } catch(error) {
         console.log(error)
