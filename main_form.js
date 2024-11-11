@@ -137,7 +137,13 @@ function fillUser(
         document.getElementById(foodCheeseRadio).checked = user.food === SERVER_VALUE_CHEESE
         document.getElementById(foodVgRadio).checked = user.food === SERVER_VALUE_VG
         // Prefill comment section
-        document.getElementById("formComments").value = user.comment
+        const formComments = document.getElementById("formComments")
+        if(user.is_invited_to_sleep) {
+            formComments.placeholder = "Précise nous si tu dors avec nous sur place durant le weekend 🏰😴❤️\nTu peux aussi ajouter un commentaire ou juste lous laisser un petit mot"
+        } else {
+            formComments.placeholder = "Tu veux ajouter une précision, ou juste nous écrire un petit mot ? C'est par ici !"
+        }
+        formComments.value = user.comment
     }
 }
 
