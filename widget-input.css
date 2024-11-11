@@ -1,7 +1,4 @@
-input {
-    margin-top: 8vh;
-    margin-bottom: 8vh;
-    width: 80%;
+input, textarea {
     padding-left: 1em;
     padding-right: 1em;
     padding-top: 0.66em;
@@ -12,6 +9,14 @@ input {
     letter-spacing: 0.05em;
     border: 1px solid #000;
     border-radius: 100px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+input[type=text]:focus, textarea:focus {
+    border: 2px solid #47642D;
+    outline: none;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
