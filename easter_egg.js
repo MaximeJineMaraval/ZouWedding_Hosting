@@ -102,6 +102,9 @@ function startGame() {
       jump();
     }
   });
+  document.addEventListener("touchend", () => {
+    jump();
+  })
 }
 
 function updateBackground() {
