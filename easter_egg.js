@@ -48,9 +48,11 @@ let isEnemyAvoided = false;
 // Bonus variables
 let bonusInterval;
 let isBonusActive = false;
+let currentBonus;
+let moveBonusInterval;
 
 // Game variables
-const npcStartingPosition = 800;
+const npcStartingPosition = gameContainer.offsetWidth;
 let score = 0;
 let isGameOver = false;
 let isGameStarted = false;
@@ -67,6 +69,7 @@ function startGame() {
 
   // Reset variables and show/hide views
   updateScore(0)
+  gameSpeed = 4;
   
   isGameStarted = true;
   isGameOver = false;
@@ -79,6 +82,10 @@ function startGame() {
   isEnemyActive = false;
   if(currentEnemy) {
     currentEnemy.remove();
+  }
+  if(currentBonus) {
+    currentBonus.remove();
+    isBonusActive = false;
   }
 
   isJumping = false;
@@ -222,36 +229,36 @@ function createBonus() {
 
     let bonusPosition = npcStartingPosition;
     let bonusHeight = Math.floor(Math.random() * 150) + 50; // Put bonus between 50 and 200
+    
+    currentBonus = document.createElement('img');
+    currentBonus.classList.add('bonus');
+    currentBonus.style.bottom = bonusHeight + "px";
+    currentBonus.style.left = bonusPosition + "px";
+    currentBonus.src = currentBonusSprite;
 
-    let newBonus = document.createElement('img');
-    newBonus.classList.add('bonus');
-    newBonus.style.bottom = bonusHeight + "px";
-    newBonus.style.left = bonusPosition + "px";
-    newBonus.src = currentBonusSprite;
-
-    gameContainer.appendChild(newBonus);
-
-    let moveBonusInterval = setInterval(() => {
+    gameContainer.appendChild(currentBonus);
+    
+    moveBonusInterval = setInterval(() => {
       // Don't move the bonus if the game is over
       if (isGameOver) return;
 
-      if (getRightPositionOf(newBonus) < 0) { // the bonus left the screen
-        newBonus.remove();
+      if (getRightPositionOf(currentBonus) < 0) { // the bonus left the screen
+        currentBonus.remove();
         clearInterval(moveBonusInterval);
       }
 
       // Detect collision with the bonus
-      if (getLeftPositionOf(newBonus) + 8 < getRightPositionOf(player) // +8 to not count the sprite's blank space
-        && getRightPositionOf(newBonus) - 8 > getLeftPositionOf(player) // -8 to not count the sprite's blank space
-        && getBottomPositionOf(newBonus) < getTopPositionOf(player)
-        && getTopPositionOf(newBonus) > getBottomPositionOf(player)
+      if (getLeftPositionOf(currentBonus) < getRightPositionOf(player) 
+        && getRightPositionOf(currentBonus) > getLeftPositionOf(player)
+        && getBottomPositionOf(currentBonus) < getTopPositionOf(player)
+        && getTopPositionOf(currentBonus) > getBottomPositionOf(player)
       ) {
         // Update the score
         updateScore(score + 10);
         // Show the cloud
-        newBonus.src = "res/ee_cloud.svg"
-        newBonus.style.opacity = 0;
-        setTimeout(function() { newBonus.remove(); }, 500);
+        currentBonus.src = "res/ee_cloud.svg"
+        currentBonus.style.opacity = 0;
+        setTimeout(function() { currentBonus.remove(); }, 500);
         showBonusScore(bonusHeight, bonusPosition);
         // Clear the loop
         clearInterval(moveBonusInterval);
@@ -260,7 +267,7 @@ function createBonus() {
 
       // Move bonus
       bonusPosition -= gameSpeed;
-      newBonus.style.left = bonusPosition + "px";
+      currentBonus.style.left = bonusPosition + "px";
     }, 20);
   }, 8000); // Create bonus every 8 seconds
 }
@@ -285,12 +292,12 @@ function gameOver() {
   clearInterval(jumpInterval);
   clearInterval(fallInterval);
   clearInterval(animatePlayerSpriteInterval);
+  clearInterval(moveBonusInterval);
   startButton.style.visibility = 'visible';
   gameOverContainer.style.visibility = 'visible';
   playerChoiceContainer.style.visibility = 'visible';
   scoreView.style.visibility = 'hidden';
   gameOverScore.innerText = "Score: " + score;
-  //document.location.reload();
 }
 
 function updateScore(newScore) {
