@@ -26,8 +26,8 @@ function fillMaps(user) {
     // Show sleep section if needed
     const mapSleepTitle = document.getElementById("mapSleepTitle")
     const mapSleepContent = document.getElementById("mapSleepContent")
-    mapSleepTitle.hidden = !user.is_invited_sunday && !user.is_invited_full_saturday
-    mapSleepContent.hidden = !user.is_invited_sunday && !user.is_invited_full_saturday
+    mapSleepTitle.hidden = !user.is_invited_sunday
+    mapSleepContent.hidden = !user.is_invited_sunday
     // Set sleep labels
     if(user.is_invited_to_sleep) {
         mapSleepTitle.textContent = "Et si tu dormais sur place avec nous ?"
