@@ -12,9 +12,18 @@ let nameField = document.getElementById("guestname")
 nameField.addEventListener("input", function() {
     loginButton.disabled = nameField.value === ""
 })
+nameField.addEventListener("keyup", function({key}) {
+    if(key === "Enter" && loginButton.disabled === false) {
+        login()
+    }
+})
 
 // on loginButton click
 loginButton.addEventListener("click", async function(){
+    login()
+})
+
+async function login () {
     showLoader(true)
     const treatedName = removeAccents(nameField.value)
     const names = treatedName.split(' ')
@@ -64,7 +73,7 @@ loginButton.addEventListener("click", async function(){
             showLoader(false)
             showSnackbar(error)
         })
-})
+}
 
 async function getToken() {
     const url = "https://europe-west9-zouwedding-424315.cloudfunctions.net/logJsVersion"
