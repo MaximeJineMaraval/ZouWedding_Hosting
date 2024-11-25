@@ -1,5 +1,5 @@
 // Helpers
-const removeAccents = str => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+const removeAccents = str => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace('-','')
 
 // API calls info
 const apiUrl = 'https://api.baserow.io/api/database/rows/table/302843/'
