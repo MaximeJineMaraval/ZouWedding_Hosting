@@ -11,6 +11,15 @@ let burgerCheese3
 let burgerVg1
 let burgerVg2
 let burgerVg3
+let checkboxFriday1
+let checkboxFriday2
+let checkboxFriday3
+let checkboxSaturday1
+let checkboxSaturday2
+let checkboxSaturday3
+let checkboxSunday1
+let checkboxSunday2
+let checkboxSunday3
 
 function fillForm(user1, user2, user3) {
     burgerClassic1 = document.getElementById("radioClassic1")
@@ -22,7 +31,30 @@ function fillForm(user1, user2, user3) {
     burgerVg1 = document.getElementById("radioVg1")
     burgerVg2 = document.getElementById("radioVg2")
     burgerVg3 = document.getElementById("radioVg3")
+    checkboxFriday1 = document.getElementById("checkboxFriday1")
+    checkboxFriday2 = document.getElementById("checkboxFriday2")
+    checkboxFriday3 = document.getElementById("checkboxFriday3")
+    checkboxSaturday1 = document.getElementById("checkboxSaturday1")
+    checkboxSaturday2 = document.getElementById("checkboxSaturday2")
+    checkboxSaturday3 = document.getElementById("checkboxSaturday3")
+    checkboxSunday1 = document.getElementById("checkboxSunday1")
+    checkboxSunday2 = document.getElementById("checkboxSunday2")
+    checkboxSunday3 = document.getElementById("checkboxSunday3")
 
+    // Enable or disabled save button
+    let triggerFunction = function() { 
+        triggerSaveButtonDisabled(user1, user2, user3) 
+    }
+    triggerFunction()
+    burgerClassic1.onclick = triggerFunction
+    burgerCheese2.onclick = triggerFunction
+    burgerVg3.onclick = triggerFunction
+    burgerClassic2.onclick = triggerFunction
+    burgerCheese2.onclick = triggerFunction
+    burgerVg2.onclick = triggerFunction
+    burgerClassic3.onclick = triggerFunction
+    burgerCheese3.onclick = triggerFunction
+    burgerVg3.onclick = triggerFunction
 
     if(user2 != null || user3 != null) {
         document.getElementById("formTitle").textContent = "Alors, vous venez ?"
@@ -40,7 +72,8 @@ function fillForm(user1, user2, user3) {
         "formFoodContainer1",
         "radioClassic1",
         "radioCheese1",
-        "radioVg1"
+        "radioVg1",
+        triggerFunction
     )
     fillUser(
         user2, 
@@ -55,7 +88,8 @@ function fillForm(user1, user2, user3) {
         "formFoodContainer2",
         "radioClassic2",
         "radioCheese2",
-        "radioVg2"
+        "radioVg2",
+        triggerFunction
     )
     fillUser(
         user3, 
@@ -70,23 +104,9 @@ function fillForm(user1, user2, user3) {
         "formFoodContainer3",
         "radioClassic3",
         "radioCheese3",
-        "radioVg3"
+        "radioVg3",
+        triggerFunction
     )
-
-    // Enable or disabled save button
-    let triggerFunction = function() { 
-        triggerSaveButtonDisabled(user1, user2, user3) 
-    }
-    triggerFunction()
-    burgerClassic1.onclick = triggerFunction
-    burgerCheese2.onclick = triggerFunction
-    burgerVg3.onclick = triggerFunction
-    burgerClassic2.onclick = triggerFunction
-    burgerCheese2.onclick = triggerFunction
-    burgerVg2.onclick = triggerFunction
-    burgerClassic3.onclick = triggerFunction
-    burgerCheese3.onclick = triggerFunction
-    burgerVg3.onclick = triggerFunction
 }
 
 function fillUser(
@@ -102,7 +122,8 @@ function fillUser(
     foodContainer,
     foodClassicRadio,
     foodCheeseRadio,
-    foodVgRadio
+    foodVgRadio,
+    onSaturdayClickedCallback
 ) {
     if(user != null) {
         document.getElementById(containerId).hidden = false
@@ -127,8 +148,9 @@ function fillUser(
         document.getElementById(fridayCheckboxId).checked = user.join_friday
         document.getElementById(saturdayCheckboxId).checked = user.join_cocktail || user.join_full_saturday
         document.getElementById(sundayCheckboxId).checked = user.join_sunday
-        // Hide food section if needed
+        // Hide food section if needed and trigger save button enabling
         document.getElementById(saturdayCheckboxId).onclick = function () {
+            onSaturdayClickedCallback()
             updateFoodSectionVisibility(user, foodSectionTitle, foodContainer, saturdayCheckboxId)
         }
         updateFoodSectionVisibility(user, foodSectionTitle, foodContainer, saturdayCheckboxId)
@@ -151,19 +173,22 @@ function triggerSaveButtonDisabled(user1, user2, user3) {
     const saveButton = document.getElementById("saveButton")
     saveButton.disabled = 
         (
-            user1.is_invited_full_saturday 
+            user1.is_invited_full_saturday
+            && (checkboxSaturday1.checked === true)
             && (burgerClassic1.checked === false) 
             && (burgerCheese1.checked === false) 
             && (burgerVg1.checked === false)
         )
         || (user2 != null &&
             user2.is_invited_full_saturday 
+            && (checkboxSaturday2.checked === true)
             && (burgerClassic2.checked === false) 
             && (burgerCheese2.checked === false) 
             && (burgerVg2.checked === false)
         )
         || (user3 != null &&
-            user3.is_invited_full_saturday 
+            user3.is_invited_full_saturday
+            && (checkboxSaturday3.checked === true)
             && (burgerClassic3.checked === false) 
             && (burgerCheese3.checked === false) 
             && (burgerVg3.checked === false)
@@ -185,10 +210,10 @@ function updateFoodSectionVisibility(user, foodSectionTitle, foodContainer, satu
 async function saveChoices(user1, user2, user3) {
     showLoader(true)
     // user1
-    const joinFriday1 = document.getElementById("checkboxFriday1").checked
-    const joinSunday1 = document.getElementById("checkboxSunday1").checked
-    const joinCocktail1 = document.getElementById("checkboxSaturday1").checked
-    const joinFullSaturday1 = document.getElementById("checkboxSaturday1").checked && user1.is_invited_full_saturday
+    const joinFriday1 = checkboxFriday1.checked
+    const joinSunday1 = checkboxSunday1.checked
+    const joinCocktail1 = checkboxSaturday1.checked
+    const joinFullSaturday1 = checkboxSaturday1.checked && user1.is_invited_full_saturday
     let foodString1 = ""
     if(burgerClassic1.checked && joinFullSaturday1) {
         foodString1 = SERVER_VALUE_CLASSIC
@@ -200,10 +225,10 @@ async function saveChoices(user1, user2, user3) {
         foodString1 = SERVER_VALUE_VG
     }
     // user2
-    const joinFriday2 = document.getElementById("checkboxFriday2").checked
-    const joinSunday2 = document.getElementById("checkboxSunday2").checked
-    const joinCocktail2 = document.getElementById("checkboxSaturday2").checked
-    const joinFullSaturday2 = document.getElementById("checkboxSaturday2").checked && user2.is_invited_full_saturday
+    const joinFriday2 = checkboxFriday2.checked
+    const joinSunday2 = checkboxSunday2.checked
+    const joinCocktail2 = checkboxSaturday2.checked
+    const joinFullSaturday2 = checkboxSaturday2.checked && user2.is_invited_full_saturday
     let foodString2 = ""
     if(burgerClassic2.checked && joinFullSaturday2) {
         foodString2 = SERVER_VALUE_CLASSIC
@@ -215,10 +240,10 @@ async function saveChoices(user1, user2, user3) {
         foodString2 = SERVER_VALUE_VG
     }
     // user3
-    const joinFriday3 = document.getElementById("checkboxFriday3").checked
-    const joinSunday3 = document.getElementById("checkboxSunday3").checked
-    const joinCocktail3 = document.getElementById("checkboxSaturday3").checked
-    const joinFullSaturday3 = document.getElementById("checkboxSaturday3").checked && user3.is_invited_full_saturday
+    const joinFriday3 = checkboxFriday3.checked
+    const joinSunday3 = checkboxSunday3.checked
+    const joinCocktail3 = checkboxSaturday3.checked
+    const joinFullSaturday3 = checkboxSaturday3.checked && user3.is_invited_full_saturday
     let foodString3 = ""
     if(burgerClassic3.checked && joinFullSaturday3) {
         foodString3 = SERVER_VALUE_CLASSIC
