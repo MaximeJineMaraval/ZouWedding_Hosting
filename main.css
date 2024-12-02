@@ -147,6 +147,12 @@ body {
     height: 8vh;
 }
 
+.footer p {
+    font-size: small;
+    margin-bottom: 3vh;
+    color:#FFFBF1;
+}
+
 /* Phone design */
 @media only screen and (max-width: 600px) {
     .sectionTitle {

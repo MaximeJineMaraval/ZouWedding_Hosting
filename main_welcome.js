@@ -40,5 +40,3 @@ function fillWelcome(user1, user2, user3) {
 }
 
 window.fillWelcome = fillWelcome
-
-//TODO rajouter en petit en dessous du coeur footer "Copyright Zous 2024" même font que la flèche du header
