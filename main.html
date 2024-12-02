@@ -26,6 +26,9 @@
     <!-- Welcome Section imports -->
     <link href="main_welcome.css" rel="stylesheet">
     <script src="main_welcome.js"></script>
+    <!-- Info Section imports -->
+     <link href="main_info.css" rel="stylesheet">
+     <script src="main_info.js"></script>
     <!-- Planning Section imports -->
     <link href="main_planning.css" rel="stylesheet">
     <script src="main_planning.js"></script>
@@ -51,16 +54,16 @@
             </div>
             <div class="rightNavItems">
                 <a class="rightItem" href="#planning">Le planning</a>
-                <a class="rightItem" href="#theme">Le thème</a>
+                <a class="rightItem" href="#theme">Les infos</a>
                 <a class="rightItem" href="#maps">Les lieux</a>
-                <a class="rightItem" href="#form">Je viens !</a>
+                <a id="navFormItem" class="rightItem" href="#form">Je viens ?</a>
             </div>
         </div>
         <div class="menuOpened" id="menuOpened">
             <a class="menuItem" href="#planning">Le planning</a>
-            <a class="menuItem" href="#theme">Le thème</a>
+            <a class="menuItem" href="#theme">Les infos</a>
             <a class="menuItem" href="#maps">Les lieux</a>
-            <a class="menuItem" href="#form">Je viens !</a>
+            <a id="openedNavFormItem" class="menuItem" href="#form">Je viens ?</a>
         </div>
     </nav>
     <div class="pageContent" id="pageContent">
@@ -76,11 +79,11 @@
                     <h3 id="welcomeMainLabel"></h3>
                     <h1>Mariage des Zous</h1>
                     <h3 id="welcomeDateLabel"></h3>
-                    <button onclick="location.href='#form'">Je viens !</button>
+                    <button id="welcomeButton" onclick="location.href='#form'">Je viens ?</button>
                 </div>
             </div>
             <div id="scrollIndicator" class="scrollIndicator">
-                <p>Tu veux tout savoir sur ce mariage ? Ça se passe en dessous !</p>
+                <p id="scrollIndicatorLabel">Tu veux tout savoir sur ce mariage ? Ça se passe en dessous !</p>
                 <a href="#planning">
                     <img id="welcomeArrow" src="res/welcome_arrow.png"/>
                 </a>
@@ -94,7 +97,10 @@
             <div class="sectionTransition green"></div>
             <!-- CONTENT-->
             <div class="sectionContainer">
-                <h2 class="sectionTitle">C'est quoi le planning ?</h2>
+                <h2 class="sectionTitle">C'est quoi le planning des festivités ?</h2>
+                <!-- TODO RAJOUTER UNE PHRASE -->
+                 <!-- Les heures indiquées sont celles de démarrage des évenements, <b>pensez à prendre un peu d'avance 😉</b> -->
+                 <!-- TODO RAJOUTER UNE PHRASE -->
                 <div class="planningInfoContainer">
                     <div id="planningFridayBlock" class="planningInfo spaced">
                         <img class="planningImage" src="res/main_planning_friday.png"/>
@@ -129,10 +135,12 @@
             <!-- CONTENT-->
             <div class="sectionContainer">
                 <h2 class="sectionTitle">Les infos à retenir</h2>
-                <p class="subSectionTitle">Le thème du mariage</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <p class="subSectionTitle">Ce n’est pas que notre Saint Valentin, venez sans vos bambins</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p class="subSectionTitle">Le dress code du samedi</p>
+                <p id="infoDressCodeLabel">Chez nous, pas de thème particulier, nous ne sommes ni chics, ni bohèmes, exprimez votre propre style.<br>Mais pour coller à nos couleurs préférées, les filles devront avoir une touche de <b>vert</b> et les garçons une touche de <b>rose</b>.</p>
+                <p id="infoNoKidsTitle" class="subSectionTitle">Ce n’est pas que notre Saint Valentin, venez sans vos bambins</p>
+                <p id="infoNoKidsLabel">Vous l'aurez compris, nous faisons le choix d'un mariage entre adultes, car nous souhaitons profiter à 100% de vous 😘</p>
+                <p class="subSectionTitle">C'est février, ça caille !</p>
+                <p id="infoWinterLabel">Même si le lieu du samedi après-midi est chauffé, ça reste le mois de février, alors pensez à prendre une liquette ou à investir dans un Damart (il y en a des moins cher chez Decat !)</p>
             </div>
         </div>
         <!-- MAPS -->
@@ -146,7 +154,7 @@
                 <h2 class="sectionTitle">Ça se passe où ?</h2>
                 <div class="mapContainer">
                     <div class="mapBlock" id="mapCityHallBlock">
-                        <p class="subSectionTitle">Vendredi</p>
+                        <p class="subSectionTitle">Vendredi - Mairie de Wasquehal</p>
                         <div class="mapItem" id="mapCityHallItem">
                             <img class="mapImage" src="res/main_map_wasquehal.jpg"/>
                             <div class="mapPinContainer">
@@ -361,7 +369,7 @@
                     <p class="subSectionTitle" id="commentSubTitle">Besoin d'ajouter un commentaire ?</p>
                     <textarea id="formComments" name="formComments" placeholder="Tu veux ajouter une précision, ou juste nous écrire un petit mot ? C'est par ici !" autocomplete="off" autocapitalize="sentences" rows="3"></textarea>
                     <div class="buttonContainer">
-                        <button id="saveButton">Envoyer</button>
+                        <button id="saveButton">Ça part !</button>
                     </div>
                 </div>
             </div>

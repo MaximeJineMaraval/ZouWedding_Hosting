@@ -59,7 +59,8 @@ function fillThePage(user1, user2, user3) {
     // Fill the screen
     fillWelcome(user1, user2, user3)
     fillPlanning(user1)
-    fillMaps(user1)
+    fillInfoSection(user2!=null)
+    fillMaps(user1, user2!=null)
     fillForm(user1, user2, user3)
 
     // Set SaveButton click

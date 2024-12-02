@@ -60,7 +60,8 @@ function fillForm(user1, user2, user3) {
         document.getElementById("formTitle").textContent = "Alors, vous venez ?"
     }
     fillUser(
-        user1, 
+        user1,
+        user2 != null, 
         "user1Container",
         "formUserName1",
         "formDaysContainer1",
@@ -76,7 +77,8 @@ function fillForm(user1, user2, user3) {
         triggerFunction
     )
     fillUser(
-        user2, 
+        user2,
+        true, 
         "user2Container",
         "formUserName2",
         "formDaysContainer2",
@@ -92,7 +94,8 @@ function fillForm(user1, user2, user3) {
         triggerFunction
     )
     fillUser(
-        user3, 
+        user3,
+        true, 
         "user3Container",
         "formUserName3",
         "formDaysContainer3",
@@ -110,7 +113,8 @@ function fillForm(user1, user2, user3) {
 }
 
 function fillUser(
-    user, 
+    user,
+    isMultipleGuest,
     containerId,
     nameId, 
     checkboxContainerId, 
@@ -161,9 +165,18 @@ function fillUser(
         // Prefill comment section
         const formComments = document.getElementById("formComments")
         if(user.is_invited_to_sleep) {
-            formComments.placeholder = "Précise nous si tu dors avec nous sur place durant le weekend 🏰😴❤️\nTu peux aussi ajouter un commentaire ou juste lous laisser un petit mot"
+            if(isMultipleGuest) {
+                formComments.placeholder = "Indiquez-nous si vous dormez sur place durant le weekend 🏰😴❤️\nVous pouvez aussi ajouter une précision, une restriction alimentaire, ou juste nous écrire un petit mot"
+            } else {
+                formComments.placeholder = "Indique-nous si tu dors sur place durant le weekend 🏰😴❤️\nTu peux aussi ajouter une précision, une restriction alimentaire, ou juste nous écrire un petit mot"
+            }
+            
         } else {
-            formComments.placeholder = "Tu veux ajouter une précision, ou juste nous écrire un petit mot ? C'est par ici !"
+            if(isMultipleGuest) {
+                formComments.placeholder = "Vous voulez ajouter une précision, une restriction alimentaire, ou juste nous écrire un petit mot ? C'est par ici !"
+            } else {
+                formComments.placeholder = "Tu veux ajouter une précision, une restriction alimentaire, ou juste nous écrire un petit mot ? C'est par ici !"
+            }
         }
         formComments.value = user.comment
     }

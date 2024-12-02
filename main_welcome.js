@@ -10,7 +10,7 @@ function fillWelcome(user1, user2, user3) {
     }
 
     const welcomeDateLabel = document.getElementById("welcomeDateLabel")
-    let dateString = ""
+    let dateString = "les "
     if (user1.is_invited_friday) {
         if(user1.is_invited_sunday) {
             dateString += "14, "
@@ -24,6 +24,21 @@ function fillWelcome(user1, user2, user3) {
     }
     dateString += " février 2025"
     welcomeDateLabel.textContent = dateString
+
+    // Manage plurals
+    let buttonLabel = ""
+    if(user2 != null) {
+        buttonLabel = "On vient ?"
+        document.getElementById("scrollIndicatorLabel").textContent = "Vous voulez tout savoir sur ce mariage ? Ça se passe en dessous !"
+    } else {
+        buttonLabel = "Je viens ?"
+        document.getElementById("scrollIndicatorLabel").textContent = "Tu veux tout savoir sur ce mariage ? Ça se passe en dessous !"
+    }
+    document.getElementById("welcomeButton").textContent = buttonLabel
+    document.getElementById("openedNavFormItem").textContent = buttonLabel
+    document.getElementById("navFormItem").textContent = buttonLabel
 }
 
 window.fillWelcome = fillWelcome
+
+//TODO rajouter en petit en dessous du coeur footer "Copyright Zous 2024" même font que la flèche du header
