@@ -41,6 +41,14 @@
     margin-bottom: 1.5vh;
 }
 
+#planningHourWarningLabel {
+    margin-bottom: 14vh;
+}
+
+#planningTitle {
+    margin-bottom: 6vh;
+}
+
 /* Phone design */
 @media only screen and (max-width: 600px) {
     .planningInfoContainer {
