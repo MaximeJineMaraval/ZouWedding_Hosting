@@ -10,6 +10,15 @@
     flex-direction: column;
 }
 
+#formTitle {
+    margin-bottom: 2vh;
+}
+
+.formDateLimit {
+    margin-bottom: 8vh;
+    font-family: bebasRegular;
+}
+
 .formUserName {
     font-family: auromiya;
     font-size: 1.15em;
@@ -241,6 +250,9 @@
         margin-bottom: 0;
         padding-left: 0em;
         padding-right: 0em;
+    }
+    .formDateLimit {
+        text-align: center;
     }
     .formUserName {
         text-align: center;
