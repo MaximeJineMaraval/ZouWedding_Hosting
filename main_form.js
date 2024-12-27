@@ -22,6 +22,25 @@ let checkboxSunday2
 let checkboxSunday3
 
 function fillForm(user1, user2, user3) {
+    let limitDate = new Date(2025, 0, 14)
+    let today = Date.now()
+    
+    if (today < limitDate) {
+        fillAndDisplayTheForm(user1, user2, user3)
+    } else {
+        hideTheFormAndDisplayTooLateContent()
+    }
+}
+
+function hideTheFormAndDisplayTooLateContent() {
+    document.getElementById("user1Container").hidden = true
+    document.getElementById("commentSubTitle").hidden = true
+    document.getElementById("formComments").hidden = true
+    document.getElementById("saveButton").hidden = true
+    document.getElementById("tooLateContent").hidden = false
+}
+
+function fillAndDisplayTheForm(user1, user2, user3) {
     burgerClassic1 = document.getElementById("radioClassic1")
     burgerClassic2 = document.getElementById("radioClassic2")
     burgerClassic3 = document.getElementById("radioClassic3")
